@@ -17,6 +17,22 @@ docs/ARTICLE_NOTES.md
 
 # OS ノイズ
 .DS_Store
+Thumbs.db
+
+# Python パッケージング副産物
+*.egg-info/
+build/
+dist/
+
+# lint/test キャッシュ
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# エディタ設定
+.vscode/
+.idea/
 
 # モデル重み(yolo26x.pt は約113MB で GitHub の100MB制限を超える。
 # git には載せず、ultralytics で取得 or 別途配布する。README セットアップ参照)
