@@ -1,0 +1,19 @@
+# モデル定義(runner --model のエントリ名で参照)
+# プロンプトは conf/prompts/{prompt}.txt。変更は必ず PR 経由(プロンプト = コード)
+# v4: 比較対象は「汎用 VLM(Gemini Flash)」と「専用検出器(YOLO)」の 2 本に集約。
+mock:
+  provider: mock
+
+flash:
+  provider: gemini
+  model: gemini-3.5-flash      # 2026最新の安定版Flash(GA, 2026-05)。実行時に ai.google.dev/models で正確なIDを最終確認
+  prompt: concise
+  temperature: 0
+  # 低コストで回すなら model を gemini-2.5-flash($0.30/$2.50)等に差し替え可(pricing.yaml も合わせる)
+
+yolo:
+  provider: yolo
+  weights: yolo26x.pt          # ultralytics 学習済み(COCO 80 クラス, 2026最新)。ローカル推論・無料・決定論的
+  conf_threshold: 0.25         # この信頼度以上で 1 個でも検出 → present に還元(bbox 座標は比較に使わない)
+  # YOLO は uncertain を返さない(2 値: present/absent)。
+  # 「VLM だけが不確実性を表現できる」点自体を比較の観察対象とする(REPORT に記載)。

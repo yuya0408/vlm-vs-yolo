@@ -1,0 +1,37 @@
+# PR 時: 単体テスト + smoke 評価(n=50)+ 回帰ゲート
+# v4: 回帰ゲートは mock プロバイダの smoke 評価で無料運用する。
+#     API キー・secrets・課金は不要(fork からの PR でもそのまま動く)。
+name: eval-pr
+
+on:
+  pull_request:
+    paths:
+      - "src/**"
+      - "conf/**"   # プロンプト = コード。変更は必ずここを通る
+
+jobs:
+  test-and-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - run: pytest
+
+      # mock smoke 評価 + 回帰ゲート(API 費ゼロ・決定論的)。
+      # 目的: パイプライン破壊と macro-F1 劣化の検出。mock は決定論的なので、コミット済み
+      #       ベースライン(baselines/mock_smoke_baseline.json)と一致するはず。metrics/runner/
+      #       gate のコード変更で値がずれる or 例外で落ちれば、非ゼロ終了で job が fail する。
+      - name: mock smoke eval
+        run: |
+          python -m src.runner \
+            --eval-set data/eval_set_smoke.json --model mock \
+            --results-dir ci_results
+      - name: regression gate (vs committed baseline)
+        run: |
+          CUR=$(ls ci_results/mock-*.json | head -1)
+          python -m src.gate regression \
+            --current "$CUR" \
+            --baseline baselines/mock_smoke_baseline.json

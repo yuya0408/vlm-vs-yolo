@@ -1,0 +1,23 @@
+.venv/
+__pycache__/
+.env
+data/coco/
+cache/
+results/
+mlruns/
+.dvc/cache
+.ipynb_checkpoints/
+.pytest_cache/
+pytest-cache-files-*/
+
+ci_results/
+
+# 執筆/過程ジャーナル(公開しない。公開の顔は README/docs/report/src)
+docs/ARTICLE_NOTES.md
+
+# OS ノイズ
+.DS_Store
+
+# モデル重み(yolo26x.pt は約113MB で GitHub の100MB制限を超える。
+# git には載せず、ultralytics で取得 or 別途配布する。README セットアップ参照)
+*.pt

@@ -1,0 +1,2762 @@
+{
+  "run_id": "mock-mock-66143781",
+  "provider": "mock",
+  "model_version": "mock-model-v1",
+  "eval_set_path": "data/eval_set_smoke.json",
+  "eval_set_sha256": "661437813e21abaf78682c73530fedfdd629acfdb6c8affc894ca9f5f4bb94fc",
+  "created_at": "2026-06-30T14:42:48",
+  "records": [
+    {
+      "image_id": 176901,
+      "judgements": [
+        {
+          "category": "cake",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "fire hydrant",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "hair drier",
+          "judgement": "uncertain",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "boat",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "dog",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "bottle",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "toothbrush",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "skis",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "scissors",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "person",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1000,
+        "output_tokens": 200
+      },
+      "latency_sec": 0.1,
+      "cached": true
+    },
+    {
+      "image_id": 322844,
+      "judgements": [
+        {
+          "category": "handbag",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "wine glass",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "bench",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "scissors",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "motorcycle",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "cell phone",
+          "judgement": "uncertain",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "teddy bear",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "airplane",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "vase",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "skateboard",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1000,
+        "output_tokens": 200
+      },
+      "latency_sec": 0.1,
+      "cached": true
+    },
+    {
+      "image_id": 123633,
+      "judgements": [
+        {
+          "category": "bird",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "scissors",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "dining table",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "sandwich",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "chair",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "book",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "vase",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "cake",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "couch",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1000,
+        "output_tokens": 200
+      },
+      "latency_sec": 0.1,
+      "cached": true
+    },
+    {
+      "image_id": 498709,
+      "judgements": [
+        {
+          "category": "book",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "car",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "pizza",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "snowboard",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "motorcycle",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "truck",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "handbag",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1000,
+        "output_tokens": 200
+      },
+      "latency_sec": 0.1,
+      "cached": true
+    },
+    {
+      "image_id": 447313,
+      "judgements": [
+        {
+          "category": "giraffe",
+          "judgement": "uncertain",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "vase",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "tie",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "skis",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "bicycle",
+          "judgement": "uncertain",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "zebra",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "cat",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "fire hydrant",
+          "judgement": "uncertain",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "cell phone",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "parking meter",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1000,
+        "output_tokens": 200
+      },
+      "latency_sec": 0.1,
+      "cached": true
+    },
+    {
+      "image_id": 336587,
+      "judgements": [
+        {
+          "category": "car",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "stop sign",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "knife",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "truck",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "surfboard",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "dog",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "tv",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1000,
+        "output_tokens": 200
+      },
+      "latency_sec": 0.1,
+      "cached": true
+    },
+    {
+      "image_id": 113403,
+      "judgements": [
+        {
+          "category": "donut",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "umbrella",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "teddy bear",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "refrigerator",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "oven",
+          "judgement": "uncertain",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "bed",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1000,
+        "output_tokens": 200
+      },
+      "latency_sec": 0.1,
+      "cached": true
+    },
+    {
+      "image_id": 257478,
+      "judgements": [
+        {
+          "category": "baseball glove",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "person",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "sheep",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "bicycle",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "wine glass",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1000,
+        "output_tokens": 200
+      },
+      "latency_sec": 0.1,
+      "cached": true
+    },
+    {
+      "image_id": 546475,
+      "judgements": [
+        {
+          "category": "toilet",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "zebra",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "hair drier",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "cell phone",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "sink",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "motorcycle",
+          "judgement": "uncertain",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "person",
+          "judgement": "uncertain",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "hot dog",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "bowl",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1000,
+        "output_tokens": 200
+      },
+      "latency_sec": 0.1,
+      "cached": true
+    },
+    {
+      "image_id": 399205,
+      "judgements": [
+        {
+          "category": "cat",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "airplane",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "pizza",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "surfboard",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "laptop",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "person",
+          "judgement": "uncertain",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "toilet",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "traffic light",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "cell phone",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "motorcycle",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1000,
+        "output_tokens": 200
+      },
+      "latency_sec": 0.1,
+      "cached": true
+    },
+    {
+      "image_id": 309391,
+      "judgements": [
+        {
+          "category": "person",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "train",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "carrot",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "bicycle",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "suitcase",
+          "judgement": "uncertain",
+          "rationale": "mock",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1000,
+        "output_tokens": 200
+      },
+      "latency_sec": 0.1,
+      "cached": true
+    },
+    {
+      "image_id": 80340,
+      "judgements": [
+        {
+          "category": "tie",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "cup",
+          "judgement": "uncertain",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "suitcase",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "potted plant",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "scissors",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "laptop",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1000,
+        "output_tokens": 200
+      },
+      "latency_sec": 0.1,
+      "cached": true
+    },
+    {
+      "image_id": 230819,
+      "judgements": [
+        {
+          "category": "donut",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "backpack",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "vase",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "person",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "surfboard",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "traffic light",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1000,
+        "output_tokens": 200
+      },
+      "latency_sec": 0.1,
+      "cached": true
+    },
+    {
+      "image_id": 19742,
+      "judgements": [
+        {
+          "category": "surfboard",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "vase",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "elephant",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "baseball bat",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "bicycle",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "laptop",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1000,
+        "output_tokens": 200
+      },
+      "latency_sec": 0.1,
+      "cached": true
+    },
+    {
+      "image_id": 471756,
+      "judgements": [
+        {
+          "category": "remote",
+          "judgement": "uncertain",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "spoon",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "person",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "couch",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "mouse",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "scissors",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "book",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "surfboard",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "sheep",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "umbrella",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1000,
+        "output_tokens": 200
+      },
+      "latency_sec": 0.1,
+      "cached": true
+    },
+    {
+      "image_id": 342295,
+      "judgements": [
+        {
+          "category": "toilet",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "tie",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "cake",
+          "judgement": "uncertain",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "couch",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "sink",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1000,
+        "output_tokens": 200
+      },
+      "latency_sec": 0.1,
+      "cached": true
+    },
+    {
+      "image_id": 174123,
+      "judgements": [
+        {
+          "category": "knife",
+          "judgement": "uncertain",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "book",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "bear",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "person",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "truck",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "dining table",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1000,
+        "output_tokens": 200
+      },
+      "latency_sec": 0.1,
+      "cached": true
+    },
+    {
+      "image_id": 441553,
+      "judgements": [
+        {
+          "category": "train",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "handbag",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "backpack",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "chair",
+          "judgement": "uncertain",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "airplane",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "traffic light",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "person",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "potted plant",
+          "judgement": "uncertain",
+          "rationale": "mock",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1000,
+        "output_tokens": 200
+      },
+      "latency_sec": 0.1,
+      "cached": true
+    },
+    {
+      "image_id": 46048,
+      "judgements": [
+        {
+          "category": "vase",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "book",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "bench",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "traffic light",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "person",
+          "judgement": "uncertain",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "bed",
+          "judgement": "uncertain",
+          "rationale": "mock",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1000,
+        "output_tokens": 200
+      },
+      "latency_sec": 0.1,
+      "cached": true
+    },
+    {
+      "image_id": 54628,
+      "judgements": [
+        {
+          "category": "giraffe",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "cake",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "sink",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "cup",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "potted plant",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "bench",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "couch",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "dining table",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "chair",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1000,
+        "output_tokens": 200
+      },
+      "latency_sec": 0.1,
+      "cached": true
+    },
+    {
+      "image_id": 509014,
+      "judgements": [
+        {
+          "category": "bus",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "hot dog",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "skis",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "potted plant",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "person",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "elephant",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "frisbee",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1000,
+        "output_tokens": 200
+      },
+      "latency_sec": 0.1,
+      "cached": true
+    },
+    {
+      "image_id": 516038,
+      "judgements": [
+        {
+          "category": "cake",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "baseball glove",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "giraffe",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "sports ball",
+          "judgement": "uncertain",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "tennis racket",
+          "judgement": "uncertain",
+          "rationale": "mock",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1000,
+        "output_tokens": 200
+      },
+      "latency_sec": 0.1,
+      "cached": true
+    },
+    {
+      "image_id": 492992,
+      "judgements": [
+        {
+          "category": "apple",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "cow",
+          "judgement": "uncertain",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "traffic light",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "bird",
+          "judgement": "uncertain",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "sheep",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "kite",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "toilet",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1000,
+        "output_tokens": 200
+      },
+      "latency_sec": 0.1,
+      "cached": true
+    },
+    {
+      "image_id": 82688,
+      "judgements": [
+        {
+          "category": "cell phone",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "horse",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "dining table",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "remote",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "hair drier",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1000,
+        "output_tokens": 200
+      },
+      "latency_sec": 0.1,
+      "cached": true
+    },
+    {
+      "image_id": 372203,
+      "judgements": [
+        {
+          "category": "baseball glove",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "fire hydrant",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "motorcycle",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "airplane",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "book",
+          "judgement": "uncertain",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "horse",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "bench",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "sheep",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "bear",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1000,
+        "output_tokens": 200
+      },
+      "latency_sec": 0.1,
+      "cached": true
+    },
+    {
+      "image_id": 411530,
+      "judgements": [
+        {
+          "category": "skis",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "truck",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "cat",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "handbag",
+          "judgement": "uncertain",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "backpack",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1000,
+        "output_tokens": 200
+      },
+      "latency_sec": 0.1,
+      "cached": true
+    },
+    {
+      "image_id": 317024,
+      "judgements": [
+        {
+          "category": "mouse",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "cup",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "zebra",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "fire hydrant",
+          "judgement": "uncertain",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "orange",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "wine glass",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "keyboard",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "baseball glove",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1000,
+        "output_tokens": 200
+      },
+      "latency_sec": 0.1,
+      "cached": true
+    },
+    {
+      "image_id": 88951,
+      "judgements": [
+        {
+          "category": "mouse",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "cat",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "dog",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "person",
+          "judgement": "uncertain",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "bench",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "sheep",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1000,
+        "output_tokens": 200
+      },
+      "latency_sec": 0.1,
+      "cached": true
+    },
+    {
+      "image_id": 491216,
+      "judgements": [
+        {
+          "category": "microwave",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "bottle",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "tennis racket",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "frisbee",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "sink",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "person",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "banana",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "refrigerator",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1000,
+        "output_tokens": 200
+      },
+      "latency_sec": 0.1,
+      "cached": true
+    },
+    {
+      "image_id": 50828,
+      "judgements": [
+        {
+          "category": "chair",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "toilet",
+          "judgement": "uncertain",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "remote",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "couch",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "scissors",
+          "judgement": "uncertain",
+          "rationale": "mock",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1000,
+        "output_tokens": 200
+      },
+      "latency_sec": 0.1,
+      "cached": true
+    },
+    {
+      "image_id": 227985,
+      "judgements": [
+        {
+          "category": "orange",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "zebra",
+          "judgement": "uncertain",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "knife",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "dining table",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "bottle",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "sandwich",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "skateboard",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1000,
+        "output_tokens": 200
+      },
+      "latency_sec": 0.1,
+      "cached": true
+    },
+    {
+      "image_id": 251537,
+      "judgements": [
+        {
+          "category": "dining table",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "cup",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "parking meter",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "toilet",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "airplane",
+          "judgement": "uncertain",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "carrot",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "tie",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1000,
+        "output_tokens": 200
+      },
+      "latency_sec": 0.1,
+      "cached": true
+    },
+    {
+      "image_id": 577182,
+      "judgements": [
+        {
+          "category": "scissors",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "keyboard",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "bench",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "cup",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "bird",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "car",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "microwave",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "remote",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "sandwich",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "traffic light",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1000,
+        "output_tokens": 200
+      },
+      "latency_sec": 0.1,
+      "cached": true
+    },
+    {
+      "image_id": 341058,
+      "judgements": [
+        {
+          "category": "chair",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "bottle",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "toaster",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "couch",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "suitcase",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "dining table",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "fire hydrant",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "umbrella",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1000,
+        "output_tokens": 200
+      },
+      "latency_sec": 0.1,
+      "cached": true
+    },
+    {
+      "image_id": 17115,
+      "judgements": [
+        {
+          "category": "baseball glove",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "zebra",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "cow",
+          "judgement": "uncertain",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "banana",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "dog",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "snowboard",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "bicycle",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "skateboard",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "car",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "fire hydrant",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1000,
+        "output_tokens": 200
+      },
+      "latency_sec": 0.1,
+      "cached": true
+    },
+    {
+      "image_id": 331799,
+      "judgements": [
+        {
+          "category": "couch",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "toilet",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "stop sign",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "apple",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "person",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1000,
+        "output_tokens": 200
+      },
+      "latency_sec": 0.1,
+      "cached": true
+    },
+    {
+      "image_id": 117197,
+      "judgements": [
+        {
+          "category": "person",
+          "judgement": "uncertain",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "skateboard",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "sheep",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "traffic light",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "cell phone",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "teddy bear",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1000,
+        "output_tokens": 200
+      },
+      "latency_sec": 0.1,
+      "cached": true
+    },
+    {
+      "image_id": 339823,
+      "judgements": [
+        {
+          "category": "umbrella",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "sink",
+          "judgement": "uncertain",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "hair drier",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "person",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "elephant",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "bicycle",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1000,
+        "output_tokens": 200
+      },
+      "latency_sec": 0.1,
+      "cached": true
+    },
+    {
+      "image_id": 535578,
+      "judgements": [
+        {
+          "category": "dog",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "cow",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "elephant",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "cake",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "pizza",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "carrot",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "sheep",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1000,
+        "output_tokens": 200
+      },
+      "latency_sec": 0.1,
+      "cached": true
+    },
+    {
+      "image_id": 166509,
+      "judgements": [
+        {
+          "category": "tv",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "truck",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "cup",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "person",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "backpack",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "remote",
+          "judgement": "uncertain",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "traffic light",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "parking meter",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1000,
+        "output_tokens": 200
+      },
+      "latency_sec": 0.1,
+      "cached": true
+    },
+    {
+      "image_id": 314251,
+      "judgements": [
+        {
+          "category": "surfboard",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "car",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "person",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "mouse",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "truck",
+          "judgement": "uncertain",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "motorcycle",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "banana",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "refrigerator",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1000,
+        "output_tokens": 200
+      },
+      "latency_sec": 0.1,
+      "cached": true
+    },
+    {
+      "image_id": 114884,
+      "judgements": [
+        {
+          "category": "suitcase",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "stop sign",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "bed",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "cow",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "backpack",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "person",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "bus",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "carrot",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1000,
+        "output_tokens": 200
+      },
+      "latency_sec": 0.1,
+      "cached": true
+    },
+    {
+      "image_id": 502732,
+      "judgements": [
+        {
+          "category": "toilet",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "fork",
+          "judgement": "uncertain",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "bird",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "spoon",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "refrigerator",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "bear",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "sandwich",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "backpack",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1000,
+        "output_tokens": 200
+      },
+      "latency_sec": 0.1,
+      "cached": true
+    },
+    {
+      "image_id": 245102,
+      "judgements": [
+        {
+          "category": "traffic light",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "bowl",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "elephant",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "bus",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "carrot",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "snowboard",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1000,
+        "output_tokens": 200
+      },
+      "latency_sec": 0.1,
+      "cached": true
+    },
+    {
+      "image_id": 561009,
+      "judgements": [
+        {
+          "category": "bowl",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "kite",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "wine glass",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "broccoli",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "zebra",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "bird",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "cell phone",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1000,
+        "output_tokens": 200
+      },
+      "latency_sec": 0.1,
+      "cached": true
+    },
+    {
+      "image_id": 263860,
+      "judgements": [
+        {
+          "category": "vase",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "keyboard",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "bottle",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "elephant",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "broccoli",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1000,
+        "output_tokens": 200
+      },
+      "latency_sec": 0.1,
+      "cached": true
+    },
+    {
+      "image_id": 176778,
+      "judgements": [
+        {
+          "category": "toilet",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "sink",
+          "judgement": "uncertain",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "scissors",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "bottle",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "mouse",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "cat",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "teddy bear",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "dog",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "suitcase",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "apple",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1000,
+        "output_tokens": 200
+      },
+      "latency_sec": 0.1,
+      "cached": true
+    },
+    {
+      "image_id": 332845,
+      "judgements": [
+        {
+          "category": "chair",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "person",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "book",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "giraffe",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "couch",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "bed",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "laptop",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "hot dog",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1000,
+        "output_tokens": 200
+      },
+      "latency_sec": 0.1,
+      "cached": true
+    },
+    {
+      "image_id": 218249,
+      "judgements": [
+        {
+          "category": "dog",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "suitcase",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "giraffe",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "dining table",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "motorcycle",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "sandwich",
+          "judgement": "uncertain",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "handbag",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "orange",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1000,
+        "output_tokens": 200
+      },
+      "latency_sec": 0.1,
+      "cached": true
+    },
+    {
+      "image_id": 495054,
+      "judgements": [
+        {
+          "category": "truck",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "banana",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "skis",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "book",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "car",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "airplane",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "sports ball",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "suitcase",
+          "judgement": "absent",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "train",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        },
+        {
+          "category": "fork",
+          "judgement": "present",
+          "rationale": "mock",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1000,
+        "output_tokens": 200
+      },
+      "latency_sec": 0.1,
+      "cached": true
+    }
+  ]
+}

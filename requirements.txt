@@ -1,0 +1,12 @@
+google-genai
+ultralytics        # YOLO(ローカル推論。torch を依存として取得)
+pycocotools
+numpy
+pandas
+scipy
+statsmodels
+matplotlib
+pyyaml
+pillow
+pytest
+python-dotenv

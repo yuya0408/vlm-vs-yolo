@@ -1,0 +1,8 @@
+# 回帰ゲート・コストガードの設定(src/gate.py が読む)
+regression:
+  metric: macro_f1_strict
+  max_f1_drop: 0.02        # ベースライン比 2pt 超の劣化で fail
+  report_mcnemar: true     # p 値は参考情報として出力(fail 判定には使わない)
+
+cost:
+  monthly_cost_limit_jpy: 500

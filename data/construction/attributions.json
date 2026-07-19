@@ -1,0 +1,45 @@
+{
+  "_NOTE": "license/author は各ファイルページの『この画像を利用する/Use this file』ボックスの値を転記して確定する(要確認→確定値に置換)。CC BY/CC BY-SA/CC0/PD のみ。キー名は実ファイル名と一致させること。",
+
+  "Piping01.jpg": {
+    "source": "Wikimedia Commons",
+    "author": "Markus Schweiss",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0/deed.en",
+    "url": "https://commons.wikimedia.org/wiki/File:Piping01.JPG",
+    "note": "donated by Taprogge GmbH, Germany",
+    "shows": "pipe, flange, bolted flange joint"
+  },
+  "Flange01.jpg": {
+    "source": "Wikimedia Commons",
+    "author": "© 1971markus@wikipedia.de",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en",
+    "url": "https://commons.wikimedia.org/wiki/File:Kokerei_Hansa_(08).jpg",
+    "shows": "industrial piping, flange"
+  },
+  "Piping02.jpg": {
+    "source": "Wikimedia Commons",
+    "author": "U.S. Fish & Wildlife Service - Pacific Region",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/deed.en",
+    "url": "https://commons.wikimedia.org/wiki/File:Piping_system_at_Makah_National_Fish_Hatchery_(5837252675).jpg",
+    "shows": "pipes, valves, pipe supports"
+  },
+  "Piping03.png": {
+    "source": "Wikimedia Commons",
+    "author": "Wikikart99",
+    "license": "CC0 1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "url": "https://commons.wikimedia.org/wiki/File:A_UPW_Installation_using_PVDF_Piping.png",
+    "shows": "PVDF piping, fittings, valves"
+  },
+  "Piping04.jpg": {
+    "source": "Wikimedia Commons",
+    "author": "Audriusa",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0/deed.en",
+    "url": "https://commons.wikimedia.org/wiki/File:Pipeline_device.jpg",
+    "shows": "industrial gas pipeline device, pipe"
+  }
+}

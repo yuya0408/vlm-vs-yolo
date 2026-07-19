@@ -1,0 +1,18 @@
+# モデル単価表(コスト換算用)。単位: USD / 1M tokens
+# 出典: ai.google.dev/gemini-api/docs/pricing(2026-06-23 取得)。為替は同日の USD/JPY。
+pricing_date: "2026-06-23"
+usd_jpy: 161.5
+models:
+  # 既定(最新安定版・本作の steelman)
+  gemini-3.5-flash:
+    input: 1.50
+    output: 9.00
+  # 低コスト代替(必要なら models.yaml の flash をこちらに切替)
+  gemini-2.5-flash:
+    input: 0.30
+    output: 2.50
+  gemini-2.5-flash-lite:
+    input: 0.10
+    output: 0.40
+# 参考: バッチ実行は 50% 引き、キャッシュ入力は約 10%(本作は逐次+キャッシュなので標準単価で換算)
+# YOLO はローカル推論のためコスト 0(単価表に載せない)

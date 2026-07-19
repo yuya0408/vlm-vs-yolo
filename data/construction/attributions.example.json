@@ -1,0 +1,14 @@
+{
+  "site_scaffolding_01.jpg": {
+    "source": "Wikimedia Commons",
+    "author": "Example Author",
+    "license": "CC BY 4.0",
+    "url": "https://commons.wikimedia.org/wiki/File:Example.jpg"
+  },
+  "excavator_02.jpg": {
+    "source": "Wikimedia Commons",
+    "author": "Example Author",
+    "license": "CC0 / Public domain",
+    "url": "https://commons.wikimedia.org/wiki/File:Example2.jpg"
+  }
+}
