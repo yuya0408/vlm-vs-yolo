@@ -6,14 +6,18 @@ mock:
 
 flash:
   provider: gemini
-  model: gemini-3.5-flash      # 2026最新の安定版Flash(GA, 2026-05)。実行時に ai.google.dev/models で正確なIDを最終確認
+  model: gemini-3.5-flash      # 本ランで使用した安定版 Flash(GA)。単価は conf/pricing.yaml
   prompt: concise
   temperature: 0
   # 低コストで回すなら model を gemini-2.5-flash($0.30/$2.50)等に差し替え可(pricing.yaml も合わせる)
 
 yolo:
   provider: yolo
-  weights: yolo26x.pt          # ultralytics 学習済み(COCO 80 クラス, 2026最新)。ローカル推論・無料・決定論的
+  weights: yolo26x.pt          # ultralytics 学習済み(COCO 80 クラス)。ローカル推論・無料・決定論的
   conf_threshold: 0.25         # この信頼度以上で 1 個でも検出 → present に還元(bbox 座標は比較に使わない)
+  # 注意: 0.25 は **ライブラリ既定であって本作の主比較の操作点ではない**。この値のまま VLM と
+  # 比べると「調整済み vs 未調整」の比較になり有意差が捏造される(REPORT §2)。
+  # 主比較の tuned YOLO は src/analysis/yolo_threshold.py の sweep → export で作る。
+  # ここを 0.25 のまま残しているのは、退けた未調整ベースラインを再現できるようにするため。
   # YOLO は uncertain を返さない(2 値: present/absent)。
   # 「VLM だけが不確実性を表現できる」点自体を比較の観察対象とする(REPORT に記載)。

@@ -6,7 +6,7 @@ mock プロバイダではなく、結果 dict を直接組み立ててテスト
 
 import pytest
 
-from src.analysis.metrics import compute_metrics, confusion_counts
+from src.analysis.metrics import compute_metrics, confusion_counts, item_accuracy
 
 
 # 画像2枚 × checklist[dog, cat, car]
@@ -97,3 +97,28 @@ def test_invalid_judgement_raises():
     ]
     with pytest.raises(ValueError, match="不正な judgement"):
         compute_metrics(bad, EVAL_SET, mode="strict")
+
+
+def test_item_accuracy_counts_absent_correct_answers_too():
+    """item accuracy は absent の正答も数える(F1 系と独立な第 2 の閾値選定基準)。
+
+    手計算:
+      img1 dog ○ / cat ×(absent を present)/ car ×(uncertain は strict で不正解)
+      img2 dog ○ / cat ×(uncertain)      / car ○(absent を absent)
+      → 3 / 6 = 0.5
+    """
+    assert item_accuracy(RESULTS, EVAL_SET) == pytest.approx(0.5)
+
+
+def test_item_accuracy_all_correct_is_one():
+    perfect = [
+        {"image_id": 1, "judgements": [
+            {"category": "dog", "judgement": "present"},
+            {"category": "cat", "judgement": "absent"},
+            {"category": "car", "judgement": "present"}]},
+        {"image_id": 2, "judgements": [
+            {"category": "dog", "judgement": "present"},
+            {"category": "cat", "judgement": "present"},
+            {"category": "car", "judgement": "absent"}]},
+    ]
+    assert item_accuracy(perfect, EVAL_SET) == pytest.approx(1.0)

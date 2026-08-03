@@ -46,6 +46,18 @@ def bootstrap_ci(results: list[dict], eval_set: list[dict], metric: str = "macro
     """画像単位のブートストラップで指標の percentile 信頼区間を返す。
 
     リサンプリング単位は「画像」(項目単位だと同一画像内の相関を無視するため)。
+
+    **macro_f1 の CI は上方にバイアスする**(既知の限界。REPORT の限界節に記載):
+    macro は「そのリサンプルで support>0 だったカテゴリ」の平均なので、平均を取る
+    カテゴリ集合自体がリサンプルごとに動く。support が 1〜2 件しかない希少カテゴリでは、
+    偽陽性を出した画像だけがリサンプルから落ちると、そのカテゴリの F1 が 1.0 に「浄化」
+    される。TP 側の画像が落ちれば逆にカテゴリごと平均から消えるため、この作用は非対称で
+    macro を押し上げる。結果として percentile CI が点推定より上にずれ、極端な場合は
+    点推定を含まないことすらある。
+
+    micro_f1 はカテゴリを跨いでカウントをプールするためこのバイアスを受けない。
+    **モデル間の差を論じるときは micro_f1 の CI を主に読むこと。**
+    比較ドライバ(compare.py)は点推定が CI に入らない場合に警告フラグを立てる。
     """
     per_image = _per_image_counts(results, eval_set)
     n = len(per_image)
