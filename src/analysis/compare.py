@@ -88,6 +88,19 @@ def _model_summary(result: dict, eval_set: list[dict], pricing: dict,
     except Exception as exc:  # noqa: BLE001 — レポートには算出可否を残す
         regression = {"error": str(exc)}
 
+    # 整合性チェック: 点推定が自分の CI に入らないなら、その CI は素直に読めない。
+    # macro-F1 は希少カテゴリのリサンプル脱落で上方バイアスしうる(stats.bootstrap_ci の
+    # docstring 参照)。黙って表に出すと「CI 非重複だから有意」を誤読する事故になるので、
+    # 機械的に検出して結果に残す。
+    ci_warnings = []
+    for name, point, ci in (("macro_f1", strict.macro_f1, macro_ci),
+                            ("micro_f1", strict.micro_f1, micro_ci)):
+        if not (ci[0] <= point <= ci[1]):
+            ci_warnings.append(
+                f"{name}: 点推定 {point:.4f} が CI [{ci[0]:.4f}, {ci[1]:.4f}] の外。"
+                "希少カテゴリのリサンプル脱落によるバイアスの可能性。差の判断は micro-F1 と "
+                "McNemar を優先すること。")
+
     return {
         "run_id": result.get("run_id"),
         "provider": result.get("provider"),
@@ -97,6 +110,7 @@ def _model_summary(result: dict, eval_set: list[dict], pricing: dict,
             "micro_f1": round(strict.micro_f1, 4),
             "coverage": round(strict.coverage, 4),
         },
+        "ci_warnings": ci_warnings,
         "excl": {
             "macro_f1": round(excl.macro_f1, 4),
             "micro_f1": round(excl.micro_f1, 4),
@@ -192,6 +206,13 @@ def to_markdown(summary: dict) -> str:
         "汎用 VLM は uncertain という出口を持つが校正された不確実性としてはほぼ使わない"
         "(過信)。YOLO は conf 閾値で coverage を連続的に振れるのと対照的。",
     ]
+
+    warnings = ([("YOLO", w) for w in y["ci_warnings"]]
+                + [("VLM", w) for w in v["ci_warnings"]])
+    if warnings:
+        lines += ["", "### ⚠ CI の整合性警告"]
+        lines += [f"- **{model}** {msg}" for model, msg in warnings]
+
     return "\n".join(lines)
 
 

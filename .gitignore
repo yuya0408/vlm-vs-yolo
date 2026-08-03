@@ -2,15 +2,25 @@
 __pycache__/
 .env
 data/coco/
-cache/
-results/
 mlruns/
 .dvc/cache
 .ipynb_checkpoints/
 .pytest_cache/
 pytest-cache-files-*/
 
+# CI が生成する使い捨てのラン結果(ベースラインは baselines/ に別途コミットしてある)
 ci_results/
+
+# VLM の生レスポンスキャッシュ。再現性は results/ の確定結果 + シード固定で担保しており、
+# キャッシュ自体は再取得可能なので載せない(サイズも大きい)。
+cache/
+
+# results/ は **コミットする**(除外しない)。report/REPORT.md が引用する根拠データ
+# (comparison_tuned.json / yolo_threshold.json / error_taxonomy.json / 各 {run_id}.json)が
+# 手元にしか無いと、レポートの数値を誰も検証できない。API キーは含まれない。
+#
+# results/yolo_raw_detections.json も載せる: これがあれば COCO 画像(19GB)も YOLO 重み
+# (113MB)も無しに、しきい値スイープ〜主比較まで丸ごと再現できる。数 MB の価値はある。
 
 # 執筆/過程ジャーナル(公開しない。公開の顔は README/docs/report/src)
 docs/ARTICLE_NOTES.md

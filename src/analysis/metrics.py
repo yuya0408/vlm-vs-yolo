@@ -155,6 +155,27 @@ def compute_metrics(results: list[dict], eval_set: list[dict], mode: str) -> Met
     )
 
 
+def item_accuracy(results: list[dict], eval_set: list[dict]) -> float:
+    """項目単位の正答率(strict: uncertain は不正解)。
+
+    macro/micro-F1 が positive クラス(present)側から見た指標なのに対し、これは absent の
+    正答も等しく数える。しきい値選定(src/analysis/yolo_threshold.py)で F1 とは独立な
+    第 2 の基準として使うため、F1 系とは別関数に分けている。
+    """
+    lookup = _pred_lookup(results, eval_set)
+    eval_by_id = {e["image_id"]: e for e in eval_set}
+
+    correct = total = 0
+    for image_id, preds in lookup.items():
+        gt = eval_by_id[image_id]["ground_truth"]
+        for cat, pred in preds.items():
+            if cat not in gt:
+                raise ValueError(f"image {image_id}: ground_truth に {cat!r} が無い")
+            total += 1
+            correct += int(pred == gt[cat])
+    return correct / total if total else 0.0
+
+
 def count_recall(results: list[dict], eval_set: list[dict]) -> dict:
     """副軸: 個数 recall。存在するインスタンスのうち何個を検出できたか(docs/DESIGN.md §2/§4)。
 
