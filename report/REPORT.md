@@ -44,7 +44,9 @@
 
 プラトーは平坦(conf 0.05〜0.10 で micro-F1 は 0.953〜0.954)なため近傍鈍感=頑健。
 
-スイープ結果(`results/yolo_threshold.json`):
+スイープ結果(`results/yolo_threshold.json`。`results/` は生成物のため未追跡。
+`python -m src.analysis.yolo_threshold sweep --raw results/yolo_raw_detections.json --eval-set data/eval_set.json`
+で再生成可能。再推論なしの後処理のみで無料):
 
 | conf | macro-F1 | micro-F1 | item acc | 個数recall |
 |---|---|---|---|---|

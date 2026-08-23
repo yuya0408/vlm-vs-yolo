@@ -34,6 +34,7 @@ class MetricsReport:
     macro_f1: float
     micro_f1: float
     coverage: float                # excl モード時の判定確定率(strict では 1.0)
+    item_accuracy: float           # 項目単位の正解率((pred==gt)の割合)。strictはuncertainを誤り算入、exclは除外
 
 
 def _pred_lookup(results: list[dict], eval_set: list[dict]) -> dict[int, dict[str, str]]:
@@ -112,6 +113,7 @@ def compute_metrics(results: list[dict], eval_set: list[dict], mode: str) -> Met
     micro_tp = micro_fp = micro_fn = 0
     total_items = 0
     uncertain_items = 0
+    correct_items = 0
 
     for cat in sorted(counts):
         c = counts[cat]
@@ -135,6 +137,7 @@ def compute_metrics(results: list[dict], eval_set: list[dict], mode: str) -> Met
         cat_total = sum(c.values())
         total_items += cat_total
         uncertain_items += c["pu"] + c["au"]
+        correct_items += c["pp"] + c["aa"]
 
     # macro は support>0(GT に present が 1 度でも出る)カテゴリで平均する。
     scored = [m.f1 for m in per_category if m.support > 0]
@@ -143,8 +146,11 @@ def compute_metrics(results: list[dict], eval_set: list[dict], mode: str) -> Met
 
     if mode == "strict":
         coverage = 1.0
+        item_accuracy = correct_items / total_items if total_items else 0.0
     else:
-        coverage = (total_items - uncertain_items) / total_items if total_items else 1.0
+        scored_items = total_items - uncertain_items
+        coverage = scored_items / total_items if total_items else 1.0
+        item_accuracy = correct_items / scored_items if scored_items else 0.0
 
     return MetricsReport(
         mode=mode,
@@ -152,6 +158,7 @@ def compute_metrics(results: list[dict], eval_set: list[dict], mode: str) -> Met
         macro_f1=macro_f1,
         micro_f1=micro_f1,
         coverage=coverage,
+        item_accuracy=item_accuracy,
     )
 
 
