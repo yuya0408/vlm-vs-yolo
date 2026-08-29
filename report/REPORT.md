@@ -21,10 +21,11 @@
 
 主比較は標準操作点 **tuned YOLO@conf=0.075**(選定根拠は §2)。この点での対照:
 
-| 指標(主比較 = tuned YOLO@0.075) | YOLO | VLM (Flash) | 判定 |
+| 指標(主比較 = tuned YOLO@0.075) | YOLO | VLM (Flash) | 差(VLM−YOLO, 画像単位ペア差CI95) |
 |---|---|---|---|
-| macro-F1 (strict) [95%CI] | 0.929 [0.912, 0.960] | 0.961 [0.940, 0.970] | CI 重複・McNemar p=0.71 → **有意差なし** |
-| micro-F1 (strict) | 0.954 | 0.959 | 実質互角(差 0.5pt) |
+| macro-F1 (strict) | 0.929 | 0.961 | +3.2pt [−0.4, +4.4]pt(有意差なし、McNemar p=0.71と一致) |
+| micro-F1 (strict) | 0.954 | 0.959 | +0.5pt [−0.7, +1.6]pt |
+| item accuracy | 0.972 | 0.974 | +0.2pt [−0.5, +0.9]pt |
 | 個数 recall(副軸) | 0.927 | 0.871 | YOLO |
 | uncertain 率 | 0.00% | 0.31% | §4 参照 |
 | **コスト(円/300枚)** | **0** | 251 | **YOLO** |
@@ -44,7 +45,9 @@
 
 プラトーは平坦(conf 0.05〜0.10 で micro-F1 は 0.953〜0.954)なため近傍鈍感=頑健。
 
-スイープ結果(`results/yolo_threshold.json`):
+スイープ結果(`results/yolo_threshold.json`。`results/` は生成物のため未追跡。
+`python -m src.analysis.yolo_threshold sweep --raw results/yolo_raw_detections.json --eval-set data/eval_set.json`
+で再生成可能。再推論なしの後処理のみで無料):
 
 | conf | macro-F1 | micro-F1 | item acc | 個数recall |
 |---|---|---|---|---|
@@ -80,6 +83,11 @@
 > 参考(既定 conf=0.25 の YOLO): gt_present OR=**16.6**(p≈1e-17)と極端な見逃し律速に見えるが、
 > これは閾値が高すぎた産物。conf を下げると OR は 2.4 まで縮み、VLM と同水準になる。
 > 「専用検出器は見逃しに偏る」という見かけの結論自体が、既定しきい値のアーティファクトだった。
+
+**クラスタ頑健SEでの再確認**: 画像レベル定数の `min_bbox_area_ratio` は補正で標準誤差が拡大し、
+YOLO@0.075 は p=0.054→0.198(元々非有意)、VLM は p=0.021→0.030(有意は保つが境界線)。
+一方 `gt_present` は項目単位で変動する変数のため逆に p 値が縮む(例 YOLO@0.25: p≈1e-17→5e-20)。
+オッズ比そのものは補正の影響を受けない(SE/p値のみ変化)。
 
 ### 3b. 誤り taxonomy(strict, tuned YOLO@0.075, `results/error_taxonomy.json`)
 
@@ -143,6 +151,8 @@ YOLO は左下(無料・低レイテンシ)、VLM は右上(同等精度だが�
 - **YOLO のファインチューニングは本研究では行わない**: 対象 YOLO は既に COCO 学習済みで評価も
   COCO val のため、ここで追加学習するとテストセット汚染になり無効。ファインチューニングが効くのは
   ドメイン固有データ(専門ドメインの対象物)であり、本作のスコープ外。ドメイン適用時の将来課題とする。
+- クラスタ構造(画像内の項目の非独立性)は §3 で補正確認済み。VLM の `min_bbox_area_ratio` のみ
+  境界線(p=0.030)で、他の結論は不変
 
 ## 7. 意思決定ルール(まとめ)— 二象限
 
