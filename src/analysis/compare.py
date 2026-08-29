@@ -30,7 +30,7 @@ import yaml
 
 from ..gate import _result_cost_jpy
 from .metrics import compute_metrics
-from .stats import bootstrap_ci, error_factor_regression, mcnemar_test
+from .stats import bootstrap_ci, error_factor_regression, mcnemar_test, paired_bootstrap_diff
 
 
 def _load(path: str) -> dict:
@@ -96,11 +96,13 @@ def _model_summary(result: dict, eval_set: list[dict], pricing: dict,
             "macro_f1": round(strict.macro_f1, 4),
             "micro_f1": round(strict.micro_f1, 4),
             "coverage": round(strict.coverage, 4),
+            "item_accuracy": round(strict.item_accuracy, 4),
         },
         "excl": {
             "macro_f1": round(excl.macro_f1, 4),
             "micro_f1": round(excl.micro_f1, 4),
             "coverage": round(excl.coverage, 4),
+            "item_accuracy": round(excl.item_accuracy, 4),
         },
         "macro_f1_ci95": [round(macro_ci[0], 4), round(macro_ci[1], 4)],
         "micro_f1_ci95": [round(micro_ci[0], 4), round(micro_ci[1], 4)],
@@ -130,8 +132,15 @@ def compare(yolo_path: str, vlm_path: str, eval_set_path: str,
     yolo_sum = _model_summary(yolo, eval_set, pricing, n_boot, seed)
     vlm_sum = _model_summary(vlm, eval_set, pricing, n_boot, seed)
 
-    # McNemar(YOLO vs VLM、項目単位・strict 正誤)
+    # McNemar(YOLO vs VLM、項目単位・strict 正誤)。主推論ではなく補助的なクロスチェック
+    # (主推論は下の paired_diff。docs/DESIGN.md §4)。
     mc = mcnemar_test(yolo["records"], vlm["records"], eval_set)
+
+    # 主推論: 画像単位ペア差ブートストラップ(diff = VLM − YOLO)。2つの周辺CIの重複は
+    # 差の非有意を意味しないため、同一リサンプル添字で差そのものの分布を作る。
+    paired_diff = paired_bootstrap_diff(
+        yolo["records"], vlm["records"], eval_set,
+        metrics=("macro_f1", "micro_f1", "item_accuracy"), n_boot=n_boot, seed=seed)
 
     # パレート: 精度(macro-F1 strict) × コスト × レイテンシ(中央値)
     pareto = {
@@ -149,6 +158,7 @@ def compare(yolo_path: str, vlm_path: str, eval_set_path: str,
         "n_images": len(eval_set),
         "models": {"yolo": yolo_sum, "vlm": vlm_sum},
         "mcnemar": mc,
+        "paired_diff": paired_diff,
         "pareto": pareto,
         "params": {"n_boot": n_boot, "seed": seed},
     }
@@ -158,9 +168,15 @@ def to_markdown(summary: dict) -> str:
     y = summary["models"]["yolo"]
     v = summary["models"]["vlm"]
     mc = summary["mcnemar"]
+    pd = summary["paired_diff"]
 
     def row(label, yv, vv):
         return f"| {label} | {yv} | {vv} |"
+
+    def diff_row(label, metric):
+        d = pd[metric]
+        return (f"| {label} | {d['point_diff']*100:+.2f}pt | "
+                f"[{d['ci95'][0]*100:+.2f}, {d['ci95'][1]*100:+.2f}]pt |")
 
     lines = [
         f"## YOLO vs VLM 比較(N={summary['n_images']}, eval {summary['eval_set_sha256'][:8]})",
@@ -173,6 +189,7 @@ def to_markdown(summary: dict) -> str:
             f"{y['strict']['macro_f1']} [{y['macro_f1_ci95'][0]}, {y['macro_f1_ci95'][1]}]",
             f"{v['strict']['macro_f1']} [{v['macro_f1_ci95'][0]}, {v['macro_f1_ci95'][1]}]"),
         row("micro-F1 (strict)", y["strict"]["micro_f1"], v["strict"]["micro_f1"]),
+        row("item accuracy (strict)", y["strict"]["item_accuracy"], v["strict"]["item_accuracy"]),
         row("macro-F1 (excl)", y["excl"]["macro_f1"], v["excl"]["macro_f1"]),
         row("coverage (excl)", y["excl"]["coverage"], v["excl"]["coverage"]),
         row("個数 recall(副軸)",
@@ -183,8 +200,17 @@ def to_markdown(summary: dict) -> str:
         row("レイテンシ中央値(s)", y["latency_sec"]["median"], v["latency_sec"]["median"]),
         row("レイテンシ p95(s)", y["latency_sec"]["p95"], v["latency_sec"]["p95"]),
         "",
-        f"**McNemar(対応あり, strict)**: n01(YOLO正/VLM誤)={mc['n01']}, "
-        f"n10(YOLO誤/VLM正)={mc['n10']}, p={mc['p_value']:.4g}",
+        "### 主推論: 画像単位ペア差ブートストラップ(diff = VLM − YOLO, docs/DESIGN.md §4)",
+        "",
+        "| 指標 | 差(点推定) | CI95 |",
+        "|---|---|---|",
+        diff_row("macro-F1", "macro_f1"),
+        diff_row("micro-F1", "micro_f1"),
+        diff_row("item accuracy", "item_accuracy"),
+        "",
+        f"**McNemar(対応あり, strict, 補助的クロスチェック)**: n01(YOLO正/VLM誤)={mc['n01']}, "
+        f"n10(YOLO誤/VLM正)={mc['n10']}, p={mc['p_value']:.4g} "
+        "(item accuracy diff は代数的に (n10−n01)/N と一致=クラスタ対応版 McNemar 相当)",
         "",
         "### uncertain について(方針A)",
         f"VLM の uncertain 率は {v['uncertain']['rate']*100:.2f}%"

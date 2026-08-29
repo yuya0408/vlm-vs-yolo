@@ -42,9 +42,17 @@ YOLO は `uncertain` を持たない 2 値判定とし、「VLM だけが不確�
 **主軸(有無判定)**
 
 - per-category / macro / micro の P・R・F1(positive クラス = present)。3 値(VLM)は strict(uncertain を誤り扱い)と excl(uncertain を除外 + カバレッジ併記)の 2 通りで報告。YOLO は 2 値
-- 画像単位ブートストラップ 95% CI(n=10,000。リサンプリング単位は画像)
-- YOLO vs VLM は対応ありの McNemar 検定(項目単位)。多重比較時は Holm 補正
-- 誤り分析: taxonomy + ロジスティック回帰(誤答 ~ bbox 面積比 + 項目数 + 混同度 + crowd)
+- 観測単位は「1判定項目=(画像,カテゴリ)」だが、同一画像内の項目(5〜10件)は独立でない
+  (画像300枚に対し項目2281件)。**全ての検定・推定でリサンプル/クラスタ単位を画像に揃える**
+- 画像単位ブートストラップ 95% CI(n=10,000、percentile法)。YOLO/VLM それぞれの周辺CIに加え、
+  **同一リサンプル添字を使ったペア差(VLM−YOLO)のCIを主推論とする**
+  (2つの周辺CIの重複は差が非有意であることを含意しないため)
+- YOLO vs VLM の対応あり検定として McNemar(項目単位)をクロスチェックとして併記する。
+  主推論は画像単位ペア差ブートストラップCIとし、McNemarは補助的な位置づけとする
+  (item accuracy の差のブートストラップは代数的にクラスタ対応版 McNemar と同値: diff=(n10−n01)/N)
+- 誤り分析: taxonomy + ロジスティック回帰(誤答 ~ bbox 面積比 + 項目数 + crowd + gt_present)。
+  説明変数に画像レベル定数(bbox面積比・項目数・crowd)を含むため、
+  **クラスタ頑健標準誤差(`cov_type="cluster"`, groups=image_id)** で標準誤差・p値を計算する
 - トレードオフ: 精度 / コスト / レイテンシのパレート(YOLO ローカル無料 vs VLM API 課金)
 
 **副軸(個数 recall)**

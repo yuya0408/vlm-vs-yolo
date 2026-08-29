@@ -82,9 +82,17 @@ def test_compare_structure_and_values(tmp_path):
     assert 0.0 <= lo <= hi <= 1.0
     # McNemar の鍵が揃う
     assert {"n01", "n10", "p_value"} <= set(out["mcnemar"])
+    # 主推論: 画像単位ペア差ブートストラップ(diff = VLM - YOLO)
+    for metric in ("macro_f1", "micro_f1", "item_accuracy"):
+        d = out["paired_diff"][metric]
+        assert {"point_diff", "ci95", "ci90", "p_value_boot"} <= set(d)
+        lo, hi = d["ci95"]
+        assert lo <= hi
+    # item accuracy が strict/excl サマリに追加されている
+    assert 0.0 <= out["models"]["yolo"]["strict"]["item_accuracy"] <= 1.0
     # Markdown が生成できる
     md = to_markdown(out)
-    assert "YOLO vs VLM" in md and "McNemar" in md
+    assert "YOLO vs VLM" in md and "McNemar" in md and "ペア差ブートストラップ" in md
 
 
 def test_compare_rejects_mismatched_eval_set(tmp_path):
