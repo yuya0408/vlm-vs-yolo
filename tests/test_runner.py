@@ -65,3 +65,21 @@ def test_cache_hit_on_rerun(tmp_path):
                     results_dir=results, images_dir=str(tmp_path / "imgs"))
     second = json.loads(open(out2, encoding="utf-8").read())
     assert all(r["cached"] is True for r in second["records"])
+
+
+def test_run_id_includes_prompt_name(tmp_path):
+    """prompt だけ違うランが同じ結果ファイルを上書きしないこと(プロンプト感度検証の前提)。"""
+    eval_path = _write_eval(tmp_path)
+    results = str(tmp_path / "results")
+    kwargs = {"cache_dir": str(tmp_path / "cache"), "results_dir": results,
+              "images_dir": str(tmp_path / "imgs")}
+    # mock プロバイダに prompt だけ付けて 2 通り走らせる(mock は prompt を使わないが run_id に効く)
+    a = run_eval(eval_path, {"provider": "mock", "prompt": "concise"}, **kwargs)
+    b = run_eval(eval_path, {"provider": "mock", "prompt": "deliberate"}, **kwargs)
+    assert a != b
+    assert "concise" in a and "deliberate" in b
+    assert json.loads(open(a, encoding="utf-8").read())["prompt"] == "concise"
+
+    # prompt を持たないラン(mock / YOLO)の run_id は従来どおり prompt 名を含まない
+    plain = run_eval(eval_path, {"provider": "mock"}, **kwargs)
+    assert "concise" not in plain and "deliberate" not in plain

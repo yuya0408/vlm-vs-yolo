@@ -38,6 +38,7 @@ YOLO は `uncertain` を持たない 2 値判定とし、「VLM だけが不確�
 - **トレードオフ分析**: 精度 / コスト / レイテンシのパレート(YOLO ローカル無料 vs VLM API 課金)
 - **回帰ゲート(無料運用)**: PR ごとに mock の smoke 評価(n=50)を回し、ベースライン比で macro-F1 が劣化したら fail
 - **再現性**: 評価セットはシード固定、VLM レスポンスは (model, prompt, image, checklist) ハッシュでキャッシュ、各ランは `results/{run_id}.json` に確定保存(MLflow/DVC は使わない)
+- **ベースライン調整の対称性チェック**: YOLO の閾値は全走査で詰める一方、VLM 側もプロンプト水準を 3 本振って結論が反転しないかを確認する(`src/analysis/prompt_sensitivity.py`。探索空間の非対称性については `docs/DESIGN.md` §4)
 
 ## 評価設計の要点
 
@@ -59,6 +60,7 @@ YOLO は `uncertain` を持たない 2 値判定とし、「VLM だけが不確�
   → **閉語彙・ラベルありなら調整 YOLO で十分。** ただし**語彙外・ラベル無し(例: 配管施工のような専門ドメイン)では
   YOLO は構造的に判定不能で、ゼロショットの VLM が唯一の現実解**(REPORT 付録の定性デモ)。
 - VLM は `uncertain` を返せるが実際にはほぼ使わない(0.31%)= 校正された不確実性は表現しない。
+- ただし**詰め切ったのは YOLO 側の閾値だけ**で、VLM 側は `concise` 1 本のみ。プロンプト感度の検証手続きと判定基準は `report/REPORT.md` §2b に事前登録済み(実装済み・実行待ち)。
 
 ## ステータス
 
@@ -67,6 +69,7 @@ YOLO は `uncertain` を持たない 2 値判定とし、「VLM だけが不確�
 - [x] M3: Gemini Flash プロバイダ実装 + ベースライン VLM ラン(N=300 を 1 回)
 - [x] M4: YOLO vs VLM 比較分析(McNemar + ブートストラップ CI + 誤り要因回帰 + パレート + 閾値チューニング)
 - [x] M5: CI(回帰ゲートを mock smoke で無料運用)+ README / REPORT 仕上げ + 建設ドメイン定性デモ
+- [ ] M6: VLM 側のプロンプト感度検証(3 水準。手続きは事前登録済み、実行待ち)
 
 ## セットアップ
 
@@ -76,6 +79,32 @@ pip install -r requirements.txt
 cp .env.example .env   # GEMINI_API_KEY を設定(mock / YOLO のみなら不要)
 pytest                  # 単体テスト
 ```
+
+## プロンプト感度の検証(VLM 側の steelman)
+
+YOLO の閾値は 1 次元スカラーなのでグリッド全走査できるが、プロンプトは次元も境界も定義できず、
+1 点試すたびに N 枚の再推論(課金)が発生する。**全走査の代わりに水準を 3 本振り、結論が反転しない
+ことだけを確認する**(判定基準は実行前に `report/REPORT.md` §2b で固定してある)。
+
+```bash
+# 1) 水準ごとにラン。run_id にプロンプト名が入るので互いに上書きしない。
+#    concise は既存キャッシュにヒットするので再課金は無し(追加は 2 水準ぶん・500 円前後)
+for m in flash flash_deliberate flash_calibrated; do
+  python -m src.runner --eval-set data/eval_set.json --model $m
+done
+
+# 2) 感度分析(再推論なし・無料)。tune で選び test で報告 = YOLO の閾値選定と同じ規則。
+#    --yolo-raw を渡すと test 上で tuned YOLO と対応あり比較し、有意判定の反転有無を出す
+python -m src.analysis.prompt_sensitivity \
+    --run results/gemini-gemini-3.5-flash-concise-289d6c0e.json \
+    --run results/gemini-gemini-3.5-flash-deliberate-289d6c0e.json \
+    --run results/gemini-gemini-3.5-flash-calibrated-289d6c0e.json \
+    --eval-set data/eval_set.json --baseline concise \
+    --yolo-raw results/yolo_raw_detections.json --yolo-conf 0.075
+```
+
+水準は `conf/prompts/*.txt`(= コード。変更は PR 経由)と `conf/models.yaml` の
+`flash` / `flash_deliberate` / `flash_calibrated` で定義する。
 
 ## ライセンス・データ
 

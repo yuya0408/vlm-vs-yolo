@@ -11,6 +11,22 @@ flash:
   temperature: 0
   # 低コストで回すなら model を gemini-2.5-flash($0.30/$2.50)等に差し替え可(pricing.yaml も合わせる)
 
+# --- プロンプト感度検証用(src/analysis/prompt_sensitivity.py)---
+# VLM 側の「探索空間」= プロンプト。YOLO の閾値スイープと非対称なので全走査はできないが、
+# 水準を 3 本振って結論が反転しないかだけは確認する(model/temperature は flash と同一、
+# 変えるのは prompt のみ)。run_id にプロンプト名が入るので結果は互いに上書きしない。
+flash_deliberate:
+  provider: gemini
+  model: gemini-3.5-flash
+  prompt: deliberate           # 項目ごとに evidence を先に書かせてから判定(reason-then-answer)
+  temperature: 0
+
+flash_calibrated:
+  provider: gemini
+  model: gemini-3.5-flash
+  prompt: calibrated           # チェックリスト由来の過剰主張を抑え、uncertain の使用基準を明示
+  temperature: 0
+
 yolo:
   provider: yolo
   weights: yolo26x.pt          # ultralytics 学習済み(COCO 80 クラス, 2026最新)。ローカル推論・無料・決定論的
