@@ -12,7 +12,7 @@
 実行例:
     python -m src.analysis.compare \
         --yolo results/yolo-yolo26x-289d6c0e.json \
-        --vlm  results/gemini-gemini-3.5-flash-289d6c0e.json \
+        --vlm  results/gemini-gemini-3.5-flash-concise-289d6c0e.json \
         --eval-set data/eval_set.json \
         --out results/comparison.json
 
