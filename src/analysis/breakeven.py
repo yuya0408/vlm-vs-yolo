@@ -8,9 +8,10 @@ REPORT のコスト比較は「300 枚あたり 251 円 vs 0 円」で、YOLO �
     VLM  累計(T ヶ月) = unit_jpy × 月間枚数 M × T
     C_fix = ラベル枚数 × 1枚あたり矩形数 × 矩形単価 × 手戻り係数 + 学習工数 × 時間単価
 
-固定費は環境依存で測れないため、点推定は出さない。`conf/costs.yaml` に低位/中位/高位の
-3 シナリオを出典付きで置き、**結論が反転する境界**(何枚/月で逆転するか、回収に何ヶ月かかるか)を
-出す。しきい値を点で決めず band で語った REPORT §2 と同じ扱い。
+固定費は環境依存で測れないため、点推定としては読まない。`conf/costs.yaml` には**最も安い条件
+(= YOLO に最も有利な下限)**を出典付きで置き、そこから固定費を n 倍に振った感度を併せて出す。
+下限で結論が出れば、実際の条件はそれより高くなる方向にしか動かないので結論は補強される
+(a fortiori)。しきい値を点で決めず band で語った REPORT §2 と同じ扱い。
 
 前提: 精度が互角であること(REPORT §1)。語彙外・ラベル無しの第二象限では YOLO は
 いくら払っても要件を満たさないため、そもそも交点が存在しない(§7)。本分析は第一象限限定の道具。
@@ -85,11 +86,26 @@ def analyze(costs: dict) -> dict:
     horizons = [int(h) for h in costs.get("horizons_months", [12])]
     volumes = [float(v) for v in costs.get("monthly_volumes", [1000])]
 
+    multipliers = [float(m) for m in costs.get("fixed_cost_multipliers", [1])]
+
     scenarios = {}
     for name, sc in costs["scenarios"].items():
         fc = fixed_cost(sc)
         ops = float(sc.get("ops_monthly_jpy", 0))
+        # 上振れ側の感度: 固定費が n 倍になっても結論の向きが変わらないかを見る
+        sensitivity = {
+            f"x{m:g}": {
+                "fixed_total_jpy": round(fc["total_jpy"] * m),
+                "break_even_images": round(break_even_images(fc["total_jpy"] * m, unit)),
+                "payback_months": {
+                    str(int(v)): payback_months(fc["total_jpy"] * m, ops, unit, v)
+                    for v in volumes
+                },
+            }
+            for m in multipliers
+        }
         scenarios[name] = {
+            "sensitivity_by_fixed_cost": sensitivity,
             "label": sc.get("label", name),
             "fixed_cost": fc,
             "ops_monthly_jpy": ops,
@@ -108,10 +124,12 @@ def analyze(costs: dict) -> dict:
         "vlm_measured": costs["vlm"],
         "horizons_months": horizons,
         "monthly_volumes": volumes,
+        "fixed_cost_multipliers": multipliers,
         "horizon_cap_months": _HORIZON_CAP_MONTHS,
         "scenarios": scenarios,
-        "note": ("固定費は公開値から置いた仮定であり実測ではない。点推定ではなく"
-                 "反転境界として読むこと。精度互角(第一象限)が前提。"),
+        "note": ("固定費は公開値から置いた仮定であり実測ではない。基本シナリオは"
+                 "「YOLO に最も有利な最安条件」で、実際はこれより高くなる方向にしか動かない"
+                 "(上振れは感度表で確認)。精度互角(第一象限)が前提。"),
     }
 
 
@@ -152,6 +170,19 @@ def to_markdown(res: dict) -> str:
             for v in res["monthly_volumes"])
         lines.append(f"| `{name}` | {cells} |")
 
+    lines += ["", "### 感度: 固定費が n 倍に膨らんだ場合", "",
+              "| シナリオ | 固定費 | 損益分岐の累計枚数 | "
+              + " | ".join(f"{int(v):,} 枚/月" for v in res["monthly_volumes"]) + " |",
+              "|---" * (len(res["monthly_volumes"]) + 3) + "|"]
+    for name, s_ in res["scenarios"].items():
+        for key, sv in s_["sensitivity_by_fixed_cost"].items():
+            cells = " | ".join(
+                ("回収不能" if sv["payback_months"][str(int(v))] is None
+                 else f"{sv['payback_months'][str(int(v))]:.1f} ヶ月")
+                for v in res["monthly_volumes"])
+            lines.append(f"| `{name}` {key} | {sv['fixed_total_jpy']:,} 円 | "
+                         f"{sv['break_even_images']:,} 枚 | {cells} |")
+
     lines += [
         "",
         f"> 「回収不能」= 交点が存在しない(VLM の月額 ≤ YOLO の運用月額)、または回収に "
@@ -174,13 +205,16 @@ def breakeven_figure(res: dict, out_path: str) -> str:
 
     fig, ax = plt.subplots(figsize=(8, 5))
     # ラベルは英語に統一(matplotlib 既定フォントは CJK 非対応で文字化けするため)
+    styles = ["-", "--", ":", "-."]
     for name, s in res["scenarios"].items():
-        fixed = s["fixed_cost"]["total_jpy"]
         ops = s["ops_monthly_jpy"]
-        saving = unit * volumes - ops
-        months = np.where(saving > 0, fixed / np.where(saving > 0, saving, 1), np.inf)
-        ax.plot(volumes, np.clip(months, None, cap * 1.4), lw=2,
-                label=f"{name}: fixed {fixed/1e6:.2f}M JPY, ops {ops/1e3:.0f}k JPY/mo")
+        for i, (key, sv) in enumerate(s["sensitivity_by_fixed_cost"].items()):
+            fixed = sv["fixed_total_jpy"]
+            saving = unit * volumes - ops
+            months = np.where(saving > 0, fixed / np.where(saving > 0, saving, 1), np.inf)
+            ax.plot(volumes, np.clip(months, None, cap * 1.4), lw=2,
+                    ls=styles[i % len(styles)],
+                    label=f"{name} {key}: fixed {fixed/1e6:.2f}M JPY, ops {ops/1e3:.0f}k JPY/mo")
 
     ax.axhline(cap, color="gray", ls="--", lw=1)
     ax.text(1.2e2, cap * 1.05, f"never pays back (> {cap} months)", fontsize=9, color="gray")
@@ -192,7 +226,7 @@ def breakeven_figure(res: dict, out_path: str) -> str:
     ax.set_ylim(1, cap * 1.6)
     ax.set_xlabel("Monthly inference volume (images / month)")
     ax.set_ylabel("Payback period (months)")
-    ax.set_title(f"Break-even: VLM pay-per-use ({unit:.2f} JPY/image) vs YOLO fixed cost")
+    ax.set_title(f"Break-even: VLM pay-per-use ({unit:.2f} JPY/image) vs YOLO fixed cost\n(lean = cheapest annotation assumption; x3 / x10 = cost overrun)", fontsize=11)
     ax.grid(True, which="both", alpha=0.3)
     ax.legend(fontsize=9)
     fig.tight_layout()

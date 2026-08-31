@@ -20,7 +20,7 @@ usd_jpy: 161.5
 # 配管チェックリストと同規模。boxes_per_image は 1 枚あたりに打つ矩形の平均個数。
 scenarios:
   lean:
-    label: "PoC 最小(推奨枚数を割り、クラウドソーシングの最安単価)"
+    label: "最安ケース(推奨枚数を割り、クラウドソーシングの最安単価)"
     n_label_images: 3000        # 10 クラス × 300 枚。Ultralytics 推奨(≧1500 枚/クラス)の 1/5
     boxes_per_image: 5
     cost_per_box_jpy: 5.8       # $0.036/object(SageMaker Ground Truth の Mechanical Turk 単価)× 161.5
@@ -28,29 +28,16 @@ scenarios:
     engineering_hours: 40       # 学習・評価・データ整備の工数
     engineering_rate_jpy: 6000  # 円/時
     ops_monthly_jpy: 0          # 既存の推論基盤に相乗り(追加費 0)
-
-  standard:
-    label: "標準(Ultralytics 推奨枚数、国内外注の一般的な単価)"
-    n_label_images: 15000       # 10 クラス × 1500 枚(Ultralytics の推奨枚数)
-    boxes_per_image: 5
-    cost_per_box_jpy: 10        # 国内アノテーション外注の相場: 矩形 1 対象あたり 10 円〜
-    rework_factor: 1.3
-    engineering_hours: 120
-    engineering_rate_jpy: 8000
-    ops_monthly_jpy: 10000      # 推論サーバ・監視の月額
-
-  expert_inhouse:
-    label: "専門ドメイン内製(有識者が自分で打つ。外注できない領域)"
-    n_label_images: 15000
-    boxes_per_image: 5
-    cost_per_box_jpy: 35        # 42 秒/矩形(ILSVRC のクラウドソーシング実績)× 時給 3000 円
-    rework_factor: 1.5          # 判断が割れる対象はガイドライン整備と再作業が増える
-    engineering_hours: 200
-    engineering_rate_jpy: 8000
-    ops_monthly_jpy: 30000
+  # 単一シナリオだが点推定として読まないこと。これは「YOLO に最も有利な下限」であり、
+  # 実際の条件はこれより高くなる方向にしか動かない(下の参考単価を見よ):
+  #   - 矩形単価: 国内アノテーション外注の相場は矩形 1 対象 10 円〜(ここでは 5.8 円)
+  #   - 内製で有識者が打つ場合: 42 秒/矩形 × 時給 3000 円 ≒ 35 円/矩形
+  #   - ラベル枚数: Ultralytics 推奨に従えば 15,000 枚(ここでは 3,000 枚)
+  # 上振れ側は fixed_cost_multipliers の感度で見る(固定費が何倍になっても向きが変わらないことの確認)。
 
 # --- 出力条件 ---
 horizons_months: [3, 6, 12, 24, 36]
+fixed_cost_multipliers: [1, 3, 10]            # 固定費が n 倍になったときの感度(上振れ側の確認)
 monthly_volumes: [500, 5000, 50000, 500000]   # PoC 規模 〜 本番規模
 
 # --- 出典(2026-08-31 取得)---

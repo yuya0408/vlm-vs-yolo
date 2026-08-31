@@ -24,6 +24,7 @@ def _costs() -> dict:
         },
         "horizons_months": [6, 12],
         "monthly_volumes": [500, 500000],
+        "fixed_cost_multipliers": [1, 10],
     }
 
 
@@ -77,10 +78,23 @@ def test_analyze_structure_and_never_payback_at_poc_scale():
     assert res["scenarios"]["with_ops"]["payback_months"]["500000"] is not None
 
 
+def test_sensitivity_scales_break_even_linearly_with_fixed_cost():
+    """最安条件を下限として置くので、上振れ側は固定費の倍率で見る(a fortiori)。"""
+    sens = analyze(_costs())["scenarios"]["cheap"]["sensitivity_by_fixed_cost"]
+    assert set(sens) == {"x1", "x10"}
+    assert sens["x10"]["fixed_total_jpy"] == 10 * sens["x1"]["fixed_total_jpy"]
+    assert sens["x10"]["break_even_images"] == pytest.approx(
+        10 * sens["x1"]["break_even_images"], rel=1e-3)  # 丸め誤差のみ許容
+    # 固定費が 10 倍でも「PoC 規模では回収不能」の向きは変わらない
+    assert sens["x1"]["payback_months"]["500000"] is not None
+    assert sens["x10"]["payback_months"]["500000"] is not None
+
+
 def test_markdown_reports_unrecoverable_cases():
     md = to_markdown(analyze(_costs()))
     assert "損益分岐" in md and "回収不能" in md
     assert "cheap" in md and "with_ops" in md
+    assert "感度" in md and "x10" in md
 
 
 def test_figure_writes_png(tmp_path):
