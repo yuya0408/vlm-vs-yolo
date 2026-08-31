@@ -14,7 +14,7 @@
 
 結果ファイル(results/{run_id}.json):
 {
-  "run_id": "...", "provider": "mock", "model_version": "mock-model-v1",
+  "run_id": "...", "provider": "mock", "model_version": "mock-model-v1", "prompt": "concise",
   "eval_set_path": "...", "eval_set_sha256": "...", "created_at": "...",
   "records": [
     {"image_id": 139,
@@ -98,7 +98,15 @@ def run_eval(eval_set_path: str, model_config: dict, cache_dir: str = "cache",
     _WEIGHT_SUFFIXES = (".pt", ".onnx", ".engine", ".pth")
     model_slug = Path(model_tag).stem if model_tag.lower().endswith(_WEIGHT_SUFFIXES) else model_tag
     model_slug = re.sub(r"[^0-9A-Za-z._-]", "_", model_slug)
-    run_id = f"{provider_name}-{model_slug}-{eval_hash[:8]}"
+    # プロンプトを持つプロバイダ(VLM)は run_id にプロンプト名を含める。含めないと
+    # 「同じモデルで prompt だけ変えたラン」が同一 run_id になり、results/ を互いに
+    # 上書きする(= プロンプト感度検証が成立しない)。キャッシュキーには元から prompt が
+    # 入っているので、既存キャッシュがあれば新 run_id でも API 課金は発生しない。
+    # prompt を持たない mock / YOLO の run_id は従来どおり(CI の baseline 名を壊さない)。
+    parts = [provider_name, model_slug]
+    if model_config.get("prompt"):
+        parts.append(re.sub(r"[^0-9A-Za-z._-]", "_", prompt_name))
+    run_id = "-".join(parts + [eval_hash[:8]])
     Path(cache_dir).mkdir(parents=True, exist_ok=True)
     Path(results_dir).mkdir(parents=True, exist_ok=True)
     result_path = Path(results_dir) / f"{run_id}.json"
@@ -147,20 +155,23 @@ def run_eval(eval_set_path: str, model_config: dict, cache_dir: str = "cache",
         })
         done.add(image_id)
         _save(result_path, run_id, provider_name, model_version, eval_set_path,
-              eval_hash, records)
+              eval_hash, records, prompt_name)
 
-    _save(result_path, run_id, provider_name, model_version, eval_set_path, eval_hash, records)
+    _save(result_path, run_id, provider_name, model_version, eval_set_path, eval_hash,
+          records, prompt_name)
     return str(result_path)
 
 
 def _save(result_path: Path, run_id: str, provider_name: str, model_version: str | None,
-          eval_set_path: str, eval_hash: str, records: list[dict]) -> None:
+          eval_set_path: str, eval_hash: str, records: list[dict],
+          prompt_name: str = "-") -> None:
     # 公開スキーマからは内部用 _model_version を落とす
     clean = [{k: v for k, v in r.items() if k != "_model_version"} for r in records]
     obj = {
         "run_id": run_id,
         "provider": provider_name,
         "model_version": model_version,
+        "prompt": prompt_name,
         "eval_set_path": eval_set_path,
         "eval_set_sha256": eval_hash,
         "created_at": datetime.now().isoformat(timespec="seconds"),

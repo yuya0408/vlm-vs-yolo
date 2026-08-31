@@ -14,6 +14,26 @@
 という一般的な技術選定の型。この型は検出モデルの選定に限らず、推論エンジンやAPI基盤の
 選定など他のAIシステム設計判断にも適用できる。
 
+## なぜ作ったか(実務の文脈)
+
+実務で、画像から「期待される項目が写っているか」を判定する機能に汎用 VLM を選んだ。根拠は 3 つ
+——(1) 学習用のアノテーションがほとんど無い、(2) PoC として小さく始めるので初期固定費を抱えたくない、
+(3) 応答速度への要求が緩い。
+
+この判断は今も妥当だったと思う。ただし当時それを支えていたのは実測ではなく見込みで、
+**「どの条件が崩れたら判断が反転するのか」を持っていなかった**。ラベルが貯まったら、推論量が
+桁で増えたら、リアルタイム要求が出たら —— 同じ 3 つの根拠はそのまま逆側の根拠になる。
+
+そこで社内データを一切使わず、公開データ(COCO)で同じ意思決定を再実行できる検証台を個人で作った。
+本リポの成果物は「YOLO か VLM か」という答えではなく、**どの条件でどちらに倒すかという意思決定
+ルール**である。上の 3 つの根拠は、それぞれ次の節で検証可能な軸に落としてある。
+
+| 実務での根拠 | 本リポでの検証 |
+|---|---|
+| アノテーションが無い | 語彙外・ラベル無しの第二象限では YOLO は構造的に判定不能(`report/REPORT.md` §7・付録) |
+| PoC で小さく始める | 損益分岐: PoC 規模(月 数百〜数千枚)では YOLO の固定費を回収できない(§5b) |
+| 応答性が要らない | YOLO の優位(無料・約16倍速)が効かない条件。精度は互角(§1・§2) |
+
 ## 問いの立て方
 
 こうした有無判定を汎用 VLM で解く構成では、アーキテクチャ上は YOLO プロバイダを差し込める。「専用検出器に替えれば精度・コストで割に合うのか / 汎用 VLM で既に十分なのか」は、感想ではなく統計で答えるべき意思決定だ。本作はその判断基盤を作る。
@@ -36,8 +56,10 @@ YOLO は `uncertain` を持たない 2 値判定とし、「VLM だけが不確�
 
 - **統計的に厳密な比較**: 画像単位ブートストラップ 95% CI、対応ありの McNemar 検定、誤り要因のロジスティック回帰
 - **トレードオフ分析**: 精度 / コスト / レイテンシのパレート(YOLO ローカル無料 vs VLM API 課金)
+- **損益分岐(TCO)**: 「YOLO = 0 円」は API 課金が 0 という意味でしかない。アノテーション・学習工数・運用を固定費として積み、従量課金の VLM との交点を出す(`src/analysis/breakeven.py`)
 - **回帰ゲート(無料運用)**: PR ごとに mock の smoke 評価(n=50)を回し、ベースライン比で macro-F1 が劣化したら fail
 - **再現性**: 評価セットはシード固定、VLM レスポンスは (model, prompt, image, checklist) ハッシュでキャッシュ、各ランは `results/{run_id}.json` に確定保存(MLflow/DVC は使わない)
+- **ベースライン調整の対称性チェック**: YOLO の閾値は全走査で詰める一方、VLM 側もプロンプト水準を 3 本振って結論が反転しないかを確認する(`src/analysis/prompt_sensitivity.py`。探索空間の非対称性については `docs/DESIGN.md` §4)
 
 ## 評価設計の要点
 
@@ -59,6 +81,8 @@ YOLO は `uncertain` を持たない 2 値判定とし、「VLM だけが不確�
   → **閉語彙・ラベルありなら調整 YOLO で十分。** ただし**語彙外・ラベル無し(例: 配管施工のような専門ドメイン)では
   YOLO は構造的に判定不能で、ゼロショットの VLM が唯一の現実解**(REPORT 付録の定性デモ)。
 - VLM は `uncertain` を返せるが実際にはほぼ使わない(0.31%)= 校正された不確実性は表現しない。
+- ただし**詰め切ったのは YOLO 側の閾値だけ**で、VLM 側は `concise` 1 本のみ。プロンプト感度の検証手続きと判定基準は `report/REPORT.md` §2b に事前登録済み(実装済み・実行待ち)。
+- **精度が互角なら残るのはコスト構造の差**: 固定費先行(YOLO)と従量課金(VLM)の損益分岐は、**アノテーションを最も安く見積もった下限でも累計 41 万枚**。**PoC 規模(月 数百〜数千枚)では回収不能で、固定費を 10 倍に振っても向きは変わらない**。切り替えの目安は月間 1 万枚のオーダー(§5b)。
 
 ## ステータス
 
@@ -67,6 +91,7 @@ YOLO は `uncertain` を持たない 2 値判定とし、「VLM だけが不確�
 - [x] M3: Gemini Flash プロバイダ実装 + ベースライン VLM ラン(N=300 を 1 回)
 - [x] M4: YOLO vs VLM 比較分析(McNemar + ブートストラップ CI + 誤り要因回帰 + パレート + 閾値チューニング)
 - [x] M5: CI(回帰ゲートを mock smoke で無料運用)+ README / REPORT 仕上げ + 建設ドメイン定性デモ
+- [ ] M6: VLM 側のプロンプト感度検証(3 水準。手続きは事前登録済み、実行待ち)
 
 ## セットアップ
 
@@ -75,6 +100,42 @@ python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 cp .env.example .env   # GEMINI_API_KEY を設定(mock / YOLO のみなら不要)
 pytest                  # 単体テスト
+```
+
+## プロンプト感度の検証(VLM 側の steelman)
+
+YOLO の閾値は 1 次元スカラーなのでグリッド全走査できるが、プロンプトは次元も境界も定義できず、
+1 点試すたびに N 枚の再推論(課金)が発生する。**全走査の代わりに水準を 3 本振り、結論が反転しない
+ことだけを確認する**(判定基準は実行前に `report/REPORT.md` §2b で固定してある)。
+
+```bash
+# 1) 水準ごとにラン。run_id にプロンプト名が入るので互いに上書きしない。
+#    concise は既存キャッシュにヒットするので再課金は無し(追加は 2 水準ぶん・500 円前後)
+for m in flash flash_deliberate flash_calibrated; do
+  python -m src.runner --eval-set data/eval_set.json --model $m
+done
+
+# 2) 感度分析(再推論なし・無料)。tune で選び test で報告 = YOLO の閾値選定と同じ規則。
+#    --yolo-raw を渡すと test 上で tuned YOLO と対応あり比較し、有意判定の反転有無を出す
+python -m src.analysis.prompt_sensitivity \
+    --run results/gemini-gemini-3.5-flash-concise-289d6c0e.json \
+    --run results/gemini-gemini-3.5-flash-deliberate-289d6c0e.json \
+    --run results/gemini-gemini-3.5-flash-calibrated-289d6c0e.json \
+    --eval-set data/eval_set.json --baseline concise \
+    --yolo-raw results/yolo_raw_detections.json --yolo-conf 0.075
+```
+
+水準は `conf/prompts/*.txt`(= コード。変更は PR 経由)と `conf/models.yaml` の
+`flash` / `flash_deliberate` / `flash_calibrated` で定義する。
+
+## 損益分岐(TCO)の再計算
+
+前提値は `conf/costs.yaml`(低位/中位/高位の 3 シナリオ + 出典)。自分の数字に差し替えて
+再計算できる。API 不要・無料。
+
+```bash
+python -m src.analysis.breakeven --costs conf/costs.yaml \
+    --out results/breakeven.json --figure report/figures/breakeven.png
 ```
 
 ## ライセンス・データ

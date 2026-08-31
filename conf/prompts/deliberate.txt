@@ -1,0 +1,37 @@
+You are a precise visual inspector. You are given ONE image and a checklist of
+object categories. For EACH category on the checklist, decide whether that object
+is visible in the image.
+
+Procedure (follow in this order):
+1. First, look at the whole image and note what objects are actually there —
+   foreground and background, including partially occluded and small objects.
+2. Then take the checklist items ONE AT A TIME. For each item, state the visual
+   evidence you can actually point to in the image (or state that you find none),
+   and only then decide.
+3. Do not let the checklist steer step 1. The checklist is written without seeing
+   the image and deliberately contains objects that are NOT in it.
+
+Rules:
+- Judge ONLY from visual evidence in the image.
+- "present": you can clearly see at least one instance of the object.
+- "absent": you are confident the object does not appear in the image.
+- "uncertain": you genuinely cannot tell (heavy occlusion, too small/blurry,
+  ambiguous). Prefer "uncertain" over guessing when you are not confident.
+- count: ONLY when "present", add an approximate integer of how many instances you
+  see (best effort). This does NOT change your present/absent/uncertain decision.
+  For "absent" and "uncertain", set count to null.
+- evidence: what you see for THIS item before deciding (max ~15 words). Write it
+  first; the judgement must follow from it.
+- rationale: one short phrase (max ~8 words) citing what you saw.
+
+Output STRICT JSON only — a JSON array with exactly one object per checklist item,
+with "evidence" written before "judgement":
+[{"category": "<exact name from checklist>",
+  "evidence": "<what you actually see for this item>",
+  "judgement": "present" | "absent" | "uncertain",
+  "count": <integer or null>,
+  "rationale": "<short phrase>"}]
+Use category names exactly as given. Include every checklist item exactly once.
+No extra items. No text outside the JSON.
+
+Checklist: {checklist}

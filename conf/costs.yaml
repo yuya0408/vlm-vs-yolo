@@ -1,0 +1,54 @@
+# 損益分岐分析の前提値(src/analysis/breakeven.py が読む)。
+#
+# 重要: ここに並ぶのは「測った値」ではなく「公開値から置いた仮定」である。本作が実測したのは
+# VLM 側の API コストだけで、YOLO 側の固定費(アノテーション + 学習工数 + 運用)は環境依存で
+# 測りようがない。したがって単一の点推定は出さず、低位/中位/高位の 3 シナリオを置き、
+# 結論が反転する境界を出す(しきい値を点で決めず band で語った REPORT §2 と同じ扱い)。
+# 自分の数字に差し替えて再計算できるよう、全項目を YAML に外出ししている。
+
+# --- VLM 側(実測)---
+vlm:
+  measured_cost_jpy: 251      # REPORT §1 の実測(gemini-3.5-flash, N=300)
+  measured_n_images: 300
+  # 単価 = 251 / 300 ≒ 0.84 円/枚。プロンプトが長くなれば上がる(§2b)
+
+# --- 為替・レート(pricing.yaml と揃える)---
+usd_jpy: 161.5
+
+# --- YOLO 側の固定費シナリオ ---
+# 想定タスク: 専門ドメインのチェックリスト 10 項目(= 検出クラス 10)。REPORT 付録の
+# 配管チェックリストと同規模。boxes_per_image は 1 枚あたりに打つ矩形の平均個数。
+scenarios:
+  lean:
+    label: "最安ケース(推奨枚数を割り、クラウドソーシングの最安単価)"
+    n_label_images: 3000        # 10 クラス × 300 枚。Ultralytics 推奨(≧1500 枚/クラス)の 1/5
+    boxes_per_image: 5
+    cost_per_box_jpy: 5.8       # $0.036/object(SageMaker Ground Truth の Mechanical Turk 単価)× 161.5
+    rework_factor: 1.2          # 手戻り・レビュー・仕様変更の係数(仮定)
+    engineering_hours: 40       # 学習・評価・データ整備の工数
+    engineering_rate_jpy: 6000  # 円/時
+    ops_monthly_jpy: 0          # 既存の推論基盤に相乗り(追加費 0)
+  # 単一シナリオだが点推定として読まないこと。これは「YOLO に最も有利な下限」であり、
+  # 実際の条件はこれより高くなる方向にしか動かない(下の参考単価を見よ):
+  #   - 矩形単価: 国内アノテーション外注の相場は矩形 1 対象 10 円〜(ここでは 5.8 円)
+  #   - 内製で有識者が打つ場合: 42 秒/矩形 × 時給 3000 円 ≒ 35 円/矩形
+  #   - ラベル枚数: Ultralytics 推奨に従えば 15,000 枚(ここでは 3,000 枚)
+  # 上振れ側は fixed_cost_multipliers の感度で見る(固定費が何倍になっても向きが変わらないことの確認)。
+
+# --- 出力条件 ---
+horizons_months: [3, 6, 12, 24, 36]
+fixed_cost_multipliers: [1, 3, 10]            # 固定費が n 倍になったときの感度(上振れ側の確認)
+monthly_volumes: [500, 5000, 50000, 500000]   # PoC 規模 〜 本番規模
+
+# --- 出典(2026-08-31 取得)---
+# - 矩形 1 対象 10 円〜(国内外注相場):
+#   https://ai-market.jp/ai_price/annotation-fee/
+#   https://www.nextremer.com/data-annotation/blog/annotation-pricing
+# - $0.036 / object(SageMaker Ground Truth, Mechanical Turk ワーカー):
+#   https://aws.amazon.com/sagemaker-ai/groundtruth/pricing/
+# - 42 秒 / 矩形(ILSVRC のクラウドソーシング実績。Su et al. 2012 を Papadopoulos et al.
+#   CVPR 2016 が引用): https://arxiv.org/abs/1602.08405
+# - 学習データの推奨規模(≧1500 枚/クラス, ≧10000 インスタンス/クラス):
+#   https://docs.ultralytics.com/yolov5/tutorials/tips-for-best-training-results
+# 注: 手戻り係数・工数・運用費・時給は出典のない仮定。ここが最大の不確実性であり、
+#     だからこそ点推定ではなく感度(§5b の反転境界)で読む。
