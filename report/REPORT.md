@@ -136,27 +136,49 @@ python -m src.analysis.prompt_sensitivity \
 micro-F1 0.62pt / item accuracy 0.35pt。tune 側 0.77pt・test 側 0.34pt。**いずれも YOLO の
 閾値バンド幅(§1: 2.4pt)より小さい。**
 
+**3 水準の全体検定(オムニバス)**: 「2 群の対応あり検定」である McNemar をペアごとに 3 回
+(concise-deliberate, concise-calibrated, deliberate-calibrated)回すのは多重比較になる上、
+本作の原則(`docs/DESIGN.md` §4「全ての検定・推定でリサンプル/クラスタ単位を画像に揃える」)
+にも反する(McNemar は項目単位=2281件で、同一画像内の項目は独立でない)。そこで**画像単位
+(N=300)の item accuracy** を単位に、3 水準を同時に検定する:
+
+- **反復測定 ANOVA**: F(2, 598)=1.20, p=0.30 — 有意差なし
+- **Friedman 検定(ノンパラ)**: χ²(2)=3.71, p=0.16 — 有意差なし。300 画像中 91% が 3 水準とも
+  同一の accuracy(項目数が少なく天井効果が強い)ため、ANOVA の正規性仮定は成立しない
+  (差分の Shapiro-Wilk p≈3e-33)。**したがって ANOVA ではなく Friedman を主たる根拠とする。**
+
 **リークなし選定**: tune(120)で micro-F1 最大の水準は **`concise`(baseline)自身**——
 `deliberate` も `calibrated` も、テストセットを見ない選定ルールの上ではベースラインを
 上回れなかった。selected = baseline となったため、以下の YOLO 比較は事前登録どおり
 `concise` 1 本の再確認に一致する。
 
-**baseline との対応あり差(全データ, diff = 水準 − concise)**:
+**参考: ペアごとの対応あり差(全体検定が非有意なため post-hoc としては不要だが、内訳として記載)**
+
+全データ, diff = 水準 − concise:
 
 | 水準 | macro-F1 差 | micro-F1 差 | item acc 差 | McNemar p |
 |---|---|---|---|---|
 | deliberate | +0.23pt [−0.19, +0.75] | +0.27pt | −0.13pt | 0.58 |
 | calibrated | −0.24pt [−0.94, +0.35] | −0.34pt | −0.35pt | 0.13 |
 
-いずれも非有意(CI は 0 を含む)。
+`deliberate` vs `calibrated`(concise を介さない直接比較): 全300 macro-F1 差 −0.47pt
+[−1.18, +0.06] McNemar p=0.40 / test N=180 −0.14pt [−1.18, +1.06] p=1.00。
 
-**tuned YOLO@0.075 との対応あり比較**:
+いずれも非有意(CI は 0 を含む)。**オムニバス・ペアごと・両方の検定が一致して「3 水準間に
+有意差なし」を支持する。**
 
-| VLM プロンプト | 範囲 | macro-F1 差(VLM−YOLO) | McNemar p | 有意(5%) |
-|---|---|---|---|---|
-| concise(baseline = selected, test のみ・事前登録どおり) | N=180 | +1.69pt [−2.33, +3.56] | 0.42 | NO |
-| deliberate(参考, 全300・選定手続き外) | N=300 | +3.42pt [−0.12, +4.65] | 1.00 | NO |
-| calibrated(参考, 全300・選定手続き外) | N=300 | +2.96pt [−0.73, +4.18] | 0.71 | NO |
+**tuned YOLO@0.075 との対応あり比較(test N=180 に統一)**:
+
+事前登録した比較は `concise`(選定された baseline)についてのみ test 分割で行う規則だった。
+`deliberate`/`calibrated` は選定手続きの対象外だが、点推定の比較可能性のため**同じ test
+N=180 に揃えて**追加計算した(全 300 で計算すると N が異なり、点推定の大小をそのまま比べると
+誤読を招くため)。
+
+| VLM プロンプト | macro-F1 差(VLM−YOLO) | McNemar p | 有意(5%) |
+|---|---|---|---|
+| concise(baseline = selected,事前登録どおり) | +1.69pt [−2.33, +3.56] | 0.42 | NO |
+| deliberate(参考, 選定手続き外) | +2.03pt [−1.96, +3.90] | 0.27 | NO |
+| calibrated(参考, 選定手続き外) | +1.89pt [−2.12, +3.78] | 0.20 | NO |
 
 **有意判定の反転: なし(`verdict_changed=false`)。** 3 水準のどれを取っても YOLO との有意差は生まれない。
 
