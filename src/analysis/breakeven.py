@@ -192,19 +192,29 @@ def to_markdown(res: dict) -> str:
     return "\n".join(lines)
 
 
-def breakeven_figure(res: dict, out_path: str) -> str:
-    """月間推論枚数(対数)× 回収期間(月)。回収不能域は上端に貼り付けて示す。"""
+_MULT_LABEL_JA = {"x1": "下限(×1)", "x3": "×3", "x10": "×10"}
+
+
+def breakeven_figure(res: dict, out_path: str, lang: str = "en") -> str:
+    """月間推論枚数(対数)× 回収期間(月)。回収不能域は上端に貼り付けて示す。
+
+    lang="en"(既定): matplotlib 既定フォントは CJK 非対応で文字化けするため英語ラベル。
+    lang="ja": Zenn 記事など日本語読者向けの埋め込み用。CJK 対応フォントに切り替える。
+    """
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
     import numpy as np
+
+    if lang == "ja":
+        plt.rcParams["font.family"] = "Meiryo"
+        plt.rcParams["axes.unicode_minus"] = False
 
     unit = res["vlm_unit_jpy_per_image"]
     cap = res["horizon_cap_months"]
     volumes = np.logspace(2, 6, 200)  # 100 〜 1,000,000 枚/月
 
     fig, ax = plt.subplots(figsize=(8, 5))
-    # ラベルは英語に統一(matplotlib 既定フォントは CJK 非対応で文字化けするため)
     styles = ["-", "--", ":", "-."]
     for name, s in res["scenarios"].items():
         ops = s["ops_monthly_jpy"]
@@ -212,21 +222,33 @@ def breakeven_figure(res: dict, out_path: str) -> str:
             fixed = sv["fixed_total_jpy"]
             saving = unit * volumes - ops
             months = np.where(saving > 0, fixed / np.where(saving > 0, saving, 1), np.inf)
+            if lang == "ja":
+                label = (f"{_MULT_LABEL_JA.get(key, key)}: "
+                         f"固定費 {fixed/1e4:.0f}万円, 運用 {ops/1e4:.0f}万円/月")
+            else:
+                label = f"{name} {key}: fixed {fixed/1e6:.2f}M JPY, ops {ops/1e3:.0f}k JPY/mo"
             ax.plot(volumes, np.clip(months, None, cap * 1.4), lw=2,
-                    ls=styles[i % len(styles)],
-                    label=f"{name} {key}: fixed {fixed/1e6:.2f}M JPY, ops {ops/1e3:.0f}k JPY/mo")
+                    ls=styles[i % len(styles)], label=label)
 
     ax.axhline(cap, color="gray", ls="--", lw=1)
-    ax.text(1.2e2, cap * 1.05, f"never pays back (> {cap} months)", fontsize=9, color="gray")
+    cap_text = f"回収不能({cap} ヶ月超)" if lang == "ja" else f"never pays back (> {cap} months)"
+    ax.text(1.2e2, cap * 1.05, cap_text, fontsize=9, color="gray")
     ax.axvspan(100, 1000, color="#d62728", alpha=0.08)
-    ax.text(1.1e2, 1.6, "PoC scale", fontsize=9, color="#d62728")
+    poc_text = "PoC 規模" if lang == "ja" else "PoC scale"
+    ax.text(1.1e2, 1.6, poc_text, fontsize=9, color="#d62728")
 
     ax.set_xscale("log")
     ax.set_yscale("log")
     ax.set_ylim(1, cap * 1.6)
-    ax.set_xlabel("Monthly inference volume (images / month)")
-    ax.set_ylabel("Payback period (months)")
-    ax.set_title(f"Break-even: VLM pay-per-use ({unit:.2f} JPY/image) vs YOLO fixed cost\n(lean = cheapest annotation assumption; x3 / x10 = cost overrun)", fontsize=11)
+    if lang == "ja":
+        ax.set_xlabel("月間推論枚数(枚/月)")
+        ax.set_ylabel("回収期間(ヶ月)")
+        ax.set_title(f"損益分岐: VLM 従量課金({unit:.2f} 円/枚) vs YOLO 固定費\n"
+                     "(下限 = 最安のアノテーション仮定; ×3/×10 = 固定費の上振れ感度)", fontsize=11)
+    else:
+        ax.set_xlabel("Monthly inference volume (images / month)")
+        ax.set_ylabel("Payback period (months)")
+        ax.set_title(f"Break-even: VLM pay-per-use ({unit:.2f} JPY/image) vs YOLO fixed cost\n(lean = cheapest annotation assumption; x3 / x10 = cost overrun)", fontsize=11)
     ax.grid(True, which="both", alpha=0.3)
     ax.legend(fontsize=9)
     fig.tight_layout()
@@ -241,6 +263,8 @@ def main() -> None:
     parser.add_argument("--costs", default="conf/costs.yaml")
     parser.add_argument("--out", default="results/breakeven.json")
     parser.add_argument("--figure", default=None, help="指定すると PNG も書き出す")
+    parser.add_argument("--lang", default="en", choices=["en", "ja"],
+                         help="図のラベル言語(既定 en。Zenn 記事埋め込み用途では ja)")
     args = parser.parse_args()
 
     costs = yaml.safe_load(Path(args.costs).read_text(encoding="utf-8"))
@@ -249,7 +273,7 @@ def main() -> None:
     Path(args.out).write_text(json.dumps(res, ensure_ascii=False, indent=2), encoding="utf-8")
     print(to_markdown(res))
     if args.figure:
-        print(f"\n図: {breakeven_figure(res, args.figure)}")
+        print(f"\n図: {breakeven_figure(res, args.figure, lang=args.lang)}")
     print(f"保存: {args.out}")
 
 
