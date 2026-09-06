@@ -204,6 +204,7 @@ def breakeven_figure(res: dict, out_path: str, lang: str = "en") -> str:
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
+    import matplotlib.ticker
     import numpy as np
 
     if lang == "ja":
@@ -250,6 +251,11 @@ def breakeven_figure(res: dict, out_path: str, lang: str = "en") -> str:
         ax.set_ylabel("Payback period (months)")
         ax.set_title(f"Break-even: VLM pay-per-use ({unit:.2f} JPY/image) vs YOLO fixed cost\n(lean = cheapest annotation assumption; x3 / x10 = cost overrun)", fontsize=11)
     ax.grid(True, which="both", alpha=0.3)
+    # 対数軸だが「10^n」の指数表記ではなく、読み手が数字をそのまま追える素の数値表記にする
+    ax.yaxis.set_major_formatter(matplotlib.ticker.ScalarFormatter())
+    ax.yaxis.set_minor_formatter(matplotlib.ticker.NullFormatter())
+    ax.xaxis.set_major_formatter(matplotlib.ticker.FuncFormatter(lambda v, _: f"{v:,.0f}"))
+    ax.xaxis.set_minor_formatter(matplotlib.ticker.NullFormatter())
     ax.legend(fontsize=9)
     fig.tight_layout()
     Path(out_path).parent.mkdir(parents=True, exist_ok=True)
