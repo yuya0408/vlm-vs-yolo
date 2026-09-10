@@ -35,6 +35,21 @@ scenarios:
   #   - ラベル枚数: Ultralytics 推奨に従えば 15,000 枚(ここでは 3,000 枚)
   # 上振れ側は fixed_cost_multipliers の感度で見る(固定費が何倍になっても向きが変わらないことの確認)。
 
+  zero_annotation:
+    label: "アノテーション費 0 円(下振れの極限。AI 支援等でどこまで下がるかの逆方向の確認)"
+    # AI支援アノテーションの実勢単価は探したが、記事の他の数字と単位を揃えて円/矩形に
+    # 変換できる出典が見つからなかった(候補: AWS の能動学習の実例は画像単位の総額で、
+    # 人件費以外のプラットフォーム/計算コストを含み、本シナリオの人件費単価と混在できない)。
+    # そこで「安くなる」を外部の単価で近似する代わりに、単価を 0 円まで振り切って
+    # 「アノテーション費がゼロになっても結論は変わるか」を直接確認する。
+    n_label_images: 3000
+    boxes_per_image: 5
+    cost_per_box_jpy: 0
+    rework_factor: 1.2
+    engineering_hours: 40
+    engineering_rate_jpy: 6000
+    ops_monthly_jpy: 0
+
 # --- 出力条件 ---
 horizons_months: [3, 6, 12, 24, 36]
 fixed_cost_multipliers: [1, 3, 10]            # 固定費が n 倍になったときの感度(上振れ側の確認)
