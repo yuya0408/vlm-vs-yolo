@@ -114,3 +114,4 @@ YOLO は `uncertain` を持たない 2 値判定とし、「VLM だけが不確�
 5. M5: CI(回帰ゲートを mock smoke で無料運用)+ README / REPORT 仕上げ
 
 無料で動く部分(M1 評価セット・指標・mock、M2 YOLO)を先に完成させ、課金を伴う VLM ラン(M3)は土台が固まってから 1 回だけ実行する。
+<!-- gbrain: [Source: User, 設計ドキュメント確定, 2026-09-05] -->

@@ -58,3 +58,4 @@ fitting, electrical panel, fire alarm, pipe fitting, valve, outlet, generator, l
 
 > 注意: いずれも公開・他者ドメインのデータ。本作は公開 COCO プロキシで IP を出さない方針。
 > これらは将来の拡張の参考であり、本作に他者ドメインの固有データを持ち込むものではない。
+<!-- gbrain: [Source: User, 関連研究の調査メモ, 2026-09-13] -->
