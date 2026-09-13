@@ -1,5 +1,7 @@
 # 関連研究・将来の活用メモ
 
+<!-- gbrain: [[docs/design|確定設計(DESIGN.md)]] -->
+
 > 本作(yolo-vs-vlm)に効きそうな外部の研究・データセットの控え。将来の拡張の参考として残す。
 > 確定設計は `docs/DESIGN.md`。
 

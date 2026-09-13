@@ -1,5 +1,7 @@
 # 分析レポート — YOLO vs VLM 有無判定比較(N=300, COCO val2017)
 
+<!-- gbrain: [[report/construction_demo_section|付録: 建設ドメイン適用可能性デモ]] -->
+
 > 対象: YOLO(`yolo26x`, COCO学習済み, ローカル)vs VLM(`gemini-3.5-flash`, temp=0)。
 > 主比較は **しきい値調整した tuned YOLO@conf=0.075**(選定根拠は §2。既定 0.25 は不公平として退ける)。
 > 同一評価セット(eval `289d6c0e`, N=300)・同一指標で比較。生データは `results/comparison_tuned.json` /
