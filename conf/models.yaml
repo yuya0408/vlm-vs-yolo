@@ -6,7 +6,7 @@ mock:
 
 flash:
   provider: gemini
-  model: gemini-3.5-flash      # 2026最新の安定版Flash(GA, 2026-05)。実行時に ai.google.dev/models で正確なIDを最終確認
+  model: gemini-3.5-flash      # 2026最新の安定版Flash(GA, 2026-05)。REPORT.md の実測ランで使用したID
   prompt: concise
   temperature: 0
   # 低コストで回すなら model を gemini-2.5-flash($0.30/$2.50)等に差し替え可(pricing.yaml も合わせる)
