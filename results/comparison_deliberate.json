@@ -1,0 +1,873 @@
+{
+  "eval_set_path": "data/eval_set.json",
+  "eval_set_sha256": "289d6c0e9dc4c329783b7c44d6653558897760b48d3a4c11d734a1cdf47d3ada",
+  "n_images": 300,
+  "models": {
+    "yolo": {
+      "run_id": "yolo-yolo26x-tuned075-289d6c0e",
+      "provider": "yolo",
+      "model_version": "yolo-yolo26x@conf0.075",
+      "strict": {
+        "macro_f1": 0.9293,
+        "micro_f1": 0.9544,
+        "coverage": 1.0,
+        "item_accuracy": 0.9719
+      },
+      "excl": {
+        "macro_f1": 0.9293,
+        "micro_f1": 0.9544,
+        "coverage": 1.0,
+        "item_accuracy": 0.9719
+      },
+      "macro_f1_ci95": [
+        0.9117,
+        0.9597
+      ],
+      "micro_f1_ci95": [
+        0.9421,
+        0.9658
+      ],
+      "count_recall": {
+        "recall": 0.9271,
+        "n_gt_instances": 1920
+      },
+      "uncertain": {
+        "uncertain": 0,
+        "total_judgements": 2281,
+        "rate": 0.0
+      },
+      "cost_jpy": 0.0,
+      "latency_sec": {
+        "median": 0.3311,
+        "p95": 0.5193,
+        "max": 31.3799,
+        "mean": 0.4613
+      },
+      "error_factor_regression": {
+        "n": 2281,
+        "converged": true,
+        "features": {
+          "n_items": {
+            "coef": 0.032067299371211534,
+            "odds_ratio": 1.0325869954222848,
+            "ci_low": 0.887735629100288,
+            "ci_high": 1.2010736847363463,
+            "p_value": 0.6775410293567128
+          },
+          "min_bbox_area_ratio": {
+            "coef": -3.025220261509122,
+            "odds_ratio": 0.04854712702882545,
+            "ci_low": 0.0022471588923725755,
+            "ci_high": 1.048801466933454,
+            "p_value": 0.053659806184540235
+          },
+          "has_crowd": {
+            "coef": -0.3039315487203001,
+            "odds_ratio": 0.7379113756998319,
+            "ci_low": 0.30901614146086276,
+            "ci_high": 1.7620865881408385,
+            "p_value": 0.4937425980487713
+          },
+          "gt_present": {
+            "coef": 0.8873443637893712,
+            "odds_ratio": 2.4286714119729353,
+            "ci_low": 1.4653670460249102,
+            "ci_high": 4.025233707374053,
+            "p_value": 0.0005768740673236174
+          }
+        },
+        "features_cluster": {
+          "n_items": {
+            "coef": 0.032067299371211534,
+            "odds_ratio": 1.0325869954222848,
+            "ci_low": 0.8725274737005245,
+            "ci_high": 1.2220084011717698,
+            "p_value": 0.7090293800307028
+          },
+          "min_bbox_area_ratio": {
+            "coef": -3.025220261509122,
+            "odds_ratio": 0.04854712702882545,
+            "ci_low": 0.0004837468731067499,
+            "ci_high": 4.8720181437386305,
+            "p_value": 0.19825397410188694
+          },
+          "has_crowd": {
+            "coef": -0.3039315487203001,
+            "odds_ratio": 0.7379113756998319,
+            "ci_low": 0.3232119885610419,
+            "ci_high": 1.684693692246448,
+            "p_value": 0.470538173785904
+          },
+          "gt_present": {
+            "coef": 0.8873443637893712,
+            "odds_ratio": 2.4286714119729353,
+            "ci_low": 1.4261989920293014,
+            "ci_high": 4.1357796915435125,
+            "p_value": 0.0010866774362989797
+          }
+        },
+        "converged_cluster": true,
+        "n_clusters": 300,
+        "vif": {
+          "n_items": 1.0363071918423834,
+          "min_bbox_area_ratio": 1.0426958376350333,
+          "has_crowd": 1.0496612142641617,
+          "gt_present": 1.0259131608458067
+        }
+      }
+    },
+    "vlm": {
+      "run_id": "gemini-gemini-3.5-flash-deliberate-289d6c0e",
+      "provider": "gemini",
+      "model_version": "gemini-3.5-flash",
+      "strict": {
+        "macro_f1": 0.9635,
+        "micro_f1": 0.962,
+        "coverage": 1.0,
+        "item_accuracy": 0.9724
+      },
+      "excl": {
+        "macro_f1": 0.968,
+        "micro_f1": 0.9675,
+        "coverage": 0.9921,
+        "item_accuracy": 0.9801
+      },
+      "macro_f1_ci95": [
+        0.9418,
+        0.9728
+      ],
+      "micro_f1_ci95": [
+        0.9511,
+        0.9723
+      ],
+      "count_recall": {
+        "recall": 0.8703,
+        "n_gt_instances": 1920
+      },
+      "uncertain": {
+        "uncertain": 18,
+        "total_judgements": 2281,
+        "rate": 0.0079
+      },
+      "cost_jpy": 312.26,
+      "latency_sec": {
+        "median": 5.6238,
+        "p95": 8.0822,
+        "max": 16.5517,
+        "mean": 5.8514
+      },
+      "error_factor_regression": {
+        "n": 2281,
+        "converged": true,
+        "features": {
+          "n_items": {
+            "coef": -0.09167082274698563,
+            "odds_ratio": 0.9124054432348923,
+            "ci_low": 0.7868800595676427,
+            "ci_high": 1.0579549992689798,
+            "p_value": 0.22477599076302834
+          },
+          "min_bbox_area_ratio": {
+            "coef": -0.8832160936821541,
+            "odds_ratio": 0.4134510737855401,
+            "ci_low": 0.06261260778646531,
+            "ci_high": 2.7301496688557965,
+            "p_value": 0.35909607838127133
+          },
+          "has_crowd": {
+            "coef": -0.5342391146873344,
+            "odds_ratio": 0.5861150868843323,
+            "ci_low": 0.20720921458993372,
+            "ci_high": 1.6578939105255277,
+            "p_value": 0.31392380680022025
+          },
+          "gt_present": {
+            "coef": 0.8721520048457487,
+            "odds_ratio": 2.3920530282553965,
+            "ci_low": 1.436700253111606,
+            "ci_high": 3.9826802268554484,
+            "p_value": 0.0007993106417603609
+          }
+        },
+        "features_cluster": {
+          "n_items": {
+            "coef": -0.09167082274698563,
+            "odds_ratio": 0.9124054432348923,
+            "ci_low": 0.7870115547638853,
+            "ci_high": 1.0577782343925273,
+            "p_value": 0.22425245370072222
+          },
+          "min_bbox_area_ratio": {
+            "coef": -0.8832160936821541,
+            "odds_ratio": 0.4134510737855401,
+            "ci_low": 0.017423722191725093,
+            "ci_high": 9.810865240700409,
+            "p_value": 0.5846210357797328
+          },
+          "has_crowd": {
+            "coef": -0.5342391146873344,
+            "odds_ratio": 0.5861150868843323,
+            "ci_low": 0.22027878189589678,
+            "ci_high": 1.5595278497398823,
+            "p_value": 0.28463603378446833
+          },
+          "gt_present": {
+            "coef": 0.8721520048457487,
+            "odds_ratio": 2.3920530282553965,
+            "ci_low": 1.4529089718618577,
+            "ci_high": 3.938249264613841,
+            "p_value": 0.0006069698277410742
+          }
+        },
+        "converged_cluster": true,
+        "n_clusters": 300,
+        "vif": {
+          "n_items": 1.0363071918423834,
+          "min_bbox_area_ratio": 1.0426958376350333,
+          "has_crowd": 1.0496612142641617,
+          "gt_present": 1.0259131608458067
+        }
+      }
+    }
+  },
+  "mcnemar": {
+    "n01": 33,
+    "n10": 34,
+    "statistic": 0.0,
+    "p_value": 1.0
+  },
+  "paired_diff": {
+    "macro_f1": {
+      "point_diff": 0.034232209935013413,
+      "ci95": [
+        -0.001204011263935925,
+        0.04647593737833262
+      ],
+      "ci90": [
+        0.002557427134800211,
+        0.04275738194869166
+      ],
+      "p_value_boot": 0.06519348065193481
+    },
+    "micro_f1": {
+      "point_diff": 0.0076016929972871905,
+      "ci95": [
+        -0.003987906815571833,
+        0.019482040730465087
+      ],
+      "ci90": [
+        -0.002157110373220238,
+        0.01750590278243952
+      ],
+      "p_value_boot": 0.20017998200179982
+    },
+    "item_accuracy": {
+      "point_diff": 0.0004384042086803541,
+      "ci95": [
+        -0.00673272244972061,
+        0.007799044652737285
+      ],
+      "ci90": [
+        -0.005664488017429142,
+        0.0066225165562914245
+      ],
+      "p_value_boot": 0.9565043495650435
+    }
+  },
+  "support_sensitivity": {
+    "by_min_support": [
+      {
+        "min_support": 1,
+        "n_categories": 78,
+        "yolo_macro_f1": 0.9293,
+        "vlm_macro_f1": 0.9635,
+        "diff_pt": 3.42
+      },
+      {
+        "min_support": 3,
+        "n_categories": 71,
+        "yolo_macro_f1": 0.9552,
+        "vlm_macro_f1": 0.9599,
+        "diff_pt": 0.47
+      },
+      {
+        "min_support": 6,
+        "n_categories": 49,
+        "yolo_macro_f1": 0.9559,
+        "vlm_macro_f1": 0.9624,
+        "diff_pt": 0.65
+      },
+      {
+        "min_support": 11,
+        "n_categories": 17,
+        "yolo_macro_f1": 0.927,
+        "vlm_macro_f1": 0.9378,
+        "diff_pt": 1.08
+      }
+    ],
+    "per_category": [
+      {
+        "category": "toaster",
+        "support": 1,
+        "yolo_f1": 0.0,
+        "vlm_f1": 1.0,
+        "contribution_pt": 1.28
+      },
+      {
+        "category": "toothbrush",
+        "support": 1,
+        "yolo_f1": 0.0,
+        "vlm_f1": 1.0,
+        "contribution_pt": 1.28
+      },
+      {
+        "category": "snowboard",
+        "support": 1,
+        "yolo_f1": 0.6667,
+        "vlm_f1": 1.0,
+        "contribution_pt": 0.43
+      },
+      {
+        "category": "broccoli",
+        "support": 3,
+        "yolo_f1": 1.0,
+        "vlm_f1": 0.8,
+        "contribution_pt": -0.26
+      },
+      {
+        "category": "sandwich",
+        "support": 3,
+        "yolo_f1": 0.8,
+        "vlm_f1": 1.0,
+        "contribution_pt": 0.26
+      },
+      {
+        "category": "donut",
+        "support": 4,
+        "yolo_f1": 1.0,
+        "vlm_f1": 0.8571,
+        "contribution_pt": -0.18
+      },
+      {
+        "category": "scissors",
+        "support": 4,
+        "yolo_f1": 0.8571,
+        "vlm_f1": 1.0,
+        "contribution_pt": 0.18
+      },
+      {
+        "category": "truck",
+        "support": 13,
+        "yolo_f1": 0.75,
+        "vlm_f1": 0.8696,
+        "contribution_pt": 0.15
+      },
+      {
+        "category": "clock",
+        "support": 10,
+        "yolo_f1": 0.9,
+        "vlm_f1": 1.0,
+        "contribution_pt": 0.13
+      },
+      {
+        "category": "apple",
+        "support": 6,
+        "yolo_f1": 0.9091,
+        "vlm_f1": 1.0,
+        "contribution_pt": 0.12
+      },
+      {
+        "category": "keyboard",
+        "support": 7,
+        "yolo_f1": 0.9231,
+        "vlm_f1": 1.0,
+        "contribution_pt": 0.1
+      },
+      {
+        "category": "knife",
+        "support": 9,
+        "yolo_f1": 0.9474,
+        "vlm_f1": 0.875,
+        "contribution_pt": -0.09
+      },
+      {
+        "category": "sink",
+        "support": 7,
+        "yolo_f1": 0.8571,
+        "vlm_f1": 0.9231,
+        "contribution_pt": 0.08
+      },
+      {
+        "category": "traffic light",
+        "support": 9,
+        "yolo_f1": 0.8889,
+        "vlm_f1": 0.8235,
+        "contribution_pt": -0.08
+      },
+      {
+        "category": "bottle",
+        "support": 12,
+        "yolo_f1": 0.8182,
+        "vlm_f1": 0.8696,
+        "contribution_pt": 0.07
+      },
+      {
+        "category": "umbrella",
+        "support": 10,
+        "yolo_f1": 1.0,
+        "vlm_f1": 0.9474,
+        "contribution_pt": -0.07
+      },
+      {
+        "category": "bowl",
+        "support": 14,
+        "yolo_f1": 0.963,
+        "vlm_f1": 0.9231,
+        "contribution_pt": -0.05
+      },
+      {
+        "category": "tennis racket",
+        "support": 13,
+        "yolo_f1": 0.96,
+        "vlm_f1": 1.0,
+        "contribution_pt": 0.05
+      },
+      {
+        "category": "backpack",
+        "support": 11,
+        "yolo_f1": 0.8333,
+        "vlm_f1": 0.8,
+        "contribution_pt": -0.04
+      },
+      {
+        "category": "car",
+        "support": 20,
+        "yolo_f1": 0.9091,
+        "vlm_f1": 0.878,
+        "contribution_pt": -0.04
+      },
+      {
+        "category": "chair",
+        "support": 23,
+        "yolo_f1": 0.8889,
+        "vlm_f1": 0.9167,
+        "contribution_pt": 0.04
+      },
+      {
+        "category": "dining table",
+        "support": 20,
+        "yolo_f1": 0.9189,
+        "vlm_f1": 0.9474,
+        "contribution_pt": 0.04
+      },
+      {
+        "category": "handbag",
+        "support": 12,
+        "yolo_f1": 0.8889,
+        "vlm_f1": 0.9231,
+        "contribution_pt": 0.04
+      },
+      {
+        "category": "cup",
+        "support": 9,
+        "yolo_f1": 0.8421,
+        "vlm_f1": 0.8182,
+        "contribution_pt": -0.03
+      },
+      {
+        "category": "potted plant",
+        "support": 5,
+        "yolo_f1": 0.8889,
+        "vlm_f1": 0.9091,
+        "contribution_pt": 0.03
+      },
+      {
+        "category": "couch",
+        "support": 11,
+        "yolo_f1": 0.9091,
+        "vlm_f1": 0.9,
+        "contribution_pt": -0.01
+      },
+      {
+        "category": "remote",
+        "support": 8,
+        "yolo_f1": 0.9333,
+        "vlm_f1": 0.9412,
+        "contribution_pt": 0.01
+      },
+      {
+        "category": "tie",
+        "support": 10,
+        "yolo_f1": 0.9474,
+        "vlm_f1": 0.9524,
+        "contribution_pt": 0.01
+      },
+      {
+        "category": "airplane",
+        "support": 5,
+        "yolo_f1": 1.0,
+        "vlm_f1": 1.0,
+        "contribution_pt": 0.0
+      },
+      {
+        "category": "banana",
+        "support": 8,
+        "yolo_f1": 1.0,
+        "vlm_f1": 1.0,
+        "contribution_pt": 0.0
+      },
+      {
+        "category": "baseball bat",
+        "support": 2,
+        "yolo_f1": 1.0,
+        "vlm_f1": 1.0,
+        "contribution_pt": 0.0
+      },
+      {
+        "category": "baseball glove",
+        "support": 5,
+        "yolo_f1": 1.0,
+        "vlm_f1": 1.0,
+        "contribution_pt": 0.0
+      },
+      {
+        "category": "bear",
+        "support": 2,
+        "yolo_f1": 1.0,
+        "vlm_f1": 1.0,
+        "contribution_pt": 0.0
+      },
+      {
+        "category": "bed",
+        "support": 8,
+        "yolo_f1": 1.0,
+        "vlm_f1": 1.0,
+        "contribution_pt": 0.0
+      },
+      {
+        "category": "bench",
+        "support": 13,
+        "yolo_f1": 0.9231,
+        "vlm_f1": 0.9231,
+        "contribution_pt": 0.0
+      },
+      {
+        "category": "bicycle",
+        "support": 5,
+        "yolo_f1": 0.8889,
+        "vlm_f1": 0.8889,
+        "contribution_pt": 0.0
+      },
+      {
+        "category": "bird",
+        "support": 8,
+        "yolo_f1": 1.0,
+        "vlm_f1": 1.0,
+        "contribution_pt": 0.0
+      },
+      {
+        "category": "boat",
+        "support": 9,
+        "yolo_f1": 1.0,
+        "vlm_f1": 1.0,
+        "contribution_pt": 0.0
+      },
+      {
+        "category": "book",
+        "support": 6,
+        "yolo_f1": 1.0,
+        "vlm_f1": 1.0,
+        "contribution_pt": 0.0
+      },
+      {
+        "category": "bus",
+        "support": 7,
+        "yolo_f1": 1.0,
+        "vlm_f1": 1.0,
+        "contribution_pt": 0.0
+      },
+      {
+        "category": "cake",
+        "support": 6,
+        "yolo_f1": 1.0,
+        "vlm_f1": 1.0,
+        "contribution_pt": 0.0
+      },
+      {
+        "category": "carrot",
+        "support": 5,
+        "yolo_f1": 1.0,
+        "vlm_f1": 1.0,
+        "contribution_pt": 0.0
+      },
+      {
+        "category": "cat",
+        "support": 13,
+        "yolo_f1": 1.0,
+        "vlm_f1": 1.0,
+        "contribution_pt": 0.0
+      },
+      {
+        "category": "cell phone",
+        "support": 8,
+        "yolo_f1": 0.9333,
+        "vlm_f1": 0.9333,
+        "contribution_pt": 0.0
+      },
+      {
+        "category": "cow",
+        "support": 6,
+        "yolo_f1": 1.0,
+        "vlm_f1": 1.0,
+        "contribution_pt": 0.0
+      },
+      {
+        "category": "dog",
+        "support": 11,
+        "yolo_f1": 1.0,
+        "vlm_f1": 1.0,
+        "contribution_pt": 0.0
+      },
+      {
+        "category": "elephant",
+        "support": 12,
+        "yolo_f1": 1.0,
+        "vlm_f1": 1.0,
+        "contribution_pt": 0.0
+      },
+      {
+        "category": "fire hydrant",
+        "support": 6,
+        "yolo_f1": 1.0,
+        "vlm_f1": 1.0,
+        "contribution_pt": 0.0
+      },
+      {
+        "category": "fork",
+        "support": 3,
+        "yolo_f1": 1.0,
+        "vlm_f1": 1.0,
+        "contribution_pt": 0.0
+      },
+      {
+        "category": "frisbee",
+        "support": 4,
+        "yolo_f1": 1.0,
+        "vlm_f1": 1.0,
+        "contribution_pt": 0.0
+      },
+      {
+        "category": "giraffe",
+        "support": 8,
+        "yolo_f1": 1.0,
+        "vlm_f1": 1.0,
+        "contribution_pt": 0.0
+      },
+      {
+        "category": "horse",
+        "support": 3,
+        "yolo_f1": 1.0,
+        "vlm_f1": 1.0,
+        "contribution_pt": 0.0
+      },
+      {
+        "category": "hot dog",
+        "support": 1,
+        "yolo_f1": 1.0,
+        "vlm_f1": 1.0,
+        "contribution_pt": 0.0
+      },
+      {
+        "category": "kite",
+        "support": 1,
+        "yolo_f1": 1.0,
+        "vlm_f1": 1.0,
+        "contribution_pt": 0.0
+      },
+      {
+        "category": "laptop",
+        "support": 10,
+        "yolo_f1": 1.0,
+        "vlm_f1": 1.0,
+        "contribution_pt": 0.0
+      },
+      {
+        "category": "microwave",
+        "support": 3,
+        "yolo_f1": 1.0,
+        "vlm_f1": 1.0,
+        "contribution_pt": 0.0
+      },
+      {
+        "category": "motorcycle",
+        "support": 10,
+        "yolo_f1": 1.0,
+        "vlm_f1": 1.0,
+        "contribution_pt": 0.0
+      },
+      {
+        "category": "mouse",
+        "support": 5,
+        "yolo_f1": 1.0,
+        "vlm_f1": 1.0,
+        "contribution_pt": 0.0
+      },
+      {
+        "category": "orange",
+        "support": 3,
+        "yolo_f1": 1.0,
+        "vlm_f1": 1.0,
+        "contribution_pt": 0.0
+      },
+      {
+        "category": "oven",
+        "support": 4,
+        "yolo_f1": 1.0,
+        "vlm_f1": 1.0,
+        "contribution_pt": 0.0
+      },
+      {
+        "category": "person",
+        "support": 134,
+        "yolo_f1": 0.9963,
+        "vlm_f1": 0.9925,
+        "contribution_pt": -0.0
+      },
+      {
+        "category": "pizza",
+        "support": 4,
+        "yolo_f1": 0.8571,
+        "vlm_f1": 0.8571,
+        "contribution_pt": 0.0
+      },
+      {
+        "category": "refrigerator",
+        "support": 5,
+        "yolo_f1": 0.8889,
+        "vlm_f1": 0.8889,
+        "contribution_pt": 0.0
+      },
+      {
+        "category": "sheep",
+        "support": 6,
+        "yolo_f1": 1.0,
+        "vlm_f1": 1.0,
+        "contribution_pt": 0.0
+      },
+      {
+        "category": "skateboard",
+        "support": 4,
+        "yolo_f1": 1.0,
+        "vlm_f1": 1.0,
+        "contribution_pt": 0.0
+      },
+      {
+        "category": "skis",
+        "support": 11,
+        "yolo_f1": 1.0,
+        "vlm_f1": 1.0,
+        "contribution_pt": 0.0
+      },
+      {
+        "category": "spoon",
+        "support": 6,
+        "yolo_f1": 1.0,
+        "vlm_f1": 1.0,
+        "contribution_pt": 0.0
+      },
+      {
+        "category": "sports ball",
+        "support": 8,
+        "yolo_f1": 1.0,
+        "vlm_f1": 1.0,
+        "contribution_pt": 0.0
+      },
+      {
+        "category": "stop sign",
+        "support": 5,
+        "yolo_f1": 0.8889,
+        "vlm_f1": 0.8889,
+        "contribution_pt": 0.0
+      },
+      {
+        "category": "suitcase",
+        "support": 6,
+        "yolo_f1": 1.0,
+        "vlm_f1": 1.0,
+        "contribution_pt": 0.0
+      },
+      {
+        "category": "surfboard",
+        "support": 7,
+        "yolo_f1": 1.0,
+        "vlm_f1": 1.0,
+        "contribution_pt": 0.0
+      },
+      {
+        "category": "teddy bear",
+        "support": 7,
+        "yolo_f1": 1.0,
+        "vlm_f1": 1.0,
+        "contribution_pt": 0.0
+      },
+      {
+        "category": "toilet",
+        "support": 7,
+        "yolo_f1": 1.0,
+        "vlm_f1": 1.0,
+        "contribution_pt": 0.0
+      },
+      {
+        "category": "train",
+        "support": 6,
+        "yolo_f1": 1.0,
+        "vlm_f1": 1.0,
+        "contribution_pt": 0.0
+      },
+      {
+        "category": "tv",
+        "support": 10,
+        "yolo_f1": 1.0,
+        "vlm_f1": 1.0,
+        "contribution_pt": 0.0
+      },
+      {
+        "category": "vase",
+        "support": 5,
+        "yolo_f1": 0.9091,
+        "vlm_f1": 0.9091,
+        "contribution_pt": 0.0
+      },
+      {
+        "category": "wine glass",
+        "support": 3,
+        "yolo_f1": 1.0,
+        "vlm_f1": 1.0,
+        "contribution_pt": 0.0
+      },
+      {
+        "category": "zebra",
+        "support": 13,
+        "yolo_f1": 1.0,
+        "vlm_f1": 1.0,
+        "contribution_pt": 0.0
+      }
+    ]
+  },
+  "pareto": {
+    "yolo": {
+      "macro_f1": 0.9293,
+      "cost_jpy": 0.0,
+      "latency_median": 0.3311
+    },
+    "vlm": {
+      "macro_f1": 0.9635,
+      "cost_jpy": 312.26,
+      "latency_median": 5.6238
+    }
+  },
+  "params": {
+    "n_boot": 10000,
+    "seed": 42
+  }
+}

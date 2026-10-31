@@ -1,6 +1,6 @@
 # 評価セット構築の設定(build_eval_set.py が読む)
 seed: 42
-n_images: 300        # フル評価セット(v4: VLM API ラン 1 本で完結する規模に縮小)
+n_images: 300        # フル評価セット(VLM API ラン 1 本で完結する規模)
 smoke_n: 50          # PR 用 smoke セット(フルの部分集合)
 
 checklist:

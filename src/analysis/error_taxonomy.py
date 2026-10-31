@@ -1,4 +1,4 @@
-"""M4 仕上げ: 誤り taxonomy + 代表誤答例の抽出。
+"""誤り taxonomy + 代表誤答例の抽出。
 
 各誤答を以下のバケットに分類する(strict 基準):
 - missed_present       : gt=present, pred=absent(見逃し / FN)

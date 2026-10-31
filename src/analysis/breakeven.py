@@ -2,23 +2,22 @@
 
 REPORT のコスト比較は「300 枚あたり 251 円 vs 0 円」で、YOLO 側が無料に見える。しかし YOLO の
 0 円は API 課金が 0 という意味でしかなく、実際には**アノテーション・学習工数・推論基盤の運用**が
-固定費として先に立つ。実務の技術選定で効くのはこの固定費と従量課金の交点である。
+固定費として先に立つ。技術選定で効くのはこの固定費と従量課金の交点である。
 
     YOLO 累計(T ヶ月) = C_fix + ops_monthly × T
     VLM  累計(T ヶ月) = unit_jpy × 月間枚数 M × T
     C_fix = ラベル枚数 × 1枚あたり矩形数 × 矩形単価 × 手戻り係数 + 学習工数 × 時間単価
 
-固定費は環境依存で測れないため、点推定としては読まない。`conf/costs.yaml` には**最も安い条件
-(= YOLO に最も有利な下限)**を出典付きで置き、そこから固定費を n 倍に振った感度を併せて出す。
-下限で結論が出れば、実際の条件はそれより高くなる方向にしか動かないので結論は補強される
-(a fortiori)。しきい値を点で決めず band で語った REPORT §2 と同じ扱い。
+固定費は環境依存で測れないため、点推定としては読まない。`conf/costs.yaml` には**公開値で最も
+安い単価と少ない枚数(= YOLO に有利な仮定)**を置き、固定費を上下に振った感度を併せて出す。
+学習工数などは出典のない仮定で、真の下限ではない。自分の値に差し替えて読むこと。
 
-前提: 精度が互角であること(REPORT §1)。語彙外・ラベル無しの第二象限では YOLO は
+前提: 精度の差を検出できなかったこと(REPORT §1)。語彙外・ラベル無しの第二象限では YOLO は
 いくら払っても要件を満たさないため、そもそも交点が存在しない(§7)。本分析は第一象限限定の道具。
 
 実行例:
     python -m src.analysis.breakeven --costs conf/costs.yaml \
-        --out results/breakeven.json --figure report/figures/breakeven.png
+        --out results/breakeven.json --figure report/figures/breakeven_ja.png
 """
 
 from __future__ import annotations
@@ -129,7 +128,7 @@ def analyze(costs: dict) -> dict:
         "scenarios": scenarios,
         "note": ("固定費は公開値から置いた仮定であり実測ではない。基本シナリオは"
                  "「YOLO に最も有利な最安条件」で、実際はこれより高くなる方向にしか動かない"
-                 "(上振れは感度表で確認)。精度互角(第一象限)が前提。"),
+                 "(上振れは感度表で確認)。精度の差を検出できない第一象限が前提。"),
     }
 
 
@@ -185,79 +184,73 @@ def to_markdown(res: dict) -> str:
 
     lines += [
         "",
-        f"> 「回収不能」= 交点が存在しない(VLM の月額 ≤ YOLO の運用月額)、または回収に "
+        f"> 「回収不能」= 交点が存在しない(VLM の月額が YOLO の運用月額以下)、または回収に "
         f"{res['horizon_cap_months']} ヶ月超。",
         f"> {res['note']}",
     ]
     return "\n".join(lines)
 
 
-_MULT_LABEL_JA = {"x1": "下限(×1)", "x3": "×3", "x10": "×10"}
-
-
-def breakeven_figure(res: dict, out_path: str, lang: str = "en") -> str:
-    """月間推論枚数(対数)× 回収期間(月)。回収不能域は上端に貼り付けて示す。
-
-    lang="en"(既定): matplotlib 既定フォントは CJK 非対応で文字化けするため英語ラベル。
-    lang="ja": Zenn 記事など日本語読者向けの埋め込み用。CJK 対応フォントに切り替える。
-    """
+def breakeven_figure(res: dict, out_path: str) -> str:
+    """月間推論枚数 × 回収期間(両対数)。120 ヶ月超は線を消し、網掛けで回収不能を示す。"""
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
-    import matplotlib.ticker
+    import matplotlib.ticker as mt
     import numpy as np
 
-    if lang == "ja":
-        plt.rcParams["font.family"] = "Meiryo"
-        plt.rcParams["axes.unicode_minus"] = False
+    from .plots import INK, INK_2, MUTED, SHADE, set_figure_title, use_figure_style
+    use_figure_style(plt)
 
-    unit = res["vlm_unit_jpy_per_image"]
-    cap = res["horizon_cap_months"]
-    volumes = np.logspace(2, 6, 200)  # 100 〜 1,000,000 枚/月
+    scenarios = res["scenarios"]
+    s = scenarios.get("lean") or next(iter(scenarios.values()))
+    unit, cap = res["vlm_unit_jpy_per_image"], res["horizon_cap_months"]
+    vols = np.logspace(3, 6, 200)
+    fig, ax = plt.subplots(figsize=(8.6, 4.9))
 
-    fig, ax = plt.subplots(figsize=(8, 5))
-    styles = ["-", "--", ":", "-."]
-    for name, s in res["scenarios"].items():
-        ops = s["ops_monthly_jpy"]
-        for i, (key, sv) in enumerate(s["sensitivity_by_fixed_cost"].items()):
-            fixed = sv["fixed_total_jpy"]
-            saving = unit * volumes - ops
-            months = np.where(saving > 0, fixed / np.where(saving > 0, saving, 1), np.inf)
-            if lang == "ja":
-                label = (f"{_MULT_LABEL_JA.get(key, key)}: "
-                         f"固定費 {fixed/1e4:.0f}万円, 運用 {ops/1e4:.0f}万円/月")
-            else:
-                label = f"{name} {key}: fixed {fixed/1e6:.2f}M JPY, ops {ops/1e3:.0f}k JPY/mo"
-            ax.plot(volumes, np.clip(months, None, cap * 1.4), lw=2,
-                    ls=styles[i % len(styles)], label=label)
+    def plot_line(fixed, color, lw, ls):
+        months = fixed / (unit * vols)
+        ax.plot(vols, np.where(months > cap, np.nan, months), color=color, lw=lw, ls=ls, zorder=2)
 
-    ax.axhline(cap, color="gray", ls="--", lw=1)
-    cap_text = f"回収不能({cap} ヶ月超)" if lang == "ja" else f"never pays back (> {cap} months)"
-    ax.text(1.2e2, cap * 1.05, cap_text, fontsize=9, color="gray")
-    ax.axvspan(100, 1000, color="#d62728", alpha=0.08)
-    poc_text = "PoC 規模" if lang == "ja" else "PoC scale"
-    ax.text(1.1e2, 1.6, poc_text, fontsize=9, color="#d62728")
-
+    if "zero_annotation" in scenarios:
+        plot_line(scenarios["zero_annotation"]["fixed_cost"]["total_jpy"], MUTED, 1.7, "-.")
+        ax.text(1.45e5, 1.3, "アノテーション0円 24万円", fontsize=9, color=INK_2, ha="right")
+    ax.axhspan(cap, 220, color=SHADE, lw=0, zorder=0)
+    ax.axhline(cap, color=INK_2, lw=1, ls="--", zorder=1)
+    ax.text(320, cap * 1.12, "回収不能(120ヶ月超)", fontsize=9, color=INK_2, va="bottom")
+    look = {"x1": (INK, 2.4, "-", 3), "x3": (MUTED, 1.7, "--", 8), "x10": (MUTED, 1.7, ":", 20)}
+    for key, sv in s["sensitivity_by_fixed_cost"].items():
+        if key not in look:
+            continue
+        fixed = sv["fixed_total_jpy"]
+        color, lw, ls, label_y = look[key]
+        plot_line(fixed, color, lw, ls)
+        name = f"{fixed / 1e4:.0f}万円" if key == "x1" else f"×{key[1:]} {fixed / 1e4:.0f}万円"
+        ax.text(fixed / (unit * label_y) * 1.1, label_y, name, fontsize=9.5, va="bottom",
+                color=INK if key == "x1" else INK_2, fontweight="bold" if key == "x1" else "normal")
+    ax.axvline(500, color=INK_2, lw=0.9, ls=":", zorder=1)
+    ax.text(530, 60, "月500枚:4本とも回収不能", fontsize=9, color=INK_2)
+    v36 = s["break_even_monthly_volume"].get("36")
+    if v36:
+        ax.plot([v36], [36], marker="o", ms=8, color=INK, zorder=4)
+        ax.annotate(f"36ヶ月で回収:月{v36:,}枚", (v36, 36), textcoords="offset points",
+                    xytext=(-16, -32), fontsize=9.5, color=INK, ha="right", fontweight="bold",
+                    arrowprops=dict(arrowstyle="-", color=INK_2, lw=0.8, shrinkB=5))
     ax.set_xscale("log")
     ax.set_yscale("log")
-    ax.set_ylim(1, cap * 1.6)
-    if lang == "ja":
-        ax.set_xlabel("月間推論枚数(枚/月)")
-        ax.set_ylabel("回収期間(ヶ月)")
-        ax.set_title(f"損益分岐: VLM 従量課金({unit:.2f} 円/枚) vs YOLO 固定費\n"
-                     "(下限 = 最安のアノテーション仮定; ×3/×10 = 固定費の上振れ感度)", fontsize=11)
-    else:
-        ax.set_xlabel("Monthly inference volume (images / month)")
-        ax.set_ylabel("Payback period (months)")
-        ax.set_title(f"Break-even: VLM pay-per-use ({unit:.2f} JPY/image) vs YOLO fixed cost\n(lean = cheapest annotation assumption; x3 / x10 = cost overrun)", fontsize=11)
-    ax.grid(True, which="both", alpha=0.3)
-    # 対数軸だが「10^n」の指数表記ではなく、読み手が数字をそのまま追える素の数値表記にする
-    ax.yaxis.set_major_formatter(matplotlib.ticker.ScalarFormatter())
-    ax.yaxis.set_minor_formatter(matplotlib.ticker.NullFormatter())
-    ax.xaxis.set_major_formatter(matplotlib.ticker.FuncFormatter(lambda v, _: f"{v:,.0f}"))
-    ax.xaxis.set_minor_formatter(matplotlib.ticker.NullFormatter())
-    ax.legend(fontsize=9)
-    fig.tight_layout()
+    ax.set_xlim(300, 1e6)
+    ax.set_ylim(1, 220)
+    ax.set_yticks([1, 3, 12, 36, 120], ["1", "3", "12", "36", "120"])
+    ax.set_xticks([500, 1e3, 1e4, 1e5, 1e6], ["500", "1,000", "10,000", "100,000", "1,000,000"])
+    ax.xaxis.set_minor_locator(mt.NullLocator())
+    ax.yaxis.set_minor_locator(mt.NullLocator())
+    ax.set_xlabel("月間推論枚数(枚/月、対数)")
+    ax.set_ylabel("回収期間(ヶ月、対数)")
+    ax.set_title("下ほど早く回収できる", loc="left", fontsize=10.5, color=INK)
+    set_figure_title(fig, "損益分岐(参考。判定には使わない):YOLOに有利な仮定でも、回収には月1万枚のオーダーが要る",
+                     ["回収期間=固定費÷(VLMの単価×月間枚数)。単価0.84円/枚は実測、固定費は仮定(YOLOに有利に置いた。うち24万円は出典のない学習工数)。",
+                      "運用月額0円の場合。4本は別の手法ではなく、同じ計算で固定費だけを振った感度。"])
+    fig.tight_layout(rect=(0, 0, 1, 1 - 0.78 / fig.get_figheight()))
     Path(out_path).parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(out_path, dpi=130, bbox_inches="tight")
     plt.close(fig)
@@ -269,8 +262,6 @@ def main() -> None:
     parser.add_argument("--costs", default="conf/costs.yaml")
     parser.add_argument("--out", default="results/breakeven.json")
     parser.add_argument("--figure", default=None, help="指定すると PNG も書き出す")
-    parser.add_argument("--lang", default="en", choices=["en", "ja"],
-                         help="図のラベル言語(既定 en。Zenn 記事埋め込み用途では ja)")
     args = parser.parse_args()
 
     costs = yaml.safe_load(Path(args.costs).read_text(encoding="utf-8"))
@@ -279,7 +270,7 @@ def main() -> None:
     Path(args.out).write_text(json.dumps(res, ensure_ascii=False, indent=2), encoding="utf-8")
     print(to_markdown(res))
     if args.figure:
-        print(f"\n図: {breakeven_figure(res, args.figure, lang=args.lang)}")
+        print(f"\n図: {breakeven_figure(res, args.figure)}")
     print(f"保存: {args.out}")
 
 

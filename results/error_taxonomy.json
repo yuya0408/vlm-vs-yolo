@@ -1,0 +1,381 @@
+{
+  "yolo": {
+    "run_id": "yolo-yolo26x-tuned075-289d6c0e",
+    "model_version": "yolo-yolo26x@conf0.075",
+    "total_errors": 64,
+    "counts": {
+      "missed_present": 34,
+      "fp_confusable": 17,
+      "fp_other": 13,
+      "uncertain_on_present": 0,
+      "uncertain_on_absent": 0
+    },
+    "examples": {
+      "missed_present": [
+        {
+          "image_id": 123633,
+          "file_name": "000000123633.jpg",
+          "category": "scissors",
+          "gt": "present",
+          "pred": "absent",
+          "min_bbox_area_ratio": 0.005084,
+          "rationale": "detections=0@conf>=0.075"
+        },
+        {
+          "image_id": 336587,
+          "file_name": "000000336587.jpg",
+          "category": "truck",
+          "gt": "present",
+          "pred": "absent",
+          "min_bbox_area_ratio": 0.006417,
+          "rationale": "detections=0@conf>=0.075"
+        },
+        {
+          "image_id": 82688,
+          "file_name": "000000082688.jpg",
+          "category": "cell phone",
+          "gt": "present",
+          "pred": "absent",
+          "min_bbox_area_ratio": 0.002605,
+          "rationale": "detections=0@conf>=0.075"
+        },
+        {
+          "image_id": 468505,
+          "file_name": "000000468505.jpg",
+          "category": "bicycle",
+          "gt": "present",
+          "pred": "absent",
+          "min_bbox_area_ratio": 0.001032,
+          "rationale": "detections=0@conf>=0.075"
+        },
+        {
+          "image_id": 555972,
+          "file_name": "000000555972.jpg",
+          "category": "dining table",
+          "gt": "present",
+          "pred": "absent",
+          "min_bbox_area_ratio": 0.002193,
+          "rationale": "detections=0@conf>=0.075"
+        }
+      ],
+      "fp_confusable": [
+        {
+          "image_id": 495054,
+          "file_name": "000000495054.jpg",
+          "category": "car",
+          "gt": "absent",
+          "pred": "present",
+          "min_bbox_area_ratio": 0.001553,
+          "rationale": "detections=1@conf>=0.075"
+        },
+        {
+          "image_id": 184611,
+          "file_name": "000000184611.jpg",
+          "category": "backpack",
+          "gt": "absent",
+          "pred": "present",
+          "min_bbox_area_ratio": 0.000927,
+          "rationale": "detections=1@conf>=0.075"
+        },
+        {
+          "image_id": 417779,
+          "file_name": "000000417779.jpg",
+          "category": "truck",
+          "gt": "absent",
+          "pred": "present",
+          "min_bbox_area_ratio": 0.000878,
+          "rationale": "detections=1@conf>=0.075"
+        },
+        {
+          "image_id": 16249,
+          "file_name": "000000016249.jpg",
+          "category": "handbag",
+          "gt": "absent",
+          "pred": "present",
+          "min_bbox_area_ratio": 0.007829,
+          "rationale": "detections=2@conf>=0.075"
+        },
+        {
+          "image_id": 101884,
+          "file_name": "000000101884.jpg",
+          "category": "car",
+          "gt": "absent",
+          "pred": "present",
+          "min_bbox_area_ratio": 0.001099,
+          "rationale": "detections=2@conf>=0.075"
+        }
+      ],
+      "fp_other": [
+        {
+          "image_id": 546475,
+          "file_name": "000000546475.jpg",
+          "category": "sink",
+          "gt": "absent",
+          "pred": "present",
+          "min_bbox_area_ratio": 0.0178,
+          "rationale": "detections=1@conf>=0.075"
+        },
+        {
+          "image_id": 399205,
+          "file_name": "000000399205.jpg",
+          "category": "traffic light",
+          "gt": "absent",
+          "pred": "present",
+          "min_bbox_area_ratio": 8.5e-05,
+          "rationale": "detections=1@conf>=0.075"
+        },
+        {
+          "image_id": 347693,
+          "file_name": "000000347693.jpg",
+          "category": "bench",
+          "gt": "absent",
+          "pred": "present",
+          "min_bbox_area_ratio": 0.037135,
+          "rationale": "detections=2@conf>=0.075"
+        },
+        {
+          "image_id": 463690,
+          "file_name": "000000463690.jpg",
+          "category": "handbag",
+          "gt": "absent",
+          "pred": "present",
+          "min_bbox_area_ratio": 0.003192,
+          "rationale": "detections=1@conf>=0.075"
+        },
+        {
+          "image_id": 342397,
+          "file_name": "000000342397.jpg",
+          "category": "snowboard",
+          "gt": "absent",
+          "pred": "present",
+          "min_bbox_area_ratio": 0.000539,
+          "rationale": "detections=2@conf>=0.075"
+        }
+      ],
+      "uncertain_on_present": [],
+      "uncertain_on_absent": []
+    }
+  },
+  "vlm": {
+    "run_id": "gemini-gemini-3.5-flash-289d6c0e",
+    "model_version": "gemini-3.5-flash",
+    "total_errors": 60,
+    "counts": {
+      "missed_present": 28,
+      "fp_confusable": 11,
+      "fp_other": 14,
+      "uncertain_on_present": 4,
+      "uncertain_on_absent": 3
+    },
+    "examples": {
+      "missed_present": [
+        {
+          "image_id": 491216,
+          "file_name": "000000491216.jpg",
+          "category": "sink",
+          "gt": "present",
+          "pred": "absent",
+          "min_bbox_area_ratio": 0.001212,
+          "rationale": "no sink visible in the kitchen counter"
+        },
+        {
+          "image_id": 106235,
+          "file_name": "000000106235.jpg",
+          "category": "dining table",
+          "gt": "present",
+          "pred": "absent",
+          "min_bbox_area_ratio": 0.001042,
+          "rationale": "only coffee and side tables present"
+        },
+        {
+          "image_id": 303908,
+          "file_name": "000000303908.jpg",
+          "category": "car",
+          "gt": "present",
+          "pred": "absent",
+          "min_bbox_area_ratio": 0.00035,
+          "rationale": "no cars visible in the image"
+        },
+        {
+          "image_id": 468505,
+          "file_name": "000000468505.jpg",
+          "category": "bicycle",
+          "gt": "present",
+          "pred": "absent",
+          "min_bbox_area_ratio": 0.001032,
+          "rationale": "no bicycles visible"
+        },
+        {
+          "image_id": 229948,
+          "file_name": "000000229948.jpg",
+          "category": "truck",
+          "gt": "present",
+          "pred": "absent",
+          "min_bbox_area_ratio": 8.9e-05,
+          "rationale": "no trucks visible"
+        }
+      ],
+      "fp_confusable": [
+        {
+          "image_id": 498709,
+          "file_name": "000000498709.jpg",
+          "category": "truck",
+          "gt": "absent",
+          "pred": "present",
+          "min_bbox_area_ratio": 0.00658,
+          "rationale": "blurred white truck in background"
+        },
+        {
+          "image_id": 336587,
+          "file_name": "000000336587.jpg",
+          "category": "car",
+          "gt": "absent",
+          "pred": "present",
+          "min_bbox_area_ratio": 0.006417,
+          "rationale": "blurry car on the right side"
+        },
+        {
+          "image_id": 229948,
+          "file_name": "000000229948.jpg",
+          "category": "car",
+          "gt": "absent",
+          "pred": "present",
+          "min_bbox_area_ratio": 8.9e-05,
+          "rationale": "partially visible SUV on the left"
+        },
+        {
+          "image_id": 546717,
+          "file_name": "000000546717.jpg",
+          "category": "chair",
+          "gt": "absent",
+          "pred": "present",
+          "min_bbox_area_ratio": 0.005241,
+          "rationale": "wooden chair structure in background"
+        },
+        {
+          "image_id": 16249,
+          "file_name": "000000016249.jpg",
+          "category": "handbag",
+          "gt": "absent",
+          "pred": "present",
+          "min_bbox_area_ratio": 0.007829,
+          "rationale": "A bag is sitting next to the man reading a newspaper"
+        }
+      ],
+      "fp_other": [
+        {
+          "image_id": 399205,
+          "file_name": "000000399205.jpg",
+          "category": "traffic light",
+          "gt": "absent",
+          "pred": "present",
+          "min_bbox_area_ratio": 8.5e-05,
+          "rationale": "Yellow traffic light on the left background"
+        },
+        {
+          "image_id": 80340,
+          "file_name": "000000080340.jpg",
+          "category": "potted plant",
+          "gt": "absent",
+          "pred": "present",
+          "min_bbox_area_ratio": 0.000673,
+          "rationale": "plant in a pot in background right"
+        },
+        {
+          "image_id": 342295,
+          "file_name": "000000342295.jpg",
+          "category": "tie",
+          "gt": "absent",
+          "pred": "present",
+          "min_bbox_area_ratio": 0.162589,
+          "rationale": "bow tie on man in portrait"
+        },
+        {
+          "image_id": 54628,
+          "file_name": "000000054628.jpg",
+          "category": "cup",
+          "gt": "absent",
+          "pred": "present",
+          "min_bbox_area_ratio": 0.000309,
+          "rationale": "drinking glasses on the background tables"
+        },
+        {
+          "image_id": 347693,
+          "file_name": "000000347693.jpg",
+          "category": "bench",
+          "gt": "absent",
+          "pred": "present",
+          "min_bbox_area_ratio": 0.037135,
+          "rationale": "wooden bench against the wall"
+        }
+      ],
+      "uncertain_on_present": [
+        {
+          "image_id": 336587,
+          "file_name": "000000336587.jpg",
+          "category": "truck",
+          "gt": "present",
+          "pred": "uncertain",
+          "min_bbox_area_ratio": 0.006417,
+          "rationale": "blurry vehicle could be a truck"
+        },
+        {
+          "image_id": 82688,
+          "file_name": "000000082688.jpg",
+          "category": "cell phone",
+          "gt": "present",
+          "pred": "uncertain",
+          "min_bbox_area_ratio": 0.002605,
+          "rationale": "possible phone holster on belt"
+        },
+        {
+          "image_id": 119641,
+          "file_name": "000000119641.jpg",
+          "category": "tie",
+          "gt": "present",
+          "pred": "uncertain",
+          "min_bbox_area_ratio": 3.5e-05,
+          "rationale": "possible tie on rider but too blurry"
+        },
+        {
+          "image_id": 25181,
+          "file_name": "000000025181.jpg",
+          "category": "backpack",
+          "gt": "present",
+          "pred": "uncertain",
+          "min_bbox_area_ratio": 0.000119,
+          "rationale": "too blurry to identify bags near people"
+        }
+      ],
+      "uncertain_on_absent": [
+        {
+          "image_id": 25181,
+          "file_name": "000000025181.jpg",
+          "category": "handbag",
+          "gt": "absent",
+          "pred": "uncertain",
+          "min_bbox_area_ratio": 0.000119,
+          "rationale": "too blurry to identify bags near people"
+        },
+        {
+          "image_id": 215644,
+          "file_name": "000000215644.jpg",
+          "category": "knife",
+          "gt": "absent",
+          "pred": "uncertain",
+          "min_bbox_area_ratio": 0.000591,
+          "rationale": "utensils in rack are unclear"
+        },
+        {
+          "image_id": 85157,
+          "file_name": "000000085157.jpg",
+          "category": "knife",
+          "gt": "absent",
+          "pred": "uncertain",
+          "min_bbox_area_ratio": 0.000809,
+          "rationale": "Silverware might be wrapped in napkins but obscured"
+        }
+      ]
+    }
+  }
+}

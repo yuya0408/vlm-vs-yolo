@@ -1,6 +1,6 @@
 # モデル定義(runner --model のエントリ名で参照)
 # プロンプトは conf/prompts/{prompt}.txt。変更は必ず PR 経由(プロンプト = コード)
-# v4: 比較対象は「汎用 VLM(Gemini Flash)」と「専用検出器(YOLO)」の 2 本に集約。
+# 比較対象は「汎用 VLM(Gemini Flash)」と「専用検出器(YOLO)」の 2 本に集約。
 mock:
   provider: mock
 

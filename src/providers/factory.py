@@ -35,7 +35,7 @@ def build_provider(config: dict) -> VLMProvider:
                               timeout_sec=float(config.get("timeout_sec", 90.0)))
 
     if provider == "yolo":
-        from .yolo import YoloProvider  # M2 で追加(ultralytics 依存)
+        from .yolo import YoloProvider  # ultralytics 依存
         return YoloProvider(weights=config["weights"],
                             conf_threshold=float(config.get("conf_threshold", 0.25)))
 
