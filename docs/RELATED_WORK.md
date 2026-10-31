@@ -56,6 +56,5 @@ fitting, electrical panel, fire alarm, pipe fitting, valve, outlet, generator, l
 - PPE 検出 YOLOv8 一式(学習ノート・重み・ダッシュボード)
   <https://github.com/VoxDroid/Construction-Site-Safety-PPE-Detection>
 
-> 注意: いずれも公開・他者ドメインのデータ。本作は公開 COCO プロキシで IP を出さない方針。
-> これらは将来の拡張の参考であり、本作に他者ドメインの固有データを持ち込むものではない。
+> 注意: いずれも外部の公開データで、本作では使っていない。将来の拡張の参考である。
 <!-- gbrain: [Source: User, 関連研究の調査メモ, 2026-09-13] -->
