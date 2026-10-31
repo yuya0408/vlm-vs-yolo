@@ -1,4 +1,4 @@
-"""M4: YOLO vs VLM 比較分析ドライバ。
+"""YOLO vs VLM 比較分析ドライバ。
 
 2 つのラン結果(YOLO / VLM)を同一評価セットで突き合わせ、比較に必要な統計を一括算出する。
 
@@ -8,6 +8,7 @@
 - 両モデル間: McNemar 検定(対応あり)
 - 各モデル: 誤り要因のロジスティック回帰(誤答 ~ 項目数 + bbox面積比 + crowd + gt_present)
 - パレート: 精度(macro-F1 strict)× コスト × レイテンシ
+- macro-F1 の差のうち、正例の少ないカテゴリが占める分
 
 実行例:
     python -m src.analysis.compare \
@@ -50,6 +51,34 @@ def _latency_stats(records: list[dict]) -> dict:
         "max": round(max(lat), 4),
         "mean": round(statistics.mean(lat), 4),
     }
+
+
+def support_sensitivity(yolo_records: list[dict], vlm_records: list[dict], eval_set: list[dict],
+                        min_supports: tuple[int, ...] = (1, 3, 6, 11)) -> dict:
+    """正例数(support)でカテゴリを絞ったときの macro-F1 と、カテゴリ別の F1 差。
+
+    macro-F1 は正例 1 件のカテゴリも 100 件のカテゴリも同じ重みなので、少数のカテゴリの
+    正誤で大きく動く。差がどのカテゴリから来ているかを確かめるために出す。
+    """
+    y = {m.category: m for m in compute_metrics(yolo_records, eval_set, "strict").per_category}
+    v = {m.category: m for m in compute_metrics(vlm_records, eval_set, "strict").per_category}
+    by_min_support = []
+    for s in min_supports:
+        cats = [c for c in y if y[c].support >= s]
+        if not cats:
+            continue
+        y_f1 = sum(y[c].f1 for c in cats) / len(cats)
+        v_f1 = sum(v[c].f1 for c in cats) / len(cats)
+        by_min_support.append({"min_support": s, "n_categories": len(cats),
+                               "yolo_macro_f1": round(y_f1, 4), "vlm_macro_f1": round(v_f1, 4),
+                               "diff_pt": round((v_f1 - y_f1) * 100, 2)})
+    n_scored = by_min_support[0]["n_categories"]
+    per_category = [{"category": c, "support": y[c].support,
+                     "yolo_f1": round(y[c].f1, 4), "vlm_f1": round(v[c].f1, 4),
+                     "contribution_pt": round((v[c].f1 - y[c].f1) / n_scored * 100, 2)}
+                    for c in y if y[c].support > 0]
+    per_category.sort(key=lambda r: -abs(r["contribution_pt"]))
+    return {"by_min_support": by_min_support, "per_category": per_category}
 
 
 def _uncertain_stats(records: list[dict]) -> dict:
@@ -159,6 +188,7 @@ def compare(yolo_path: str, vlm_path: str, eval_set_path: str,
         "models": {"yolo": yolo_sum, "vlm": vlm_sum},
         "mcnemar": mc,
         "paired_diff": paired_diff,
+        "support_sensitivity": support_sensitivity(yolo["records"], vlm["records"], eval_set),
         "pareto": pareto,
         "params": {"n_boot": n_boot, "seed": seed},
     }

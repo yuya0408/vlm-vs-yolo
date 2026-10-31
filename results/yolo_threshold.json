@@ -1,0 +1,203 @@
+{
+  "thresholds": [
+    0.01,
+    0.02,
+    0.025,
+    0.05,
+    0.075,
+    0.1,
+    0.125,
+    0.15,
+    0.2,
+    0.25,
+    0.3,
+    0.35,
+    0.4,
+    0.45,
+    0.5,
+    0.55,
+    0.6,
+    0.65,
+    0.7,
+    0.75
+  ],
+  "full_curve": [
+    {
+      "threshold": 0.01,
+      "macro_f1": 0.9449,
+      "micro_f1": 0.9408,
+      "item_accuracy": 0.9619,
+      "count_recall": 0.9849
+    },
+    {
+      "threshold": 0.02,
+      "macro_f1": 0.9212,
+      "micro_f1": 0.9452,
+      "item_accuracy": 0.9654,
+      "count_recall": 0.9714
+    },
+    {
+      "threshold": 0.025,
+      "macro_f1": 0.9259,
+      "micro_f1": 0.9484,
+      "item_accuracy": 0.9676,
+      "count_recall": 0.9703
+    },
+    {
+      "threshold": 0.05,
+      "macro_f1": 0.9286,
+      "micro_f1": 0.9526,
+      "item_accuracy": 0.9706,
+      "count_recall": 0.9505
+    },
+    {
+      "threshold": 0.075,
+      "macro_f1": 0.9293,
+      "micro_f1": 0.9544,
+      "item_accuracy": 0.9719,
+      "count_recall": 0.9271
+    },
+    {
+      "threshold": 0.1,
+      "macro_f1": 0.9263,
+      "micro_f1": 0.9525,
+      "item_accuracy": 0.9711,
+      "count_recall": 0.9073
+    },
+    {
+      "threshold": 0.125,
+      "macro_f1": 0.9263,
+      "micro_f1": 0.9514,
+      "item_accuracy": 0.9706,
+      "count_recall": 0.8865
+    },
+    {
+      "threshold": 0.15,
+      "macro_f1": 0.9196,
+      "micro_f1": 0.9468,
+      "item_accuracy": 0.968,
+      "count_recall": 0.8677
+    },
+    {
+      "threshold": 0.2,
+      "macro_f1": 0.9136,
+      "micro_f1": 0.9401,
+      "item_accuracy": 0.9645,
+      "count_recall": 0.8219
+    },
+    {
+      "threshold": 0.25,
+      "macro_f1": 0.9059,
+      "micro_f1": 0.9343,
+      "item_accuracy": 0.9614,
+      "count_recall": 0.7667
+    },
+    {
+      "threshold": 0.3,
+      "macro_f1": 0.8802,
+      "micro_f1": 0.9238,
+      "item_accuracy": 0.9557,
+      "count_recall": 0.7224
+    },
+    {
+      "threshold": 0.35,
+      "macro_f1": 0.8734,
+      "micro_f1": 0.9164,
+      "item_accuracy": 0.9518,
+      "count_recall": 0.6859
+    },
+    {
+      "threshold": 0.4,
+      "macro_f1": 0.8619,
+      "micro_f1": 0.9053,
+      "item_accuracy": 0.9461,
+      "count_recall": 0.6578
+    },
+    {
+      "threshold": 0.45,
+      "macro_f1": 0.8332,
+      "micro_f1": 0.8905,
+      "item_accuracy": 0.9386,
+      "count_recall": 0.6292
+    },
+    {
+      "threshold": 0.5,
+      "macro_f1": 0.8196,
+      "micro_f1": 0.8778,
+      "item_accuracy": 0.9325,
+      "count_recall": 0.5922
+    },
+    {
+      "threshold": 0.55,
+      "macro_f1": 0.8005,
+      "micro_f1": 0.8576,
+      "item_accuracy": 0.9228,
+      "count_recall": 0.5516
+    },
+    {
+      "threshold": 0.6,
+      "macro_f1": 0.7779,
+      "micro_f1": 0.8392,
+      "item_accuracy": 0.9145,
+      "count_recall": 0.5156
+    },
+    {
+      "threshold": 0.65,
+      "macro_f1": 0.7514,
+      "micro_f1": 0.8205,
+      "item_accuracy": 0.9062,
+      "count_recall": 0.4802
+    },
+    {
+      "threshold": 0.7,
+      "macro_f1": 0.7263,
+      "micro_f1": 0.7983,
+      "item_accuracy": 0.8965,
+      "count_recall": 0.4391
+    },
+    {
+      "threshold": 0.75,
+      "macro_f1": 0.7039,
+      "micro_f1": 0.7795,
+      "item_accuracy": 0.8886,
+      "count_recall": 0.3984
+    }
+  ],
+  "optimistic_best": {
+    "threshold": 0.01,
+    "macro_f1": 0.9449,
+    "micro_f1": 0.9408,
+    "item_accuracy": 0.9619,
+    "count_recall": 0.9849
+  },
+  "default_0.25_full": {
+    "threshold": 0.25,
+    "macro_f1": 0.9059,
+    "micro_f1": 0.9343,
+    "item_accuracy": 0.9614,
+    "count_recall": 0.7667
+  },
+  "operating_point": {
+    "standard_practice_micro_f1": 0.075,
+    "standard_practice_item_accuracy": 0.075,
+    "leak_free_tune_selected": 0.075,
+    "converged": true
+  },
+  "split": {
+    "test_frac": 0.6,
+    "seed": 42,
+    "n_tune": 120,
+    "n_test": 180,
+    "best_threshold_on_tune": 0.075,
+    "test_micro_f1_at_tuned": 0.9586,
+    "test_macro_f1_at_tuned": 0.9356,
+    "test_macro_f1_at_default_0.25": 0.9044,
+    "test_optimal": {
+      "threshold": 0.075,
+      "macro_f1": 0.9356,
+      "micro_f1": 0.9586,
+      "item_accuracy": 0.9747,
+      "count_recall": 0.9449
+    }
+  }
+}

@@ -1,0 +1,2762 @@
+{
+  "run_id": "gemini-gemini-3.5-flash-66143781",
+  "provider": "gemini",
+  "model_version": "gemini-3.5-flash",
+  "eval_set_path": "data/eval_set_smoke.json",
+  "eval_set_sha256": "661437813e21abaf78682c73530fedfdd629acfdb6c8affc894ca9f5f4bb94fc",
+  "created_at": "2026-06-29T12:07:10",
+  "records": [
+    {
+      "image_id": 176901,
+      "judgements": [
+        {
+          "category": "cake",
+          "judgement": "absent",
+          "rationale": "not visible in the snowy landscape",
+          "count": null
+        },
+        {
+          "category": "fire hydrant",
+          "judgement": "absent",
+          "rationale": "not visible in the snowy landscape",
+          "count": null
+        },
+        {
+          "category": "hair drier",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "boat",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "dog",
+          "judgement": "absent",
+          "rationale": "no dogs visible in the snow",
+          "count": null
+        },
+        {
+          "category": "bottle",
+          "judgement": "absent",
+          "rationale": "no bottles visible",
+          "count": null
+        },
+        {
+          "category": "toothbrush",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "skis",
+          "judgement": "present",
+          "rationale": "skis worn by the skiers on the slope",
+          "count": 4
+        },
+        {
+          "category": "scissors",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "person",
+          "judgement": "present",
+          "rationale": "three skiers on the snowy slope",
+          "count": 3
+        }
+      ],
+      "usage": {
+        "input_tokens": 1444,
+        "output_tokens": 452
+      },
+      "latency_sec": 7.0731,
+      "cached": true
+    },
+    {
+      "image_id": 322844,
+      "judgements": [
+        {
+          "category": "handbag",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "wine glass",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "bench",
+          "judgement": "present",
+          "rationale": "wooden bench structure holding the toys",
+          "count": 1
+        },
+        {
+          "category": "scissors",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "motorcycle",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "cell phone",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "teddy bear",
+          "judgement": "present",
+          "rationale": "brown teddy bear sitting on the bench",
+          "count": 1
+        },
+        {
+          "category": "airplane",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "vase",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "skateboard",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1409,
+        "output_tokens": 451
+      },
+      "latency_sec": 4.5627,
+      "cached": true
+    },
+    {
+      "image_id": 123633,
+      "judgements": [
+        {
+          "category": "bird",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "scissors",
+          "judgement": "present",
+          "rationale": "boy holding blue scissors",
+          "count": 1
+        },
+        {
+          "category": "dining table",
+          "judgement": "present",
+          "rationale": "wooden table surface in foreground",
+          "count": 1
+        },
+        {
+          "category": "sandwich",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "chair",
+          "judgement": "present",
+          "rationale": "wooden chair frame behind the boy",
+          "count": 1
+        },
+        {
+          "category": "book",
+          "judgement": "present",
+          "rationale": "books on the bookshelf on the right",
+          "count": 4
+        },
+        {
+          "category": "vase",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "cake",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "couch",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1405,
+        "output_tokens": 402
+      },
+      "latency_sec": 5.9738,
+      "cached": true
+    },
+    {
+      "image_id": 498709,
+      "judgements": [
+        {
+          "category": "book",
+          "judgement": "absent",
+          "rationale": "no books visible",
+          "count": null
+        },
+        {
+          "category": "car",
+          "judgement": "present",
+          "rationale": "blurred cars in the background",
+          "count": 2
+        },
+        {
+          "category": "pizza",
+          "judgement": "absent",
+          "rationale": "no pizza visible",
+          "count": null
+        },
+        {
+          "category": "snowboard",
+          "judgement": "absent",
+          "rationale": "no snowboard visible",
+          "count": null
+        },
+        {
+          "category": "motorcycle",
+          "judgement": "present",
+          "rationale": "green motorcycle in foreground",
+          "count": 1
+        },
+        {
+          "category": "truck",
+          "judgement": "present",
+          "rationale": "blurred white truck in background",
+          "count": 1
+        },
+        {
+          "category": "handbag",
+          "judgement": "absent",
+          "rationale": "no handbag visible",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1443,
+        "output_tokens": 305
+      },
+      "latency_sec": 5.2602,
+      "cached": true
+    },
+    {
+      "image_id": 447313,
+      "judgements": [
+        {
+          "category": "giraffe",
+          "judgement": "absent",
+          "rationale": "no giraffes visible in the forest scene",
+          "count": null
+        },
+        {
+          "category": "vase",
+          "judgement": "absent",
+          "rationale": "no vases visible",
+          "count": null
+        },
+        {
+          "category": "tie",
+          "judgement": "absent",
+          "rationale": "no ties visible",
+          "count": null
+        },
+        {
+          "category": "skis",
+          "judgement": "absent",
+          "rationale": "no skis visible",
+          "count": null
+        },
+        {
+          "category": "bicycle",
+          "judgement": "absent",
+          "rationale": "no bicycles visible",
+          "count": null
+        },
+        {
+          "category": "zebra",
+          "judgement": "present",
+          "rationale": "three zebras eating hay in the forest",
+          "count": 3
+        },
+        {
+          "category": "cat",
+          "judgement": "absent",
+          "rationale": "no cats visible",
+          "count": null
+        },
+        {
+          "category": "fire hydrant",
+          "judgement": "absent",
+          "rationale": "no fire hydrants visible",
+          "count": null
+        },
+        {
+          "category": "cell phone",
+          "judgement": "absent",
+          "rationale": "no cell phones visible",
+          "count": null
+        },
+        {
+          "category": "parking meter",
+          "judgement": "absent",
+          "rationale": "no parking meters visible",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1409,
+        "output_tokens": 442
+      },
+      "latency_sec": 6.2927,
+      "cached": true
+    },
+    {
+      "image_id": 336587,
+      "judgements": [
+        {
+          "category": "car",
+          "judgement": "present",
+          "rationale": "blurry car on the right side",
+          "count": 1
+        },
+        {
+          "category": "stop sign",
+          "judgement": "present",
+          "rationale": "red stop sign on wooden post",
+          "count": 1
+        },
+        {
+          "category": "knife",
+          "judgement": "absent",
+          "rationale": "not visible",
+          "count": null
+        },
+        {
+          "category": "truck",
+          "judgement": "uncertain",
+          "rationale": "blurry vehicle could be a truck",
+          "count": null
+        },
+        {
+          "category": "surfboard",
+          "judgement": "absent",
+          "rationale": "not visible",
+          "count": null
+        },
+        {
+          "category": "dog",
+          "judgement": "absent",
+          "rationale": "not visible",
+          "count": null
+        },
+        {
+          "category": "tv",
+          "judgement": "absent",
+          "rationale": "not visible",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1401,
+        "output_tokens": 305
+      },
+      "latency_sec": 6.2859,
+      "cached": true
+    },
+    {
+      "image_id": 113403,
+      "judgements": [
+        {
+          "category": "donut",
+          "judgement": "absent",
+          "rationale": "no donuts visible",
+          "count": null
+        },
+        {
+          "category": "umbrella",
+          "judgement": "absent",
+          "rationale": "no umbrellas visible",
+          "count": null
+        },
+        {
+          "category": "teddy bear",
+          "judgement": "present",
+          "rationale": "multiple teddy bears tucked in bed",
+          "count": 4
+        },
+        {
+          "category": "refrigerator",
+          "judgement": "absent",
+          "rationale": "no refrigerators visible",
+          "count": null
+        },
+        {
+          "category": "oven",
+          "judgement": "absent",
+          "rationale": "no ovens visible",
+          "count": null
+        },
+        {
+          "category": "bed",
+          "judgement": "present",
+          "rationale": "bed with pillows and blankets",
+          "count": 1
+        }
+      ],
+      "usage": {
+        "input_tokens": 1427,
+        "output_tokens": 262
+      },
+      "latency_sec": 4.4656,
+      "cached": true
+    },
+    {
+      "image_id": 257478,
+      "judgements": [
+        {
+          "category": "baseball glove",
+          "judgement": "present",
+          "rationale": "baseball glove held by player",
+          "count": 1
+        },
+        {
+          "category": "person",
+          "judgement": "present",
+          "rationale": "baseball player standing on field",
+          "count": 1
+        },
+        {
+          "category": "sheep",
+          "judgement": "absent",
+          "rationale": "not visible",
+          "count": null
+        },
+        {
+          "category": "bicycle",
+          "judgement": "absent",
+          "rationale": "not visible",
+          "count": null
+        },
+        {
+          "category": "wine glass",
+          "judgement": "absent",
+          "rationale": "not visible",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1407,
+        "output_tokens": 216
+      },
+      "latency_sec": 4.9437,
+      "cached": true
+    },
+    {
+      "image_id": 546475,
+      "judgements": [
+        {
+          "category": "toilet",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "zebra",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "hair drier",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "cell phone",
+          "judgement": "present",
+          "rationale": "man holding a black cell phone",
+          "count": 1
+        },
+        {
+          "category": "sink",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "motorcycle",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "person",
+          "judgement": "present",
+          "rationale": "man and baby",
+          "count": 2
+        },
+        {
+          "category": "hot dog",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "bowl",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1418,
+        "output_tokens": 402
+      },
+      "latency_sec": 6.0907,
+      "cached": true
+    },
+    {
+      "image_id": 399205,
+      "judgements": [
+        {
+          "category": "cat",
+          "judgement": "absent",
+          "rationale": "No cats visible in the image",
+          "count": null
+        },
+        {
+          "category": "airplane",
+          "judgement": "absent",
+          "rationale": "No airplanes visible in the image",
+          "count": null
+        },
+        {
+          "category": "pizza",
+          "judgement": "absent",
+          "rationale": "No pizza visible in the image",
+          "count": null
+        },
+        {
+          "category": "surfboard",
+          "judgement": "absent",
+          "rationale": "No surfboards visible in the image",
+          "count": null
+        },
+        {
+          "category": "laptop",
+          "judgement": "absent",
+          "rationale": "No laptops visible in the image",
+          "count": null
+        },
+        {
+          "category": "person",
+          "judgement": "present",
+          "rationale": "Several people standing on the sidewalk",
+          "count": 10
+        },
+        {
+          "category": "toilet",
+          "judgement": "absent",
+          "rationale": "No toilets visible in the image",
+          "count": null
+        },
+        {
+          "category": "traffic light",
+          "judgement": "present",
+          "rationale": "Yellow traffic light on the left background",
+          "count": 1
+        },
+        {
+          "category": "cell phone",
+          "judgement": "present",
+          "rationale": "People holding mobile phones",
+          "count": 3
+        },
+        {
+          "category": "motorcycle",
+          "judgement": "present",
+          "rationale": "Scooters parked on the left background",
+          "count": 2
+        }
+      ],
+      "usage": {
+        "input_tokens": 1408,
+        "output_tokens": 459
+      },
+      "latency_sec": 5.6968,
+      "cached": true
+    },
+    {
+      "image_id": 309391,
+      "judgements": [
+        {
+          "category": "person",
+          "judgement": "present",
+          "rationale": "Several pedestrians on sidewalks and a cyclist",
+          "count": 11
+        },
+        {
+          "category": "train",
+          "judgement": "absent",
+          "rationale": "Only tracks are visible, no train",
+          "count": null
+        },
+        {
+          "category": "carrot",
+          "judgement": "absent",
+          "rationale": "No carrots visible in the image",
+          "count": null
+        },
+        {
+          "category": "bicycle",
+          "judgement": "present",
+          "rationale": "A person riding a bicycle in the street",
+          "count": 1
+        },
+        {
+          "category": "suitcase",
+          "judgement": "absent",
+          "rationale": "No suitcases visible",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1407,
+        "output_tokens": 230
+      },
+      "latency_sec": 6.1782,
+      "cached": true
+    },
+    {
+      "image_id": 80340,
+      "judgements": [
+        {
+          "category": "tie",
+          "judgement": "present",
+          "rationale": "striped tie worn by the boy",
+          "count": 1
+        },
+        {
+          "category": "cup",
+          "judgement": "present",
+          "rationale": "multiple drinking glasses on the table",
+          "count": 6
+        },
+        {
+          "category": "suitcase",
+          "judgement": "present",
+          "rationale": "rolling suitcase held by the boy",
+          "count": 1
+        },
+        {
+          "category": "potted plant",
+          "judgement": "present",
+          "rationale": "plant in a pot in background right",
+          "count": 1
+        },
+        {
+          "category": "scissors",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "laptop",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1415,
+        "output_tokens": 274
+      },
+      "latency_sec": 5.2425,
+      "cached": true
+    },
+    {
+      "image_id": 230819,
+      "judgements": [
+        {
+          "category": "donut",
+          "judgement": "absent",
+          "rationale": "no donuts visible",
+          "count": null
+        },
+        {
+          "category": "backpack",
+          "judgement": "absent",
+          "rationale": "no backpacks visible",
+          "count": null
+        },
+        {
+          "category": "vase",
+          "judgement": "absent",
+          "rationale": "no vases visible",
+          "count": null
+        },
+        {
+          "category": "person",
+          "judgement": "present",
+          "rationale": "one surfer riding a wave",
+          "count": 1
+        },
+        {
+          "category": "surfboard",
+          "judgement": "present",
+          "rationale": "one surfboard under the surfer",
+          "count": 1
+        },
+        {
+          "category": "traffic light",
+          "judgement": "absent",
+          "rationale": "no traffic lights visible",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1415,
+        "output_tokens": 262
+      },
+      "latency_sec": 3.706,
+      "cached": true
+    },
+    {
+      "image_id": 19742,
+      "judgements": [
+        {
+          "category": "surfboard",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "vase",
+          "judgement": "present",
+          "rationale": "large red glass vase with etched figure",
+          "count": 1
+        },
+        {
+          "category": "elephant",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "baseball bat",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "bicycle",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "laptop",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1399,
+        "output_tokens": 271
+      },
+      "latency_sec": 4.0047,
+      "cached": true
+    },
+    {
+      "image_id": 471756,
+      "judgements": [
+        {
+          "category": "remote",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "spoon",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "person",
+          "judgement": "present",
+          "rationale": "boy bodyboarding in the waves",
+          "count": 1
+        },
+        {
+          "category": "couch",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "mouse",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "scissors",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "book",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "surfboard",
+          "judgement": "present",
+          "rationale": "yellow and blue bodyboard",
+          "count": 1
+        },
+        {
+          "category": "sheep",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "umbrella",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1422,
+        "output_tokens": 445
+      },
+      "latency_sec": 4.9549,
+      "cached": true
+    },
+    {
+      "image_id": 342295,
+      "judgements": [
+        {
+          "category": "toilet",
+          "judgement": "present",
+          "rationale": "white toilet on the right",
+          "count": 1
+        },
+        {
+          "category": "tie",
+          "judgement": "present",
+          "rationale": "bow tie on man in portrait",
+          "count": 1
+        },
+        {
+          "category": "cake",
+          "judgement": "absent",
+          "rationale": "not visible",
+          "count": null
+        },
+        {
+          "category": "couch",
+          "judgement": "absent",
+          "rationale": "not visible",
+          "count": null
+        },
+        {
+          "category": "sink",
+          "judgement": "absent",
+          "rationale": "not visible",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1439,
+        "output_tokens": 215
+      },
+      "latency_sec": 4.3818,
+      "cached": true
+    },
+    {
+      "image_id": 174123,
+      "judgements": [
+        {
+          "category": "knife",
+          "judgement": "present",
+          "rationale": "hand holding knife at top right",
+          "count": 1
+        },
+        {
+          "category": "book",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "bear",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "person",
+          "judgement": "present",
+          "rationale": "hands visible holding fork and knife",
+          "count": 2
+        },
+        {
+          "category": "truck",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "dining table",
+          "judgement": "present",
+          "rationale": "table with checkered tablecloth",
+          "count": 1
+        }
+      ],
+      "usage": {
+        "input_tokens": 1408,
+        "output_tokens": 269
+      },
+      "latency_sec": 5.3303,
+      "cached": true
+    },
+    {
+      "image_id": 441553,
+      "judgements": [
+        {
+          "category": "train",
+          "judgement": "present",
+          "rationale": "large train on the left side",
+          "count": 1
+        },
+        {
+          "category": "handbag",
+          "judgement": "present",
+          "rationale": "shoulder bag carried by person on the left",
+          "count": 1
+        },
+        {
+          "category": "backpack",
+          "judgement": "absent",
+          "rationale": "no backpacks clearly visible",
+          "count": null
+        },
+        {
+          "category": "chair",
+          "judgement": "absent",
+          "rationale": "no chairs visible",
+          "count": null
+        },
+        {
+          "category": "airplane",
+          "judgement": "absent",
+          "rationale": "no airplanes visible",
+          "count": null
+        },
+        {
+          "category": "traffic light",
+          "judgement": "present",
+          "rationale": "red traffic light on the right",
+          "count": 1
+        },
+        {
+          "category": "person",
+          "judgement": "present",
+          "rationale": "crowd of people waiting on the platform",
+          "count": 15
+        },
+        {
+          "category": "potted plant",
+          "judgement": "absent",
+          "rationale": "no potted plants visible",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1404,
+        "output_tokens": 362
+      },
+      "latency_sec": 7.6063,
+      "cached": true
+    },
+    {
+      "image_id": 46048,
+      "judgements": [
+        {
+          "category": "vase",
+          "judgement": "absent",
+          "rationale": "no vase visible",
+          "count": null
+        },
+        {
+          "category": "book",
+          "judgement": "present",
+          "rationale": "books on the nightstand shelves",
+          "count": 4
+        },
+        {
+          "category": "bench",
+          "judgement": "absent",
+          "rationale": "no bench visible",
+          "count": null
+        },
+        {
+          "category": "traffic light",
+          "judgement": "absent",
+          "rationale": "no traffic light visible",
+          "count": null
+        },
+        {
+          "category": "person",
+          "judgement": "present",
+          "rationale": "child sitting on the bed",
+          "count": 1
+        },
+        {
+          "category": "bed",
+          "judgement": "present",
+          "rationale": "large bed with headboard and bedding",
+          "count": 1
+        }
+      ],
+      "usage": {
+        "input_tokens": 1399,
+        "output_tokens": 266
+      },
+      "latency_sec": 4.7467,
+      "cached": true
+    },
+    {
+      "image_id": 54628,
+      "judgements": [
+        {
+          "category": "giraffe",
+          "judgement": "absent",
+          "rationale": "no giraffes visible",
+          "count": null
+        },
+        {
+          "category": "cake",
+          "judgement": "present",
+          "rationale": "large multi-tiered wedding cake",
+          "count": 1
+        },
+        {
+          "category": "sink",
+          "judgement": "absent",
+          "rationale": "no sinks visible",
+          "count": null
+        },
+        {
+          "category": "cup",
+          "judgement": "present",
+          "rationale": "drinking glasses on the background tables",
+          "count": 4
+        },
+        {
+          "category": "potted plant",
+          "judgement": "present",
+          "rationale": "indoor plants in background corners",
+          "count": 2
+        },
+        {
+          "category": "bench",
+          "judgement": "absent",
+          "rationale": "no benches visible",
+          "count": null
+        },
+        {
+          "category": "couch",
+          "judgement": "absent",
+          "rationale": "no couches visible",
+          "count": null
+        },
+        {
+          "category": "dining table",
+          "judgement": "present",
+          "rationale": "long banquet tables set up",
+          "count": 2
+        },
+        {
+          "category": "chair",
+          "judgement": "present",
+          "rationale": "banquet chairs around the tables",
+          "count": 8
+        }
+      ],
+      "usage": {
+        "input_tokens": 1406,
+        "output_tokens": 398
+      },
+      "latency_sec": 6.1872,
+      "cached": true
+    },
+    {
+      "image_id": 509014,
+      "judgements": [
+        {
+          "category": "bus",
+          "judgement": "absent",
+          "rationale": "no bus visible in the image",
+          "count": null
+        },
+        {
+          "category": "hot dog",
+          "judgement": "absent",
+          "rationale": "no hot dog visible in the image",
+          "count": null
+        },
+        {
+          "category": "skis",
+          "judgement": "present",
+          "rationale": "multiple pairs of skis on the snow",
+          "count": 18
+        },
+        {
+          "category": "potted plant",
+          "judgement": "absent",
+          "rationale": "no potted plants visible",
+          "count": null
+        },
+        {
+          "category": "person",
+          "judgement": "present",
+          "rationale": "many skiers and snowboarders on the slope",
+          "count": 35
+        },
+        {
+          "category": "elephant",
+          "judgement": "absent",
+          "rationale": "no elephant in the snowy landscape",
+          "count": null
+        },
+        {
+          "category": "frisbee",
+          "judgement": "absent",
+          "rationale": "no frisbee visible",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1439,
+        "output_tokens": 326
+      },
+      "latency_sec": 5.2276,
+      "cached": true
+    },
+    {
+      "image_id": 516038,
+      "judgements": [
+        {
+          "category": "cake",
+          "judgement": "absent",
+          "rationale": "no cake visible in the image",
+          "count": null
+        },
+        {
+          "category": "baseball glove",
+          "judgement": "present",
+          "rationale": "visible on the pitcher and infielder",
+          "count": 2
+        },
+        {
+          "category": "giraffe",
+          "judgement": "absent",
+          "rationale": "no giraffe visible in the image",
+          "count": null
+        },
+        {
+          "category": "sports ball",
+          "judgement": "present",
+          "rationale": "baseball held in the pitcher's hand",
+          "count": 1
+        },
+        {
+          "category": "tennis racket",
+          "judgement": "absent",
+          "rationale": "no tennis racket visible in the image",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1399,
+        "output_tokens": 236
+      },
+      "latency_sec": 126.7288,
+      "cached": true
+    },
+    {
+      "image_id": 492992,
+      "judgements": [
+        {
+          "category": "apple",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "cow",
+          "judgement": "present",
+          "rationale": "a large white cow in the foreground",
+          "count": 1
+        },
+        {
+          "category": "traffic light",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "bird",
+          "judgement": "present",
+          "rationale": "a white bird perched on the cow's back",
+          "count": 1
+        },
+        {
+          "category": "sheep",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "kite",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "toilet",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1417,
+        "output_tokens": 319
+      },
+      "latency_sec": 4.5331,
+      "cached": true
+    },
+    {
+      "image_id": 82688,
+      "judgements": [
+        {
+          "category": "cell phone",
+          "judgement": "uncertain",
+          "rationale": "possible phone holster on belt",
+          "count": null
+        },
+        {
+          "category": "horse",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "dining table",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "remote",
+          "judgement": "present",
+          "rationale": "two Wii remotes held by people",
+          "count": 2
+        },
+        {
+          "category": "hair drier",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1415,
+        "output_tokens": 227
+      },
+      "latency_sec": 5.8317,
+      "cached": true
+    },
+    {
+      "image_id": 372203,
+      "judgements": [
+        {
+          "category": "baseball glove",
+          "judgement": "absent",
+          "rationale": "not visible in the desert landscape",
+          "count": null
+        },
+        {
+          "category": "fire hydrant",
+          "judgement": "present",
+          "rationale": "red fire hydrant on the concrete platform",
+          "count": 1
+        },
+        {
+          "category": "motorcycle",
+          "judgement": "absent",
+          "rationale": "no motorcycles in the desert scene",
+          "count": null
+        },
+        {
+          "category": "airplane",
+          "judgement": "absent",
+          "rationale": "no airplanes in the sky or ground",
+          "count": null
+        },
+        {
+          "category": "book",
+          "judgement": "absent",
+          "rationale": "no books visible on the bench or platform",
+          "count": null
+        },
+        {
+          "category": "horse",
+          "judgement": "absent",
+          "rationale": "no horses in the desert landscape",
+          "count": null
+        },
+        {
+          "category": "bench",
+          "judgement": "present",
+          "rationale": "wooden bench with metal frame on platform",
+          "count": 1
+        },
+        {
+          "category": "sheep",
+          "judgement": "absent",
+          "rationale": "no sheep in the desert landscape",
+          "count": null
+        },
+        {
+          "category": "bear",
+          "judgement": "absent",
+          "rationale": "no bears in the desert landscape",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1442,
+        "output_tokens": 416
+      },
+      "latency_sec": 5.1811,
+      "cached": true
+    },
+    {
+      "image_id": 411530,
+      "judgements": [
+        {
+          "category": "skis",
+          "judgement": "present",
+          "rationale": "skis on skiers on the snow",
+          "count": 12
+        },
+        {
+          "category": "truck",
+          "judgement": "absent",
+          "rationale": "no truck visible in the image",
+          "count": null
+        },
+        {
+          "category": "cat",
+          "judgement": "absent",
+          "rationale": "no cat visible in the image",
+          "count": null
+        },
+        {
+          "category": "handbag",
+          "judgement": "absent",
+          "rationale": "no handbag visible in the image",
+          "count": null
+        },
+        {
+          "category": "backpack",
+          "judgement": "present",
+          "rationale": "backpacks worn by skiers in the crowd",
+          "count": 2
+        }
+      ],
+      "usage": {
+        "input_tokens": 1396,
+        "output_tokens": 234
+      },
+      "latency_sec": 4.9036,
+      "cached": true
+    },
+    {
+      "image_id": 317024,
+      "judgements": [
+        {
+          "category": "mouse",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "cup",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "zebra",
+          "judgement": "present",
+          "rationale": "a zebra standing in the center",
+          "count": 1
+        },
+        {
+          "category": "fire hydrant",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "orange",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "wine glass",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "keyboard",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "baseball glove",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1405,
+        "output_tokens": 359
+      },
+      "latency_sec": 3.9435,
+      "cached": true
+    },
+    {
+      "image_id": 88951,
+      "judgements": [
+        {
+          "category": "mouse",
+          "judgement": "absent",
+          "rationale": "no mouse detected",
+          "count": null
+        },
+        {
+          "category": "cat",
+          "judgement": "absent",
+          "rationale": "no cat detected",
+          "count": null
+        },
+        {
+          "category": "dog",
+          "judgement": "present",
+          "rationale": "small dog lying on the ground",
+          "count": 1
+        },
+        {
+          "category": "person",
+          "judgement": "present",
+          "rationale": "man sitting on the bench",
+          "count": 1
+        },
+        {
+          "category": "bench",
+          "judgement": "present",
+          "rationale": "green bench the man sits on",
+          "count": 1
+        },
+        {
+          "category": "sheep",
+          "judgement": "absent",
+          "rationale": "no sheep detected",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1398,
+        "output_tokens": 263
+      },
+      "latency_sec": 4.5481,
+      "cached": true
+    },
+    {
+      "image_id": 491216,
+      "judgements": [
+        {
+          "category": "microwave",
+          "judgement": "absent",
+          "rationale": "no microwave visible",
+          "count": null
+        },
+        {
+          "category": "bottle",
+          "judgement": "present",
+          "rationale": "colored glass bottles on windowsill and floor",
+          "count": 6
+        },
+        {
+          "category": "tennis racket",
+          "judgement": "absent",
+          "rationale": "no tennis racket visible",
+          "count": null
+        },
+        {
+          "category": "frisbee",
+          "judgement": "absent",
+          "rationale": "no frisbee visible",
+          "count": null
+        },
+        {
+          "category": "sink",
+          "judgement": "absent",
+          "rationale": "no sink visible in the kitchen counter",
+          "count": null
+        },
+        {
+          "category": "person",
+          "judgement": "absent",
+          "rationale": "no person visible",
+          "count": null
+        },
+        {
+          "category": "banana",
+          "judgement": "present",
+          "rationale": "bananas hanging in wire baskets",
+          "count": 2
+        },
+        {
+          "category": "refrigerator",
+          "judgement": "present",
+          "rationale": "large white refrigerator on the left",
+          "count": 1
+        }
+      ],
+      "usage": {
+        "input_tokens": 1404,
+        "output_tokens": 359
+      },
+      "latency_sec": 6.213,
+      "cached": true
+    },
+    {
+      "image_id": 50828,
+      "judgements": [
+        {
+          "category": "chair",
+          "judgement": "present",
+          "rationale": "a grey desk chair on the left",
+          "count": 1
+        },
+        {
+          "category": "toilet",
+          "judgement": "absent",
+          "rationale": "not visible in the bedroom",
+          "count": null
+        },
+        {
+          "category": "remote",
+          "judgement": "present",
+          "rationale": "white remote on the desk",
+          "count": 1
+        },
+        {
+          "category": "couch",
+          "judgement": "absent",
+          "rationale": "only beds and a desk chair are present",
+          "count": null
+        },
+        {
+          "category": "scissors",
+          "judgement": "absent",
+          "rationale": "not visible on the desk or beds",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1396,
+        "output_tokens": 230
+      },
+      "latency_sec": 3.4918,
+      "cached": true
+    },
+    {
+      "image_id": 227985,
+      "judgements": [
+        {
+          "category": "orange",
+          "judgement": "absent",
+          "rationale": "not visible",
+          "count": null
+        },
+        {
+          "category": "zebra",
+          "judgement": "absent",
+          "rationale": "not visible",
+          "count": null
+        },
+        {
+          "category": "knife",
+          "judgement": "present",
+          "rationale": "knife blade on the top right",
+          "count": 1
+        },
+        {
+          "category": "dining table",
+          "judgement": "present",
+          "rationale": "wooden table surface",
+          "count": 1
+        },
+        {
+          "category": "bottle",
+          "judgement": "absent",
+          "rationale": "not visible",
+          "count": null
+        },
+        {
+          "category": "sandwich",
+          "judgement": "present",
+          "rationale": "two sandwiches cut diagonally",
+          "count": 2
+        },
+        {
+          "category": "skateboard",
+          "judgement": "absent",
+          "rationale": "not visible",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1401,
+        "output_tokens": 298
+      },
+      "latency_sec": 5.5999,
+      "cached": true
+    },
+    {
+      "image_id": 251537,
+      "judgements": [
+        {
+          "category": "dining table",
+          "judgement": "present",
+          "rationale": "wooden table background",
+          "count": 1
+        },
+        {
+          "category": "cup",
+          "judgement": "absent",
+          "rationale": "no cup visible",
+          "count": null
+        },
+        {
+          "category": "parking meter",
+          "judgement": "absent",
+          "rationale": "no parking meter visible",
+          "count": null
+        },
+        {
+          "category": "toilet",
+          "judgement": "absent",
+          "rationale": "no toilet visible",
+          "count": null
+        },
+        {
+          "category": "airplane",
+          "judgement": "absent",
+          "rationale": "no airplane visible",
+          "count": null
+        },
+        {
+          "category": "carrot",
+          "judgement": "present",
+          "rationale": "one orange carrot",
+          "count": 1
+        },
+        {
+          "category": "tie",
+          "judgement": "absent",
+          "rationale": "no tie visible",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1427,
+        "output_tokens": 300
+      },
+      "latency_sec": 6.5704,
+      "cached": true
+    },
+    {
+      "image_id": 577182,
+      "judgements": [
+        {
+          "category": "scissors",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "keyboard",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "bench",
+          "judgement": "present",
+          "rationale": "multiple wooden benches on the grass",
+          "count": 3
+        },
+        {
+          "category": "cup",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "bird",
+          "judgement": "present",
+          "rationale": "small bird perched on the bench backrest",
+          "count": 1
+        },
+        {
+          "category": "car",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "microwave",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "remote",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "sandwich",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "traffic light",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1423,
+        "output_tokens": 448
+      },
+      "latency_sec": 5.8818,
+      "cached": true
+    },
+    {
+      "image_id": 341058,
+      "judgements": [
+        {
+          "category": "chair",
+          "judgement": "present",
+          "rationale": "mesh patio chairs around the table",
+          "count": 2
+        },
+        {
+          "category": "bottle",
+          "judgement": "present",
+          "rationale": "ketchup and condiment bottles on table",
+          "count": 2
+        },
+        {
+          "category": "toaster",
+          "judgement": "absent",
+          "rationale": "not visible in the scene",
+          "count": null
+        },
+        {
+          "category": "couch",
+          "judgement": "absent",
+          "rationale": "not visible in the scene",
+          "count": null
+        },
+        {
+          "category": "suitcase",
+          "judgement": "absent",
+          "rationale": "not visible in the scene",
+          "count": null
+        },
+        {
+          "category": "dining table",
+          "judgement": "present",
+          "rationale": "patio dining table",
+          "count": 1
+        },
+        {
+          "category": "fire hydrant",
+          "judgement": "absent",
+          "rationale": "not visible in the scene",
+          "count": null
+        },
+        {
+          "category": "umbrella",
+          "judgement": "present",
+          "rationale": "Samuel Adams patio umbrella",
+          "count": 1
+        }
+      ],
+      "usage": {
+        "input_tokens": 1440,
+        "output_tokens": 358
+      },
+      "latency_sec": 5.5113,
+      "cached": true
+    },
+    {
+      "image_id": 17115,
+      "judgements": [
+        {
+          "category": "baseball glove",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "zebra",
+          "judgement": "present",
+          "rationale": "two zebras seen from behind",
+          "count": 2
+        },
+        {
+          "category": "cow",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "banana",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "dog",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "snowboard",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "bicycle",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "skateboard",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "car",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "fire hydrant",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1424,
+        "output_tokens": 447
+      },
+      "latency_sec": 4.7661,
+      "cached": true
+    },
+    {
+      "image_id": 331799,
+      "judgements": [
+        {
+          "category": "couch",
+          "judgement": "absent",
+          "rationale": "no couch visible",
+          "count": null
+        },
+        {
+          "category": "toilet",
+          "judgement": "absent",
+          "rationale": "no toilet visible",
+          "count": null
+        },
+        {
+          "category": "stop sign",
+          "judgement": "absent",
+          "rationale": "no stop sign visible",
+          "count": null
+        },
+        {
+          "category": "apple",
+          "judgement": "present",
+          "rationale": "sliced apples in plastic bags",
+          "count": 10
+        },
+        {
+          "category": "person",
+          "judgement": "present",
+          "rationale": "multiple people visible",
+          "count": 4
+        }
+      ],
+      "usage": {
+        "input_tokens": 1425,
+        "output_tokens": 218
+      },
+      "latency_sec": 6.4432,
+      "cached": true
+    },
+    {
+      "image_id": 117197,
+      "judgements": [
+        {
+          "category": "person",
+          "judgement": "present",
+          "rationale": "A woman sitting on the planter edge",
+          "count": 1
+        },
+        {
+          "category": "skateboard",
+          "judgement": "absent",
+          "rationale": "No skateboard visible in the image",
+          "count": null
+        },
+        {
+          "category": "sheep",
+          "judgement": "absent",
+          "rationale": "No sheep visible in the image",
+          "count": null
+        },
+        {
+          "category": "traffic light",
+          "judgement": "absent",
+          "rationale": "No traffic light visible in the image",
+          "count": null
+        },
+        {
+          "category": "cell phone",
+          "judgement": "present",
+          "rationale": "The woman is holding a phone to her ear",
+          "count": 1
+        },
+        {
+          "category": "teddy bear",
+          "judgement": "absent",
+          "rationale": "No teddy bear visible in the image",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1429,
+        "output_tokens": 282
+      },
+      "latency_sec": 4.2444,
+      "cached": true
+    },
+    {
+      "image_id": 339823,
+      "judgements": [
+        {
+          "category": "umbrella",
+          "judgement": "present",
+          "rationale": "black lace umbrella held overhead",
+          "count": 1
+        },
+        {
+          "category": "sink",
+          "judgement": "absent",
+          "rationale": "not visible in the sky background",
+          "count": null
+        },
+        {
+          "category": "hair drier",
+          "judgement": "absent",
+          "rationale": "not visible in the sky background",
+          "count": null
+        },
+        {
+          "category": "person",
+          "judgement": "present",
+          "rationale": "woman smiling wearing an orange dress",
+          "count": 1
+        },
+        {
+          "category": "elephant",
+          "judgement": "absent",
+          "rationale": "not visible in the sky background",
+          "count": null
+        },
+        {
+          "category": "bicycle",
+          "judgement": "absent",
+          "rationale": "not visible in the sky background",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1437,
+        "output_tokens": 273
+      },
+      "latency_sec": 4.004,
+      "cached": true
+    },
+    {
+      "image_id": 535578,
+      "judgements": [
+        {
+          "category": "dog",
+          "judgement": "absent",
+          "rationale": "no dogs visible",
+          "count": null
+        },
+        {
+          "category": "cow",
+          "judgement": "absent",
+          "rationale": "no cows visible",
+          "count": null
+        },
+        {
+          "category": "elephant",
+          "judgement": "absent",
+          "rationale": "no elephants visible",
+          "count": null
+        },
+        {
+          "category": "cake",
+          "judgement": "absent",
+          "rationale": "no cakes visible",
+          "count": null
+        },
+        {
+          "category": "pizza",
+          "judgement": "absent",
+          "rationale": "no pizzas visible",
+          "count": null
+        },
+        {
+          "category": "carrot",
+          "judgement": "absent",
+          "rationale": "no carrots visible",
+          "count": null
+        },
+        {
+          "category": "sheep",
+          "judgement": "present",
+          "rationale": "multiple sheep grazing on green hillside",
+          "count": 12
+        }
+      ],
+      "usage": {
+        "input_tokens": 1416,
+        "output_tokens": 301
+      },
+      "latency_sec": 6.1841,
+      "cached": true
+    },
+    {
+      "image_id": 166509,
+      "judgements": [
+        {
+          "category": "tv",
+          "judgement": "absent",
+          "rationale": "no tvs visible",
+          "count": null
+        },
+        {
+          "category": "truck",
+          "judgement": "absent",
+          "rationale": "no trucks visible",
+          "count": null
+        },
+        {
+          "category": "cup",
+          "judgement": "absent",
+          "rationale": "no cups visible",
+          "count": null
+        },
+        {
+          "category": "person",
+          "judgement": "absent",
+          "rationale": "no people visible",
+          "count": null
+        },
+        {
+          "category": "backpack",
+          "judgement": "absent",
+          "rationale": "no backpacks visible",
+          "count": null
+        },
+        {
+          "category": "remote",
+          "judgement": "absent",
+          "rationale": "no remotes visible",
+          "count": null
+        },
+        {
+          "category": "traffic light",
+          "judgement": "present",
+          "rationale": "two traffic lights visible",
+          "count": 2
+        },
+        {
+          "category": "parking meter",
+          "judgement": "absent",
+          "rationale": "no parking meters visible",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1420,
+        "output_tokens": 346
+      },
+      "latency_sec": 4.6615,
+      "cached": true
+    },
+    {
+      "image_id": 314251,
+      "judgements": [
+        {
+          "category": "surfboard",
+          "judgement": "absent",
+          "rationale": "No surfboards visible",
+          "count": null
+        },
+        {
+          "category": "car",
+          "judgement": "present",
+          "rationale": "A car visible far down the road",
+          "count": 1
+        },
+        {
+          "category": "person",
+          "judgement": "present",
+          "rationale": "Multiple people riding scooters and walking",
+          "count": 12
+        },
+        {
+          "category": "mouse",
+          "judgement": "absent",
+          "rationale": "No computer mice visible",
+          "count": null
+        },
+        {
+          "category": "truck",
+          "judgement": "absent",
+          "rationale": "No trucks visible",
+          "count": null
+        },
+        {
+          "category": "motorcycle",
+          "judgement": "present",
+          "rationale": "Multiple scooters/motorcycles on the road",
+          "count": 10
+        },
+        {
+          "category": "banana",
+          "judgement": "absent",
+          "rationale": "No bananas visible",
+          "count": null
+        },
+        {
+          "category": "refrigerator",
+          "judgement": "absent",
+          "rationale": "No refrigerators visible",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1402,
+        "output_tokens": 358
+      },
+      "latency_sec": 8.7353,
+      "cached": true
+    },
+    {
+      "image_id": 114884,
+      "judgements": [
+        {
+          "category": "suitcase",
+          "judgement": "present",
+          "rationale": "multiple suitcases and rolling bags",
+          "count": 7
+        },
+        {
+          "category": "stop sign",
+          "judgement": "absent",
+          "rationale": "no stop signs visible",
+          "count": null
+        },
+        {
+          "category": "bed",
+          "judgement": "absent",
+          "rationale": "no beds visible",
+          "count": null
+        },
+        {
+          "category": "cow",
+          "judgement": "absent",
+          "rationale": "no cows visible",
+          "count": null
+        },
+        {
+          "category": "backpack",
+          "judgement": "present",
+          "rationale": "backpacks worn by travelers",
+          "count": 2
+        },
+        {
+          "category": "person",
+          "judgement": "present",
+          "rationale": "multiple people in terminal and foreground",
+          "count": 12
+        },
+        {
+          "category": "bus",
+          "judgement": "present",
+          "rationale": "several buses parked in terminal",
+          "count": 5
+        },
+        {
+          "category": "carrot",
+          "judgement": "absent",
+          "rationale": "no carrots visible",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1446,
+        "output_tokens": 351
+      },
+      "latency_sec": 7.4095,
+      "cached": true
+    },
+    {
+      "image_id": 502732,
+      "judgements": [
+        {
+          "category": "toilet",
+          "judgement": "absent",
+          "rationale": "not visible in the kitchen",
+          "count": null
+        },
+        {
+          "category": "fork",
+          "judgement": "absent",
+          "rationale": "not visible on the counter",
+          "count": null
+        },
+        {
+          "category": "bird",
+          "judgement": "absent",
+          "rationale": "no birds in the image",
+          "count": null
+        },
+        {
+          "category": "spoon",
+          "judgement": "absent",
+          "rationale": "no spoons visible",
+          "count": null
+        },
+        {
+          "category": "refrigerator",
+          "judgement": "present",
+          "rationale": "large stainless steel refrigerator",
+          "count": 1
+        },
+        {
+          "category": "bear",
+          "judgement": "absent",
+          "rationale": "no bears in the image",
+          "count": null
+        },
+        {
+          "category": "sandwich",
+          "judgement": "absent",
+          "rationale": "no sandwiches visible",
+          "count": null
+        },
+        {
+          "category": "backpack",
+          "judgement": "absent",
+          "rationale": "no backpacks visible",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1402,
+        "output_tokens": 349
+      },
+      "latency_sec": 5.0792,
+      "cached": true
+    },
+    {
+      "image_id": 245102,
+      "judgements": [
+        {
+          "category": "traffic light",
+          "judgement": "present",
+          "rationale": "red signal light on a pole",
+          "count": 1
+        },
+        {
+          "category": "bowl",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "elephant",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "bus",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "carrot",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "snowboard",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1415,
+        "output_tokens": 270
+      },
+      "latency_sec": 4.3386,
+      "cached": true
+    },
+    {
+      "image_id": 561009,
+      "judgements": [
+        {
+          "category": "bowl",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "kite",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "wine glass",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "broccoli",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "zebra",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "bird",
+          "judgement": "present",
+          "rationale": "brown bird perched on branches",
+          "count": 1
+        },
+        {
+          "category": "cell phone",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1418,
+        "output_tokens": 313
+      },
+      "latency_sec": 4.9215,
+      "cached": true
+    },
+    {
+      "image_id": 263860,
+      "judgements": [
+        {
+          "category": "vase",
+          "judgement": "absent",
+          "rationale": "no vase visible in the image",
+          "count": null
+        },
+        {
+          "category": "keyboard",
+          "judgement": "absent",
+          "rationale": "no keyboard visible in the image",
+          "count": null
+        },
+        {
+          "category": "bottle",
+          "judgement": "absent",
+          "rationale": "no bottle visible in the image",
+          "count": null
+        },
+        {
+          "category": "elephant",
+          "judgement": "present",
+          "rationale": "two elephants interacting in the field",
+          "count": 2
+        },
+        {
+          "category": "broccoli",
+          "judgement": "absent",
+          "rationale": "no broccoli visible in the image",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1439,
+        "output_tokens": 228
+      },
+      "latency_sec": 3.2734,
+      "cached": true
+    },
+    {
+      "image_id": 176778,
+      "judgements": [
+        {
+          "category": "toilet",
+          "judgement": "present",
+          "rationale": "A white toilet is clearly visible in the center.",
+          "count": 1
+        },
+        {
+          "category": "sink",
+          "judgement": "absent",
+          "rationale": "No sink is visible in the image.",
+          "count": null
+        },
+        {
+          "category": "scissors",
+          "judgement": "absent",
+          "rationale": "No scissors are visible.",
+          "count": null
+        },
+        {
+          "category": "bottle",
+          "judgement": "absent",
+          "rationale": "No bottles are visible.",
+          "count": null
+        },
+        {
+          "category": "mouse",
+          "judgement": "absent",
+          "rationale": "No mouse is visible.",
+          "count": null
+        },
+        {
+          "category": "cat",
+          "judgement": "present",
+          "rationale": "An orange cat is standing next to the toilet.",
+          "count": 1
+        },
+        {
+          "category": "teddy bear",
+          "judgement": "absent",
+          "rationale": "No teddy bear is visible.",
+          "count": null
+        },
+        {
+          "category": "dog",
+          "judgement": "absent",
+          "rationale": "No dog is visible.",
+          "count": null
+        },
+        {
+          "category": "suitcase",
+          "judgement": "absent",
+          "rationale": "No suitcase is visible.",
+          "count": null
+        },
+        {
+          "category": "apple",
+          "judgement": "absent",
+          "rationale": "No apple is visible.",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1423,
+        "output_tokens": 448
+      },
+      "latency_sec": 4.4613,
+      "cached": true
+    },
+    {
+      "image_id": 332845,
+      "judgements": [
+        {
+          "category": "chair",
+          "judgement": "present",
+          "rationale": "a chair behind the person",
+          "count": 1
+        },
+        {
+          "category": "person",
+          "judgement": "present",
+          "rationale": "a person sitting at the desk",
+          "count": 1
+        },
+        {
+          "category": "book",
+          "judgement": "absent",
+          "rationale": "no books visible in the room",
+          "count": null
+        },
+        {
+          "category": "giraffe",
+          "judgement": "absent",
+          "rationale": "no giraffes in the bedroom",
+          "count": null
+        },
+        {
+          "category": "couch",
+          "judgement": "absent",
+          "rationale": "no couch visible, only a bed",
+          "count": null
+        },
+        {
+          "category": "bed",
+          "judgement": "present",
+          "rationale": "a bed in the foreground",
+          "count": 1
+        },
+        {
+          "category": "laptop",
+          "judgement": "present",
+          "rationale": "a laptop on the desk",
+          "count": 1
+        },
+        {
+          "category": "hot dog",
+          "judgement": "absent",
+          "rationale": "no hot dogs in the image",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1403,
+        "output_tokens": 362
+      },
+      "latency_sec": 4.944,
+      "cached": true
+    },
+    {
+      "image_id": 218249,
+      "judgements": [
+        {
+          "category": "dog",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "suitcase",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "giraffe",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "dining table",
+          "judgement": "present",
+          "rationale": "table surface holding the tray",
+          "count": 1
+        },
+        {
+          "category": "motorcycle",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "sandwich",
+          "judgement": "present",
+          "rationale": "chicken burger in the box",
+          "count": 1
+        },
+        {
+          "category": "handbag",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        },
+        {
+          "category": "orange",
+          "judgement": "absent",
+          "rationale": "not visible in the image",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1419,
+        "output_tokens": 358
+      },
+      "latency_sec": 5.0517,
+      "cached": true
+    },
+    {
+      "image_id": 495054,
+      "judgements": [
+        {
+          "category": "truck",
+          "judgement": "present",
+          "rationale": "airport service trucks on the tarmac",
+          "count": 2
+        },
+        {
+          "category": "banana",
+          "judgement": "absent",
+          "rationale": "no bananas visible",
+          "count": null
+        },
+        {
+          "category": "skis",
+          "judgement": "absent",
+          "rationale": "no skis visible",
+          "count": null
+        },
+        {
+          "category": "book",
+          "judgement": "absent",
+          "rationale": "no books visible",
+          "count": null
+        },
+        {
+          "category": "car",
+          "judgement": "absent",
+          "rationale": "no passenger cars visible",
+          "count": null
+        },
+        {
+          "category": "airplane",
+          "judgement": "present",
+          "rationale": "large Virgin Atlantic airplane parked on tarmac",
+          "count": 1
+        },
+        {
+          "category": "sports ball",
+          "judgement": "absent",
+          "rationale": "no sports balls visible",
+          "count": null
+        },
+        {
+          "category": "suitcase",
+          "judgement": "absent",
+          "rationale": "no suitcases visible on carts",
+          "count": null
+        },
+        {
+          "category": "train",
+          "judgement": "absent",
+          "rationale": "no trains visible",
+          "count": null
+        },
+        {
+          "category": "fork",
+          "judgement": "absent",
+          "rationale": "no forks visible",
+          "count": null
+        }
+      ],
+      "usage": {
+        "input_tokens": 1423,
+        "output_tokens": 436
+      },
+      "latency_sec": 6.367,
+      "cached": true
+    }
+  ]
+}

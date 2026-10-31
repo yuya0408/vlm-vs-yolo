@@ -14,6 +14,11 @@
     # 2) しきい値スイープ
     python -m src.analysis.yolo_threshold sweep \
         --raw results/yolo_raw_detections.json --eval-set data/eval_set.json
+    # 3) 指定しきい値の判定をラン形式で書き出す(compare / error_taxonomy が読む)
+    python -m src.analysis.yolo_threshold export --threshold 0.075 \
+        --raw results/yolo_raw_detections.json --eval-set data/eval_set.json \
+        --base-run results/yolo-yolo26x-289d6c0e.json \
+        --out results/yolo-yolo26x-tuned075-289d6c0e.json
 """
 
 from __future__ import annotations
@@ -143,6 +148,29 @@ def analyze(raw: dict, eval_set: list[dict], thresholds: list[float],
     }
 
 
+def export_run(raw: dict, eval_set: list[dict], threshold: float, base_run: dict) -> dict:
+    """しきい値 threshold の判定を、base_run と同じラン形式で返す。
+
+    推論は base_run の 1 回だけなので、latency_sec は base_run の実測値を画像ごとに引き継ぐ。
+    """
+    latency = {r["image_id"]: r["latency_sec"] for r in base_run["records"]}
+    records = []
+    for r in _records_at_threshold(raw, eval_set, threshold):
+        for j in r["judgements"]:
+            j["rationale"] = f"detections={j['count']}@conf>={threshold}"
+        records.append({**r, "usage": {"input_tokens": 0, "output_tokens": 0},
+                        "latency_sec": latency[r["image_id"]], "cached": True})
+    sha = base_run["eval_set_sha256"]
+    return {
+        "run_id": f"yolo-yolo26x-tuned{str(threshold).split('.')[1]}-{sha[:8]}",
+        "provider": base_run["provider"],
+        "model_version": f"{base_run['model_version']}@conf{threshold}",
+        "eval_set_path": base_run["eval_set_path"],
+        "eval_set_sha256": sha,
+        "records": records,
+    }
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     sub = parser.add_subparsers(dest="command", required=True)
@@ -161,6 +189,13 @@ def main() -> None:
     p_sw.add_argument("--test-frac", type=float, default=0.6)
     p_sw.add_argument("--seed", type=int, default=42)
 
+    p_ex = sub.add_parser("export")
+    p_ex.add_argument("--raw", default="results/yolo_raw_detections.json")
+    p_ex.add_argument("--eval-set", required=True)
+    p_ex.add_argument("--threshold", type=float, required=True)
+    p_ex.add_argument("--base-run", required=True)
+    p_ex.add_argument("--out", required=True)
+
     args = parser.parse_args()
 
     if args.command == "capture":
@@ -173,9 +208,17 @@ def main() -> None:
 
     raw = json.loads(Path(args.raw).read_text(encoding="utf-8"))
     eval_set = json.loads(Path(args.eval_set).read_text(encoding="utf-8"))
+    if args.command == "export":
+        base_run = json.loads(Path(args.base_run).read_text(encoding="utf-8"))
+        run = export_run(raw, eval_set, args.threshold, base_run)
+        Path(args.out).parent.mkdir(parents=True, exist_ok=True)
+        Path(args.out).write_text(json.dumps(run, ensure_ascii=False), encoding="utf-8")
+        print(f"保存: {args.out}")
+        return
+
     # 低 conf 側を粗いグリッドのままにすると運用しきい値の真のピーク(0.075 近辺)を見逃す
     # (report/REPORT.md §2)。0.01〜0.25 は密に、それ以降は既定の 0.05 刻みのまま。
-    thresholds = [0.01, 0.025, 0.05, 0.075, 0.1, 0.125, 0.15, 0.2, 0.25] + \
+    thresholds = [0.01, 0.02, 0.025, 0.05, 0.075, 0.1, 0.125, 0.15, 0.2, 0.25] + \
         [round(0.05 * k, 2) for k in range(6, 16)]  # 0.3〜0.75
     res = analyze(raw, eval_set, thresholds, args.test_frac, args.seed)
     Path(args.out).parent.mkdir(parents=True, exist_ok=True)

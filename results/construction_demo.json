@@ -1,0 +1,714 @@
+{
+  "checklist": [
+    "person",
+    "pipe",
+    "flange",
+    "tee fitting",
+    "elbow fitting",
+    "valve",
+    "gasket",
+    "bolted flange joint",
+    "pipe support",
+    "pressure gauge"
+  ],
+  "vocab_coverage": {
+    "in_vocab": [
+      "person"
+    ],
+    "out_of_vocab": [
+      "pipe",
+      "flange",
+      "tee fitting",
+      "elbow fitting",
+      "valve",
+      "gasket",
+      "bolted flange joint",
+      "pipe support",
+      "pressure gauge"
+    ],
+    "out_of_vocab_ratio": 0.9,
+    "n": 10
+  },
+  "vlm_model": "gemini-3.5-flash",
+  "yolo_model": "yolo-yolo26x",
+  "n_images": 5,
+  "per_image": [
+    {
+      "file_name": "Flange01.jpg",
+      "attribution": {
+        "source": "Wikimedia Commons",
+        "author": "© 1971markus@wikipedia.de",
+        "license": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en",
+        "url": "https://commons.wikimedia.org/wiki/File:Kokerei_Hansa_(08).jpg",
+        "shows": "industrial piping, flange"
+      },
+      "vlm": [
+        {
+          "category": "person",
+          "judgement": "absent",
+          "count": null,
+          "rationale": "no people visible"
+        },
+        {
+          "category": "pipe",
+          "judgement": "present",
+          "count": 4,
+          "rationale": "multiple rusty metal pipes"
+        },
+        {
+          "category": "flange",
+          "judgement": "present",
+          "count": 6,
+          "rationale": "circular flanges on pipe joints"
+        },
+        {
+          "category": "tee fitting",
+          "judgement": "present",
+          "count": 1,
+          "rationale": "Y-branch tee fitting on main pipe"
+        },
+        {
+          "category": "elbow fitting",
+          "judgement": "present",
+          "count": 1,
+          "rationale": "90-degree elbow bend on left pipe"
+        },
+        {
+          "category": "valve",
+          "judgement": "absent",
+          "count": null,
+          "rationale": "no valves visible"
+        },
+        {
+          "category": "gasket",
+          "judgement": "uncertain",
+          "count": null,
+          "rationale": "gaskets inside joints are not clearly visible"
+        },
+        {
+          "category": "bolted flange joint",
+          "judgement": "present",
+          "count": 3,
+          "rationale": "bolted flange connections visible"
+        },
+        {
+          "category": "pipe support",
+          "judgement": "uncertain",
+          "count": null,
+          "rationale": "no clear pipe supports visible"
+        },
+        {
+          "category": "pressure gauge",
+          "judgement": "absent",
+          "count": null,
+          "rationale": "no pressure gauges visible"
+        }
+      ],
+      "yolo": [
+        {
+          "category": "person",
+          "judgement": "absent",
+          "count": 0,
+          "rationale": "detections=0@conf>=0.25"
+        },
+        {
+          "category": "pipe",
+          "judgement": "absent",
+          "count": 0,
+          "rationale": "detections=0@conf>=0.25"
+        },
+        {
+          "category": "flange",
+          "judgement": "absent",
+          "count": 0,
+          "rationale": "detections=0@conf>=0.25"
+        },
+        {
+          "category": "tee fitting",
+          "judgement": "absent",
+          "count": 0,
+          "rationale": "detections=0@conf>=0.25"
+        },
+        {
+          "category": "elbow fitting",
+          "judgement": "absent",
+          "count": 0,
+          "rationale": "detections=0@conf>=0.25"
+        },
+        {
+          "category": "valve",
+          "judgement": "absent",
+          "count": 0,
+          "rationale": "detections=0@conf>=0.25"
+        },
+        {
+          "category": "gasket",
+          "judgement": "absent",
+          "count": 0,
+          "rationale": "detections=0@conf>=0.25"
+        },
+        {
+          "category": "bolted flange joint",
+          "judgement": "absent",
+          "count": 0,
+          "rationale": "detections=0@conf>=0.25"
+        },
+        {
+          "category": "pipe support",
+          "judgement": "absent",
+          "count": 0,
+          "rationale": "detections=0@conf>=0.25"
+        },
+        {
+          "category": "pressure gauge",
+          "judgement": "absent",
+          "count": 0,
+          "rationale": "detections=0@conf>=0.25"
+        }
+      ]
+    },
+    {
+      "file_name": "Piping01.jpg",
+      "attribution": {
+        "source": "Wikimedia Commons",
+        "author": "Markus Schweiss",
+        "license": "CC BY-SA 3.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/3.0/deed.en",
+        "url": "https://commons.wikimedia.org/wiki/File:Piping01.JPG",
+        "note": "donated by Taprogge GmbH, Germany",
+        "shows": "pipe, flange, bolted flange joint"
+      },
+      "vlm": [
+        {
+          "category": "person",
+          "judgement": "absent",
+          "count": null,
+          "rationale": "no people visible in the image"
+        },
+        {
+          "category": "pipe",
+          "judgement": "present",
+          "count": 5,
+          "rationale": "multiple metal pipe spools on the pallet"
+        },
+        {
+          "category": "flange",
+          "judgement": "present",
+          "count": 9,
+          "rationale": "multiple circular flanges on the pipe ends"
+        },
+        {
+          "category": "tee fitting",
+          "judgement": "present",
+          "count": 1,
+          "rationale": "tee branch fitting in the center"
+        },
+        {
+          "category": "elbow fitting",
+          "judgement": "present",
+          "count": 5,
+          "rationale": "curved elbow sections on the pipes"
+        },
+        {
+          "category": "valve",
+          "judgement": "absent",
+          "count": null,
+          "rationale": "no valves visible on the pipes"
+        },
+        {
+          "category": "gasket",
+          "judgement": "absent",
+          "count": null,
+          "rationale": "no gaskets visible"
+        },
+        {
+          "category": "bolted flange joint",
+          "judgement": "absent",
+          "count": null,
+          "rationale": "no bolted flange connections visible"
+        },
+        {
+          "category": "pipe support",
+          "judgement": "present",
+          "count": 1,
+          "rationale": "metal support bracket welded to center pipe"
+        },
+        {
+          "category": "pressure gauge",
+          "judgement": "absent",
+          "count": null,
+          "rationale": "no pressure gauges visible"
+        }
+      ],
+      "yolo": [
+        {
+          "category": "person",
+          "judgement": "absent",
+          "count": 0,
+          "rationale": "detections=0@conf>=0.25"
+        },
+        {
+          "category": "pipe",
+          "judgement": "absent",
+          "count": 0,
+          "rationale": "detections=0@conf>=0.25"
+        },
+        {
+          "category": "flange",
+          "judgement": "absent",
+          "count": 0,
+          "rationale": "detections=0@conf>=0.25"
+        },
+        {
+          "category": "tee fitting",
+          "judgement": "absent",
+          "count": 0,
+          "rationale": "detections=0@conf>=0.25"
+        },
+        {
+          "category": "elbow fitting",
+          "judgement": "absent",
+          "count": 0,
+          "rationale": "detections=0@conf>=0.25"
+        },
+        {
+          "category": "valve",
+          "judgement": "absent",
+          "count": 0,
+          "rationale": "detections=0@conf>=0.25"
+        },
+        {
+          "category": "gasket",
+          "judgement": "absent",
+          "count": 0,
+          "rationale": "detections=0@conf>=0.25"
+        },
+        {
+          "category": "bolted flange joint",
+          "judgement": "absent",
+          "count": 0,
+          "rationale": "detections=0@conf>=0.25"
+        },
+        {
+          "category": "pipe support",
+          "judgement": "absent",
+          "count": 0,
+          "rationale": "detections=0@conf>=0.25"
+        },
+        {
+          "category": "pressure gauge",
+          "judgement": "absent",
+          "count": 0,
+          "rationale": "detections=0@conf>=0.25"
+        }
+      ]
+    },
+    {
+      "file_name": "Piping02.jpg",
+      "attribution": {
+        "source": "Wikimedia Commons",
+        "author": "U.S. Fish & Wildlife Service - Pacific Region",
+        "license": "CC BY 2.0",
+        "license_url": "https://creativecommons.org/licenses/by/2.0/deed.en",
+        "url": "https://commons.wikimedia.org/wiki/File:Piping_system_at_Makah_National_Fish_Hatchery_(5837252675).jpg",
+        "shows": "pipes, valves, pipe supports"
+      },
+      "vlm": [
+        {
+          "category": "person",
+          "judgement": "absent",
+          "count": null,
+          "rationale": "no people visible"
+        },
+        {
+          "category": "pipe",
+          "judgement": "present",
+          "count": 12,
+          "rationale": "multiple large blue and green pipes"
+        },
+        {
+          "category": "flange",
+          "judgement": "present",
+          "count": 20,
+          "rationale": "many circular flanges on pipes"
+        },
+        {
+          "category": "tee fitting",
+          "judgement": "present",
+          "count": 4,
+          "rationale": "tee junctions on vertical pipes"
+        },
+        {
+          "category": "elbow fitting",
+          "judgement": "present",
+          "count": 5,
+          "rationale": "curved elbow pipes near bottom"
+        },
+        {
+          "category": "valve",
+          "judgement": "present",
+          "count": 4,
+          "rationale": "valves with blue cylindrical actuators"
+        },
+        {
+          "category": "gasket",
+          "judgement": "uncertain",
+          "count": null,
+          "rationale": "gaskets are sandwiched inside flange joints"
+        },
+        {
+          "category": "bolted flange joint",
+          "judgement": "present",
+          "count": 15,
+          "rationale": "bolted flange connections"
+        },
+        {
+          "category": "pipe support",
+          "judgement": "present",
+          "count": 3,
+          "rationale": "support feet under bottom pipes"
+        },
+        {
+          "category": "pressure gauge",
+          "judgement": "present",
+          "count": 1,
+          "rationale": "dial pressure gauge on bottom pipe"
+        }
+      ],
+      "yolo": [
+        {
+          "category": "person",
+          "judgement": "absent",
+          "count": 0,
+          "rationale": "detections=0@conf>=0.25"
+        },
+        {
+          "category": "pipe",
+          "judgement": "absent",
+          "count": 0,
+          "rationale": "detections=0@conf>=0.25"
+        },
+        {
+          "category": "flange",
+          "judgement": "absent",
+          "count": 0,
+          "rationale": "detections=0@conf>=0.25"
+        },
+        {
+          "category": "tee fitting",
+          "judgement": "absent",
+          "count": 0,
+          "rationale": "detections=0@conf>=0.25"
+        },
+        {
+          "category": "elbow fitting",
+          "judgement": "absent",
+          "count": 0,
+          "rationale": "detections=0@conf>=0.25"
+        },
+        {
+          "category": "valve",
+          "judgement": "absent",
+          "count": 0,
+          "rationale": "detections=0@conf>=0.25"
+        },
+        {
+          "category": "gasket",
+          "judgement": "absent",
+          "count": 0,
+          "rationale": "detections=0@conf>=0.25"
+        },
+        {
+          "category": "bolted flange joint",
+          "judgement": "absent",
+          "count": 0,
+          "rationale": "detections=0@conf>=0.25"
+        },
+        {
+          "category": "pipe support",
+          "judgement": "absent",
+          "count": 0,
+          "rationale": "detections=0@conf>=0.25"
+        },
+        {
+          "category": "pressure gauge",
+          "judgement": "absent",
+          "count": 0,
+          "rationale": "detections=0@conf>=0.25"
+        }
+      ]
+    },
+    {
+      "file_name": "Piping03.png",
+      "attribution": {
+        "source": "Wikimedia Commons",
+        "author": "Wikikart99",
+        "license": "CC0 1.0",
+        "license_url": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "url": "https://commons.wikimedia.org/wiki/File:A_UPW_Installation_using_PVDF_Piping.png",
+        "shows": "PVDF piping, fittings, valves"
+      },
+      "vlm": [
+        {
+          "category": "person",
+          "judgement": "absent",
+          "count": null,
+          "rationale": "No people are visible in the image"
+        },
+        {
+          "category": "pipe",
+          "judgement": "present",
+          "count": 50,
+          "rationale": "Numerous white plastic pipes throughout the system"
+        },
+        {
+          "category": "flange",
+          "judgement": "present",
+          "count": 25,
+          "rationale": "Many circular flanges connecting pipe segments"
+        },
+        {
+          "category": "tee fitting",
+          "judgement": "present",
+          "count": 12,
+          "rationale": "T-shaped pipe connectors visible on lines"
+        },
+        {
+          "category": "elbow fitting",
+          "judgement": "present",
+          "count": 10,
+          "rationale": "90-degree curved pipe elbows visible"
+        },
+        {
+          "category": "valve",
+          "judgement": "present",
+          "count": 18,
+          "rationale": "Orange and black control valves on pipes"
+        },
+        {
+          "category": "gasket",
+          "judgement": "present",
+          "count": 15,
+          "rationale": "Reddish sealing gaskets visible at joints"
+        },
+        {
+          "category": "bolted flange joint",
+          "judgement": "present",
+          "count": 12,
+          "rationale": "Flanges secured with bolts, especially top right"
+        },
+        {
+          "category": "pipe support",
+          "judgement": "present",
+          "count": 15,
+          "rationale": "Stainless steel framing supporting the piping network"
+        },
+        {
+          "category": "pressure gauge",
+          "judgement": "absent",
+          "count": null,
+          "rationale": "No dial pressure gauges are visible"
+        }
+      ],
+      "yolo": [
+        {
+          "category": "person",
+          "judgement": "absent",
+          "count": 0,
+          "rationale": "detections=0@conf>=0.25"
+        },
+        {
+          "category": "pipe",
+          "judgement": "absent",
+          "count": 0,
+          "rationale": "detections=0@conf>=0.25"
+        },
+        {
+          "category": "flange",
+          "judgement": "absent",
+          "count": 0,
+          "rationale": "detections=0@conf>=0.25"
+        },
+        {
+          "category": "tee fitting",
+          "judgement": "absent",
+          "count": 0,
+          "rationale": "detections=0@conf>=0.25"
+        },
+        {
+          "category": "elbow fitting",
+          "judgement": "absent",
+          "count": 0,
+          "rationale": "detections=0@conf>=0.25"
+        },
+        {
+          "category": "valve",
+          "judgement": "absent",
+          "count": 0,
+          "rationale": "detections=0@conf>=0.25"
+        },
+        {
+          "category": "gasket",
+          "judgement": "absent",
+          "count": 0,
+          "rationale": "detections=0@conf>=0.25"
+        },
+        {
+          "category": "bolted flange joint",
+          "judgement": "absent",
+          "count": 0,
+          "rationale": "detections=0@conf>=0.25"
+        },
+        {
+          "category": "pipe support",
+          "judgement": "absent",
+          "count": 0,
+          "rationale": "detections=0@conf>=0.25"
+        },
+        {
+          "category": "pressure gauge",
+          "judgement": "absent",
+          "count": 0,
+          "rationale": "detections=0@conf>=0.25"
+        }
+      ]
+    },
+    {
+      "file_name": "Piping04.jpg",
+      "attribution": {
+        "source": "Wikimedia Commons",
+        "author": "Audriusa",
+        "license": "CC BY-SA 3.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/3.0/deed.en",
+        "url": "https://commons.wikimedia.org/wiki/File:Pipeline_device.jpg",
+        "shows": "industrial gas pipeline device, pipe"
+      },
+      "vlm": [
+        {
+          "category": "person",
+          "judgement": "absent",
+          "count": null,
+          "rationale": "no people visible"
+        },
+        {
+          "category": "pipe",
+          "judgement": "present",
+          "count": 5,
+          "rationale": "multiple metal and flexible pipes"
+        },
+        {
+          "category": "flange",
+          "judgement": "present",
+          "count": 4,
+          "rationale": "circular pipe flanges visible"
+        },
+        {
+          "category": "tee fitting",
+          "judgement": "present",
+          "count": 2,
+          "rationale": "T-junctions on the piping system"
+        },
+        {
+          "category": "elbow fitting",
+          "judgement": "present",
+          "count": 2,
+          "rationale": "curved elbow pipe sections"
+        },
+        {
+          "category": "valve",
+          "judgement": "present",
+          "count": 3,
+          "rationale": "valve wheel and handles visible"
+        },
+        {
+          "category": "gasket",
+          "judgement": "uncertain",
+          "count": null,
+          "rationale": "gaskets inside joints are not clearly visible"
+        },
+        {
+          "category": "bolted flange joint",
+          "judgement": "present",
+          "count": 3,
+          "rationale": "bolted flange connections visible"
+        },
+        {
+          "category": "pipe support",
+          "judgement": "present",
+          "count": 2,
+          "rationale": "concrete blocks supporting the pipes"
+        },
+        {
+          "category": "pressure gauge",
+          "judgement": "absent",
+          "count": null,
+          "rationale": "no pressure gauges visible"
+        }
+      ],
+      "yolo": [
+        {
+          "category": "person",
+          "judgement": "absent",
+          "count": 0,
+          "rationale": "detections=0@conf>=0.25"
+        },
+        {
+          "category": "pipe",
+          "judgement": "absent",
+          "count": 0,
+          "rationale": "detections=0@conf>=0.25"
+        },
+        {
+          "category": "flange",
+          "judgement": "absent",
+          "count": 0,
+          "rationale": "detections=0@conf>=0.25"
+        },
+        {
+          "category": "tee fitting",
+          "judgement": "absent",
+          "count": 0,
+          "rationale": "detections=0@conf>=0.25"
+        },
+        {
+          "category": "elbow fitting",
+          "judgement": "absent",
+          "count": 0,
+          "rationale": "detections=0@conf>=0.25"
+        },
+        {
+          "category": "valve",
+          "judgement": "absent",
+          "count": 0,
+          "rationale": "detections=0@conf>=0.25"
+        },
+        {
+          "category": "gasket",
+          "judgement": "absent",
+          "count": 0,
+          "rationale": "detections=0@conf>=0.25"
+        },
+        {
+          "category": "bolted flange joint",
+          "judgement": "absent",
+          "count": 0,
+          "rationale": "detections=0@conf>=0.25"
+        },
+        {
+          "category": "pipe support",
+          "judgement": "absent",
+          "count": 0,
+          "rationale": "detections=0@conf>=0.25"
+        },
+        {
+          "category": "pressure gauge",
+          "judgement": "absent",
+          "count": 0,
+          "rationale": "detections=0@conf>=0.25"
+        }
+      ]
+    }
+  ],
+  "disclaimer": "定性デモ。正解ラベルが無いため精度・有意差は算出しない。示すのは(1)YOLO語彙ギャップ(2)VLMのゼロショット適用可能性のみ。"
+}

@@ -1,5 +1,5 @@
 # PR 時: 単体テスト + smoke 評価(n=50)+ 回帰ゲート
-# v4: 回帰ゲートは mock プロバイダの smoke 評価で無料運用する。
+# 回帰ゲートは mock プロバイダの smoke 評価で無料運用する。
 #     API キー・secrets・課金は不要(fork からの PR でもそのまま動く)。
 name: eval-pr
 

@@ -1,10 +1,10 @@
-"""compare(M4 比較ドライバ)の単体テスト。"""
+"""compare(比較ドライバ)の単体テスト。"""
 
 import json
 
 import pytest
 
-from src.analysis.compare import compare, to_markdown
+from src.analysis.compare import compare, support_sensitivity, to_markdown
 
 
 def _write_eval_set(tmp_path):
@@ -108,3 +108,28 @@ def test_compare_rejects_mismatched_eval_set(tmp_path):
     pricing = _pricing(tmp_path)
     with pytest.raises(ValueError, match="評価セットが不一致"):
         compare(yolo, vlm, eval_path, pricing_path=pricing, n_boot=50)
+
+
+def test_support_sensitivity_excludes_rare_categories():
+    eval_set = [
+        {"image_id": 0, "checklist": ["dog", "cat"],
+         "ground_truth": {"dog": "present", "cat": "present"}},
+        {"image_id": 1, "checklist": ["dog", "cat"],
+         "ground_truth": {"dog": "present", "cat": "absent"}},
+        {"image_id": 2, "checklist": ["dog", "cat"],
+         "ground_truth": {"dog": "present", "cat": "absent"}},
+    ]
+
+    def recs(cat0):
+        return [{"image_id": e["image_id"], "judgements": [
+            {"category": "dog", "judgement": "present"},
+            {"category": "cat", "judgement": cat0 if e["image_id"] == 0 else "absent"}]}
+            for e in eval_set]
+
+    res = support_sensitivity(recs("absent"), recs("present"), eval_set, min_supports=(1, 3))
+    # cat(正例1件)だけが差を作るので、support>=3 に絞ると差は消える
+    assert res["by_min_support"][0]["diff_pt"] == 50.0
+    assert res["by_min_support"][1] == {"min_support": 3, "n_categories": 1, "yolo_macro_f1": 1.0,
+                                        "vlm_macro_f1": 1.0, "diff_pt": 0.0}
+    assert res["per_category"][0]["category"] == "cat"
+    assert res["per_category"][0]["contribution_pt"] == 50.0

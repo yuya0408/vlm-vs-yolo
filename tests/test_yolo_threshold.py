@@ -1,7 +1,7 @@
 """yolo_threshold(しきい値スイープの後処理)の単体テスト。推論はモックで代替。"""
 
 from src.analysis.yolo_threshold import (
-    _records_at_threshold, sweep, tune_test_split, _argmax,
+    _records_at_threshold, export_run, sweep, tune_test_split, _argmax,
 )
 
 
@@ -59,3 +59,14 @@ def test_tune_test_split_is_deterministic_and_disjoint():
 def test_argmax_picks_highest_macro_f1():
     curve = [{"threshold": 0.1, "macro_f1": 0.8}, {"threshold": 0.2, "macro_f1": 0.9}]
     assert _argmax(curve)["threshold"] == 0.2
+
+
+def test_export_run_keeps_latency_and_format():
+    base = {"provider": "yolo", "model_version": "yolo-yolo26x", "eval_set_path": "e.json",
+            "eval_set_sha256": "abcdef0123",
+            "records": [{"image_id": 0, "latency_sec": 0.5}, {"image_id": 1, "latency_sec": 0.7}]}
+    run = export_run(_raw(), _eval_set(), 0.075, base)
+    assert run["run_id"] == "yolo-yolo26x-tuned075-abcdef01"
+    assert run["model_version"] == "yolo-yolo26x@conf0.075"
+    assert [r["latency_sec"] for r in run["records"]] == [0.5, 0.7]
+    assert run["records"][0]["judgements"][0]["judgement"] == "present"
