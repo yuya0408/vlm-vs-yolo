@@ -88,6 +88,7 @@ def _result_cost_jpy(result: dict, pricing: dict) -> float:
         u = rec.get("usage") or {}
         total_usd += (u.get("input_tokens", 0) / 1e6) * in_rate
         total_usd += (u.get("output_tokens", 0) / 1e6) * out_rate
+        total_usd += (u.get("thoughts_tokens", 0) / 1e6) * out_rate  # 思考は出力の単価
     return total_usd * usd_jpy
 
 

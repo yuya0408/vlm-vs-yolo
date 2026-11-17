@@ -108,7 +108,7 @@ def analyze(raw: dict, eval_set: list[dict], thresholds: list[float],
 
     # 2) 運用しきい値の選定は VLM 非依存の3基準の収束で行う(docs/DESIGN.md, report/REPORT.md §2):
     #    (a) 標準慣行: 全データの micro-F1 / item accuracy のピーク
-    #    (b) リークなし分割: tune 上で micro-F1 を最大化する閾値を選び、test で評価
+    #    (b) tune/test 分割(分割は全体の集計を見た後に設計): tune 上で micro-F1 を最大化する閾値を選び、test で評価
     #    (c) argmax一致: (a)の argmax が (b)の選定と一致するか
     operating_by_micro_f1_full = _argmax_by(full_curve, "micro_f1")
     operating_by_item_accuracy_full = _argmax_by(full_curve, "item_accuracy")
@@ -140,7 +140,7 @@ def analyze(raw: dict, eval_set: list[dict], thresholds: list[float],
             "test_frac": test_frac, "seed": seed,
             "n_tune": len(tune), "n_test": len(test),
             "best_threshold_on_tune": best_on_tune["threshold"],
-            "test_micro_f1_at_tuned": test_at_best["micro_f1"],    # リークなしの正当な値
+            "test_micro_f1_at_tuned": test_at_best["micro_f1"],    # tune で選んだ閾値の test での値
             "test_macro_f1_at_tuned": test_at_best["macro_f1"],
             "test_macro_f1_at_default_0.25": test_default["macro_f1"],
             "test_optimal": test_optimal,         # test 上の到達可能上限(micro-F1 基準、参考)
@@ -188,6 +188,8 @@ def main() -> None:
     p_sw.add_argument("--out", default="results/yolo_threshold.json")
     p_sw.add_argument("--test-frac", type=float, default=0.6)
     p_sw.add_argument("--seed", type=int, default=42)
+    p_sw.add_argument("--step", type=float, default=None,
+                      help="指定すると 0.01〜0.25 をこの刻みで走査する(細かい刻みの確認用)")
 
     p_ex = sub.add_parser("export")
     p_ex.add_argument("--raw", default="results/yolo_raw_detections.json")
@@ -220,6 +222,9 @@ def main() -> None:
     # (report/REPORT.md §2)。0.01〜0.25 は密に、それ以降は既定の 0.05 刻みのまま。
     thresholds = [0.01, 0.02, 0.025, 0.05, 0.075, 0.1, 0.125, 0.15, 0.2, 0.25] + \
         [round(0.05 * k, 2) for k in range(6, 16)]  # 0.3〜0.75
+    if args.step:
+        n = int(round((0.25 - 0.01) / args.step))
+        thresholds = [round(0.01 + args.step * k, 4) for k in range(n + 1)]
     res = analyze(raw, eval_set, thresholds, args.test_frac, args.seed)
     Path(args.out).parent.mkdir(parents=True, exist_ok=True)
     Path(args.out).write_text(json.dumps(res, ensure_ascii=False, indent=2), encoding="utf-8")
@@ -233,9 +238,9 @@ def main() -> None:
           f"conf={o['threshold']} macro-F1={o['macro_f1']}")
     print(f"運用しきい値: 標準慣行(micro-F1)={op['standard_practice_micro_f1']} / "
           f"標準慣行(item accuracy)={op['standard_practice_item_accuracy']} / "
-          f"リークなしtune選定={op['leak_free_tune_selected']} "
+          f"tune選定={op['leak_free_tune_selected']} "
           f"→ 収束={'YES' if op['converged'] else 'NO'}")
-    print(f"リークなし: tune({s['n_tune']})で conf={s['best_threshold_on_tune']} を選び "
+    print(f"tune/test 分割: tune({s['n_tune']})で conf={s['best_threshold_on_tune']} を選び "
           f"test({s['n_test']})で micro-F1={s['test_micro_f1_at_tuned']} "
           f"macro-F1={s['test_macro_f1_at_tuned']} "
           f"(test の既定0.25 macro-F1={s['test_macro_f1_at_default_0.25']})")

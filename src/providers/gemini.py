@@ -70,6 +70,7 @@ class GeminiProvider(VLMProvider):
         usage = {
             "input_tokens": int(getattr(um, "prompt_token_count", 0) or 0),
             "output_tokens": int(getattr(um, "candidates_token_count", 0) or 0),
+            "thoughts_tokens": int(getattr(um, "thoughts_token_count", 0) or 0),
         }
         model_version = getattr(resp, "model_version", None) or model
         return resp.text, usage, model_version
@@ -140,7 +141,8 @@ class GeminiProvider(VLMProvider):
         return ProviderResponse(
             judgements=judgements,
             usage=Usage(input_tokens=usage.get("input_tokens", 0),
-                        output_tokens=usage.get("output_tokens", 0)),
+                        output_tokens=usage.get("output_tokens", 0),
+                        thoughts_tokens=usage.get("thoughts_tokens", 0)),
             latency_sec=latency,
             model_version=model_version,
             raw_text=text,

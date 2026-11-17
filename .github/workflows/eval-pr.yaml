@@ -7,7 +7,11 @@ on:
   pull_request:
     paths:
       - "src/**"
-      - "conf/**"   # プロンプト = コード。変更は必ずここを通る
+      - "conf/**"   # プロンプト = コード。ただし mock はプロンプトを使わず、検出するのはパイプラインの破損
+      - "data/**"
+      - "baselines/**"
+      - "tests/**"
+      - "requirements.txt"
 
 jobs:
   test-and-gate:

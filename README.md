@@ -29,7 +29,7 @@ flowchart TB
 | 調整後 conf=0.075 | 差：macro-F1 +3.2pt [−0.4, +4.4]、micro-F1 +0.5pt [−0.7, +1.6]、McNemar p=0.71。**差を検出できなかった** |
 | 差を検出できない閾値の範囲 | グリッド上のconf 0.05〜0.10（画像単位のペア差CIで、3指標とも0を含む）。それ以外ではどれかの指標でVLMが有意に上（点ごと、補正なし） |
 | macro-F1の差の内訳 | 3.2ptのうち2.6ptは正例1件の2カテゴリ。正例3件以上に絞ると0.2pt |
-| コスト（300枚） | YOLO 0円（API課金が0という意味）、VLM 251円 |
+| コスト（300枚） | YOLO 0円（API課金が0という意味）、VLM 251円（思考トークンを含まない。含めると約520円の見込み） |
 | レイテンシ中央値 | YOLO 0.33秒（手元のマシン）、VLM 5.42秒（API経由）。条件が違うので参考の約16倍 |
 | 損益分岐（語彙外でラベルを作る場合の試算） | YOLOに有利な仮定で累計約41万枚。回収36か月を許すなら月11,434枚。学習したYOLOの精度は未検証 |
 | プロンプト3水準 | ばらつきはmacro-F1で0.46pt。YOLOとの判定は変わらず（事前に決めた規則） |
@@ -104,6 +104,8 @@ macro-F1は正例1件のカテゴリも同じ重みなので、1件の正誤で1
 | YOLO（conf=0.075） | 0円 | 0.33秒 | 0.52秒 | API課金が0という意味。手元のMacで計測 |
 | VLM | 251円 | 5.42秒 | 7.87秒 | API経由。経路が違うので、同じ条件の比較ではない |
 
+VLMの251円は、記録した入力・出力トークンから計算した値で、思考（thinking）のトークンを含まない。Geminiは思考のトークンを出力と同じ単価で課金する。2026-11-17に同じ設定・同じ画像で1回呼ぶと、思考805・出力442トークンだった（別名`gemini-3.5-flash`は`gemini-3.6-flash`を返し、実行時と同じ版かは分からない）。同じ比が300枚に当てはまれば、思考は約18.6万トークンで、費用は約520円（1枚約1.74円）、記録の約2.1倍になる。これからの実行は思考のトークンも記録し、費用に入れる（`src/providers/gemini.py`・`src/gate.py`）。
+
 閾値は推論後のフィルタなので、調整してもコストとレイテンシは動かない。YOLOの学習や運用の費用は次の節で扱う。
 
 ---
@@ -130,6 +132,8 @@ VLMの累計(Tか月)  = 0.84円/枚 × 月間枚数 × T          （251円 ÷ 
 | **基準（34万円）** | **411,633枚** | 回収不能 | 82.3か月 | 8.2か月 | 0.8か月 | **11,434枚** |
 | ×3（103万円） | 1,234,900枚 | 回収不能 | 回収不能 | 24.7か月 | 2.5か月 | ― |
 | ×10（344万円） | 4,116,335枚 | 回収不能 | 回収不能 | 82.3か月 | 8.2か月 | ― |
+
+VLMの単価0.84円/枚は思考のトークンを含まない（[前の節](#精度で決められないので決め手はコストとレイテンシに移る)）。見込みの1.74円/枚にすると、基準の損益分岐は累計約20万枚、回収36か月に要るのは月約5,500枚に下がる（344,400円 ÷ 1.74円）。VLMの単価は低めに置いた側で、この点はYOLOに有利な仮定になっていない。
 
 「月1万枚のオーダー」は、回収を36か月まで許す場合の目安である。この節は結果を見た後に足した分析で、値は仮定を置いて計算したものであり測っていない（[限界と範囲外](#限界と範囲外)）。
 前提値と出典は [conf/costs.yaml](conf/costs.yaml) にある。
@@ -222,11 +226,12 @@ VLMの累計(Tか月)  = 0.84円/枚 × 月間枚数 × T          （251円 ÷ 
 | 閾値の端 | conf 0.01・0.02ではVLMが再び有意 | 「閾値によらず有意でない」とは言えない。点差は数ptに収まる | [詳しい値](#閾値の全点) |
 | レイテンシ | YOLOは手元のMacで、機種とデバイスの記録が無い。VLMはAPI経由で、ネットワークと時間帯による単発の計測 | 約16倍は参考の値。GPUの有無で変わる | ― |
 | 損益分岐の仮定 | 手戻り1.2、40時間、6,000円/時、1枚5矩形は出典の無い仮定。3,000枚で目標の精度に届くかも確かめていない | 固定費の7割は学習工数の仮定で、「下限」ではない。自分の値で計算し直す前提 | [conf/costs.yaml](conf/costs.yaml) |
-| VLM | 1プロバイダ・1モデル、プロンプト3水準、temperature 0 | ほかのVLMやプロンプトでは変わり得る | [REPORT §2b](report/REPORT.md#2b-vlm-側のプロンプト感度3-水準実行済み結論不変) |
+| VLM | 1プロバイダ・1モデル、プロンプト3水準、temperature 0。Gemini 3系の公式は temperature を既定の1.0のままにするよう勧めている。モデルは別名（`gemini-3.5-flash`）で呼び、版を固定していない | ほかのVLMやプロンプト、温度では変わり得る。VLMを既定でない設定で動かしている点は、YOLOの閾値と同じ種類の注意が要る | [REPORT §2b](report/REPORT.md#2b-vlm-側のプロンプト感度3-水準実行済み結論不変) |
 | 語彙 | COCO 80クラスの中はYOLOの学習範囲で、YOLOに最も有利な条件 | 語彙内の結論は語彙外に当てはまらない | [REPORT §7](report/REPORT.md#7-意思決定ルールまとめ-三つの場面) |
 | 追加学習 | YOLOのファインチューニングはしていない（COCOで評価するので汚染になる） | 語彙外で追加学習した場合の精度は分からない | [REPORT §6](report/REPORT.md#6-限界脅威) |
 | 座標 | bboxとIoUは測っていない | 座標が要るタスクには当てはまらない | [docs/DESIGN.md](docs/DESIGN.md) |
 | 語彙外のデモ | 5枚・正解ラベルなし | 精度の主張はしない | [REPORT 付録](report/REPORT.md#付録-建設ドメインでの適用可能性デモ定性) |
+| VLMの費用 | 思考のトークンを記録していない。1回の確かめでは出力の約1.8倍あった | 費用は約2.1倍に過小の可能性。損益分岐はYOLOに有利でない側にずれる | [費用の節](#精度で決められないので決め手はコストとレイテンシに移る) |
 | 回帰ゲート | PRで回るのはmockでの評価（n=50）だけで、本物のモデルの精度は見ていない | パイプラインの破損を検出するもの | [eval-pr.yaml](.github/workflows/eval-pr.yaml) |
 
 設計の段階で考えて実行しなかった分析は [docs/DESIGN.md §4](docs/DESIGN.md#4-統計的評価) に書いてある。
@@ -262,7 +267,7 @@ test 180枚では、差はmacro-F1 +1.69pt [−2.33, +3.56]、micro-F1 −0.47pt
 | 0.20 | 0.914 | 0.940 | 0.965 | 0.822 | 0.026 |
 | 0.25 | 0.906 | 0.934 | 0.961 | 0.767 | 0.004 |
 
-0.30以上は [results/yolo_threshold.json](results/yolo_threshold.json) にあり、macro-F1は下がり続ける。グリッドの刻みは荒く、より細かく見るとmicro-F1の最大は0.08付近にずれる（0.956）が、0.075との差は0.2ptである。
+0.30以上は [results/yolo_threshold.json](results/yolo_threshold.json) にあり、macro-F1は下がり続ける。グリッドの刻みは荒く、0.005刻みで見ると、micro-F1の最大は全300枚でもtuneの120枚でも0.08（全300枚で0.956）で、0.075との差は0.2ptである。0.08でも差は検出できない（[results/yolo_threshold_fine.json](results/yolo_threshold_fine.json)、`sweep --step 0.005`）。
 
 ### 誤りの内訳（調整後 conf=0.075）
 
@@ -294,7 +299,7 @@ test 180枚では、差はmacro-F1 +1.69pt [−2.33, +3.56]、micro-F1 −0.47pt
 | `calibrated` 300枚 | 260円 |
 | 計（語彙外のデモ5枚は記録なし） | 823円 |
 
-`concise`は2026-09-05にもキャッシュから読み直していて、応答は初回と同じである。
+`concise`は2026-09-05にもキャッシュから読み直した（APIは呼んでいないので、同じ応答が返ることの確かめにはならない）。
 
 ---
 
@@ -332,9 +337,15 @@ python -m src.analysis.breakeven --figure report/figures/breakeven_ja.png
 推論からやり直す場合（COCO val2017、`yolo26x.pt`、`.env`の`GEMINI_API_KEY`が要り、VLMは1水準あたり約250〜310円）：
 
 ```bash
+python -m src.runner --eval-set data/eval_set.json --model yolo    # → results/yolo-yolo26x-289d6c0e.json
 python -m src.analysis.yolo_threshold capture --eval-set data/eval_set.json --weights yolo26x.pt
-python -m src.runner --eval-set data/eval_set.json --model flash
+python -m src.analysis.yolo_threshold sweep --eval-set data/eval_set.json
+python -m src.analysis.yolo_threshold export --eval-set data/eval_set.json --threshold 0.075 \
+    --base-run results/yolo-yolo26x-289d6c0e.json --out results/yolo-yolo26x-tuned075-289d6c0e.json
+python -m src.runner --eval-set data/eval_set.json --model flash   # → results/gemini-gemini-3.5-flash-concise-289d6c0e.json
 ```
+
+比較のコマンドが読む `results/gemini-gemini-3.5-flash-289d6c0e.json` は、プロンプト名を run_id に入れる前の名前で、判定は `-concise-` の付いたファイルと同じである。ライブラリの版は固定していない（実行時の版の記録が無い）。
 
 プロンプトの比較のコマンドは [REPORT §2b](report/REPORT.md#2b-vlm-側のプロンプト感度3-水準実行済み結論不変) にある。
 
@@ -356,7 +367,7 @@ python -m src.runner --eval-set data/eval_set.json --model flash
 
 ## データ・ライセンス・出典
 
-- コード: [MITライセンス](LICENSE)。
+- コード: [MITライセンス](LICENSE)。YOLOの推論に使う Ultralytics は AGPL-3.0 で、このリポジトリには含めていない。組み合わせて配布やサービスにする場合は AGPL-3.0 の条件を確かめること。
 - COCO val2017: アノテーションはCC BY 4.0、画像はFlickrの各ライセンス（[cocodataset.org](https://cocodataset.org/#termsofuse)）。`data/eval_set.json`はアノテーションから作り、画像は含まない。
 - YOLO: [Ultralytics](https://github.com/ultralytics/ultralytics)。ライブラリと重みはAGPL-3.0で、重みはこのリポジトリに含まない。
 - 語彙外のデモの画像: Wikimedia Commons。作者とライセンス（CC BY 2.0、CC BY-SA 3.0・4.0、CC0）は画像ごとに [data/construction/attributions.json](data/construction/attributions.json) にある。MITライセンスの対象外である。
