@@ -30,6 +30,8 @@ class Usage:
 
     input_tokens: int
     output_tokens: int
+    # 思考(thinking)のトークン。Gemini は出力と同じ単価で課金する。2026-11 以前の記録には無い
+    thoughts_tokens: int = 0
 
 
 @dataclass(frozen=True)

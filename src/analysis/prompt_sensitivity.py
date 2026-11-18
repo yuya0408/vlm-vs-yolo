@@ -5,7 +5,7 @@ YOLO 側は conf(スカラー 1 次元)をグリッド全走査できるが、VL
 そこで「全走査」の代わりに **水準を数本振って結論が反転しないかだけを確認する** 最低限の検証を行う。
 
 設計(YOLO 側と手続きを揃える):
-- 選定はリークなし: `yolo_threshold.tune_test_split` と同一の分割(既定 test_frac=0.6 / seed=42)を
+- 選定は tune/test 分割: `yolo_threshold.tune_test_split` と同一の分割(既定 test_frac=0.6 / seed=42)を
   使い、**tune で micro-F1 が最大のプロンプトを選び、test で報告する**。YOLO の閾値選定と同じ規則。
 - 感度の主指標は「プロンプト間のばらつき(max−min)」。これが YOLO の閾値の振れ幅(数 pt)と
   同程度なら、結論(精度で決めず、コスト/レイテンシで決める)はプロンプト選択に依存しないと言える。
@@ -131,7 +131,7 @@ def analyze(runs: dict[str, dict], eval_set: list[dict], baseline: str,
             pricing: dict | None = None, test_frac: float = 0.6, seed: int = 42,
             n_boot: int = 10_000, yolo_records: list[dict] | None = None,
             yolo_label: str = "yolo") -> dict:
-    """プロンプト水準ごとの指標・ばらつき・リークなし選定・YOLO との有意判定の反転有無を返す。"""
+    """プロンプト水準ごとの指標・ばらつき・tune での選定・YOLO との有意判定の反転有無を返す。"""
     if baseline not in runs:
         raise ValueError(f"baseline {baseline!r} が --run に無い: {sorted(runs)}")
     pricing = pricing or {}
@@ -160,7 +160,7 @@ def analyze(runs: dict[str, dict], eval_set: list[dict], baseline: str,
             "latency_median_sec": round(statistics.median(lat), 4) if lat else 0.0,
         }
 
-    # リークなし選定: tune で micro-F1 最大のプロンプトを選び、test で報告(YOLO 閾値と同じ規則)
+    # tune での選定: tune で micro-F1 最大のプロンプトを選び、test で報告(YOLO 閾値と同じ規則)
     selected = _argmax_prompt(tune_rows, "micro_f1")
     selection = {
         "rule": "tune 上の micro-F1 最大(YOLO の閾値選定と同一規則)",

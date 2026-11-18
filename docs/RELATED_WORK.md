@@ -1,6 +1,5 @@
 # 関連研究・将来の活用メモ
 
-<!-- gbrain: [[docs/design|確定設計(DESIGN.md)]] -->
 
 > 本作(yolo-vs-vlm)に効きそうな外部の研究・データセットの控え。将来の拡張の参考として残す。
 > 確定設計は `docs/DESIGN.md`。
@@ -57,4 +56,3 @@ fitting, electrical panel, fire alarm, pipe fitting, valve, outlet, generator, l
   <https://github.com/VoxDroid/Construction-Site-Safety-PPE-Detection>
 
 > 注意: いずれも外部の公開データで、本作では使っていない。将来の拡張の参考である。
-<!-- gbrain: [Source: User, 関連研究の調査メモ, 2026-09-13] -->

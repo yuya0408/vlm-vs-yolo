@@ -1,8 +1,9 @@
 {
-  "vlm_unit_jpy_per_image": 0.8367,
+  "vlm_unit_jpy_per_image": 1.6687,
   "vlm_measured": {
     "measured_cost_jpy": 251,
-    "measured_n_images": 300
+    "measured_n_images": 300,
+    "thinking_cost_jpy": 249.6
   },
   "horizons_months": [
     3,
@@ -28,32 +29,32 @@
       "sensitivity_by_fixed_cost": {
         "x1": {
           "fixed_total_jpy": 344400,
-          "break_even_images": 411633,
+          "break_even_images": 206392,
           "payback_months": {
             "500": null,
-            "5000": 82.3,
-            "50000": 8.2,
-            "500000": 0.8
+            "5000": 41.3,
+            "50000": 4.1,
+            "500000": 0.4
           }
         },
         "x3": {
           "fixed_total_jpy": 1033200,
-          "break_even_images": 1234900,
+          "break_even_images": 619177,
           "payback_months": {
             "500": null,
             "5000": null,
-            "50000": 24.7,
-            "500000": 2.5
+            "50000": 12.4,
+            "500000": 1.2
           }
         },
         "x10": {
           "fixed_total_jpy": 3444000,
-          "break_even_images": 4116335,
+          "break_even_images": 2063923,
           "payback_months": {
             "500": null,
             "5000": null,
-            "50000": 82.3,
-            "500000": 8.2
+            "50000": 41.3,
+            "500000": 4.1
           }
         }
       },
@@ -65,51 +66,51 @@
         "n_boxes": 15000
       },
       "ops_monthly_jpy": 0.0,
-      "break_even_images": 411633,
+      "break_even_images": 206392,
       "break_even_monthly_volume": {
-        "3": 137211,
-        "6": 68606,
-        "12": 34303,
-        "24": 17151,
-        "36": 11434
+        "3": 68797,
+        "6": 34399,
+        "12": 17199,
+        "24": 8600,
+        "36": 5733
       },
       "payback_months": {
         "500": null,
-        "5000": 82.3,
-        "50000": 8.2,
-        "500000": 0.8
+        "5000": 41.3,
+        "50000": 4.1,
+        "500000": 0.4
       }
     },
     "zero_annotation": {
       "sensitivity_by_fixed_cost": {
         "x1": {
           "fixed_total_jpy": 240000,
-          "break_even_images": 286853,
+          "break_even_images": 143827,
           "payback_months": {
             "500": null,
-            "5000": 57.4,
-            "50000": 5.7,
-            "500000": 0.6
+            "5000": 28.8,
+            "50000": 2.9,
+            "500000": 0.3
           }
         },
         "x3": {
           "fixed_total_jpy": 720000,
-          "break_even_images": 860558,
+          "break_even_images": 431482,
           "payback_months": {
             "500": null,
-            "5000": null,
-            "50000": 17.2,
-            "500000": 1.7
+            "5000": 86.3,
+            "50000": 8.6,
+            "500000": 0.9
           }
         },
         "x10": {
           "fixed_total_jpy": 2400000,
-          "break_even_images": 2868526,
+          "break_even_images": 1438274,
           "payback_months": {
             "500": null,
             "5000": null,
-            "50000": 57.4,
-            "500000": 5.7
+            "50000": 28.8,
+            "500000": 2.9
           }
         }
       },
@@ -121,19 +122,19 @@
         "n_boxes": 15000
       },
       "ops_monthly_jpy": 0.0,
-      "break_even_images": 286853,
+      "break_even_images": 143827,
       "break_even_monthly_volume": {
-        "3": 95618,
-        "6": 47809,
-        "12": 23904,
-        "24": 11952,
-        "36": 7968
+        "3": 47942,
+        "6": 23971,
+        "12": 11986,
+        "24": 5993,
+        "36": 3995
       },
       "payback_months": {
         "500": null,
-        "5000": 57.4,
-        "50000": 5.7,
-        "500000": 0.6
+        "5000": 28.8,
+        "50000": 2.9,
+        "500000": 0.3
       }
     }
   },

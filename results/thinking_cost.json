@@ -1,0 +1,28 @@
+{
+  "base_run": "gemini-gemini-3.5-flash-289d6c0e",
+  "sample_run": "gemini-gemini-3.5-flash-concise-eb0e9a0b",
+  "sample_model_version": "gemini-3.6-flash",
+  "n_base": 300,
+  "n_sample": 30,
+  "thinking_to_output_ratio": 1.686,
+  "ratio_ci95": [
+    1.401,
+    2.006
+  ],
+  "recorded_cost_jpy": 251.1,
+  "thinking_cost_jpy": 249.6,
+  "thinking_cost_ci95_jpy": [
+    207.5,
+    297.0
+  ],
+  "total_cost_jpy": 500.7,
+  "unit_jpy_per_image": 1.669,
+  "unit_ci95_jpy_per_image": [
+    1.529,
+    1.827
+  ],
+  "judgement_agreement": [
+    225,
+    229
+  ]
+}

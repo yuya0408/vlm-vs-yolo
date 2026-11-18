@@ -4,7 +4,7 @@ import json
 
 import yaml
 
-from src.gate import cost_guard, regression_gate
+from src.gate import _result_cost_jpy, cost_guard, regression_gate
 
 
 EVAL_SET = [
@@ -94,3 +94,12 @@ def test_cost_guard_passes_under_limit_and_month_filter(tmp_path):
                   model="gemini-x", created="2026-05-01T00:00:00")
     pricing = _pricing(tmp_path)
     assert cost_guard("2026-06", CONFIG, results_dir=str(rdir), pricing_path=pricing) is True
+
+
+def test_thoughts_tokens_are_priced_as_output():
+    pricing = {"usd_jpy": 150, "models": {"gemini-x": {"input": 10.0, "output": 30.0}}}
+    rec = {"usage": {"input_tokens": 0, "output_tokens": 1_000_000, "thoughts_tokens": 1_000_000}}
+    # 出力 30 ドル + 思考 30 ドル = 60 ドル = 9000 円。思考の無い古い記録は出力だけ
+    assert _result_cost_jpy({"model_version": "gemini-x", "records": [rec]}, pricing) == 9000
+    old = {"usage": {"input_tokens": 0, "output_tokens": 1_000_000}}
+    assert _result_cost_jpy({"model_version": "gemini-x", "records": [old]}, pricing) == 4500
