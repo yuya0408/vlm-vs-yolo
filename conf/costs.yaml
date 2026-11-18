@@ -10,7 +10,11 @@
 vlm:
   measured_cost_jpy: 251      # REPORT §1 の実測(gemini-3.5-flash, N=300)
   measured_n_images: 300
-  # 単価 = 251 / 300 ≒ 0.84 円/枚。プロンプトが長くなれば上がる(§2b)
+  # 251 円は思考(thinking)のトークンを含まない(本番ランで記録していなかった)。Gemini は思考を
+  # 出力と同じ単価で課金するので、30 枚の標本ランで測った比から推定して足す
+  # (src/analysis/thinking_cost.py → results/thinking_cost.json。95% 区間 207.5〜297.0 円)。
+  thinking_cost_jpy: 249.6
+  # 単価 = (251 + 249.6) / 300 ≒ 1.67 円/枚。プロンプトが長くなれば上がる(§2b)
 
 # --- 為替・レート(pricing.yaml と揃える)---
 usd_jpy: 161.5

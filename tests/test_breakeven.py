@@ -34,6 +34,11 @@ def test_vlm_unit_cost_is_measured_cost_divided_by_images():
         vlm_unit_cost_jpy({"vlm": {"measured_cost_jpy": 251, "measured_n_images": 0}})
 
 
+def test_vlm_unit_cost_adds_thinking_cost():
+    costs = {"vlm": {"measured_cost_jpy": 251, "thinking_cost_jpy": 249, "measured_n_images": 300}}
+    assert vlm_unit_cost_jpy(costs) == pytest.approx(500 / 300)
+
+
 def test_fixed_cost_splits_label_and_engineering():
     fc = fixed_cost(_costs()["scenarios"]["cheap"])
     assert fc["label_jpy"] == 3000.0

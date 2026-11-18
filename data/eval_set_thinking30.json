@@ -1,0 +1,979 @@
+[
+  {
+    "image_id": 322844,
+    "file_name": "000000322844.jpg",
+    "checklist": [
+      "handbag",
+      "wine glass",
+      "bench",
+      "scissors",
+      "motorcycle",
+      "cell phone",
+      "teddy bear",
+      "airplane",
+      "vase",
+      "skateboard"
+    ],
+    "ground_truth": {
+      "handbag": "absent",
+      "wine glass": "absent",
+      "bench": "present",
+      "scissors": "absent",
+      "motorcycle": "absent",
+      "cell phone": "absent",
+      "teddy bear": "present",
+      "airplane": "absent",
+      "vase": "absent",
+      "skateboard": "absent"
+    },
+    "meta": {
+      "n_objects": 2,
+      "min_bbox_area_ratio": 0.293207,
+      "has_crowd": false,
+      "gt_counts": {
+        "bench": 1,
+        "teddy bear": 1
+      }
+    }
+  },
+  {
+    "image_id": 498709,
+    "file_name": "000000498709.jpg",
+    "checklist": [
+      "book",
+      "car",
+      "pizza",
+      "snowboard",
+      "motorcycle",
+      "truck",
+      "handbag"
+    ],
+    "ground_truth": {
+      "book": "absent",
+      "car": "present",
+      "pizza": "absent",
+      "snowboard": "absent",
+      "motorcycle": "present",
+      "truck": "absent",
+      "handbag": "absent"
+    },
+    "meta": {
+      "n_objects": 4,
+      "min_bbox_area_ratio": 0.00658,
+      "has_crowd": false,
+      "gt_counts": {
+        "car": 3,
+        "motorcycle": 1
+      }
+    }
+  },
+  {
+    "image_id": 399205,
+    "file_name": "000000399205.jpg",
+    "checklist": [
+      "cat",
+      "airplane",
+      "pizza",
+      "surfboard",
+      "laptop",
+      "person",
+      "toilet",
+      "traffic light",
+      "cell phone",
+      "motorcycle"
+    ],
+    "ground_truth": {
+      "cat": "absent",
+      "airplane": "absent",
+      "pizza": "absent",
+      "surfboard": "absent",
+      "laptop": "absent",
+      "person": "present",
+      "toilet": "absent",
+      "traffic light": "absent",
+      "cell phone": "present",
+      "motorcycle": "present"
+    },
+    "meta": {
+      "n_objects": 16,
+      "min_bbox_area_ratio": 8.5e-05,
+      "has_crowd": false,
+      "gt_counts": {
+        "person": 12,
+        "cell phone": 3,
+        "motorcycle": 1
+      }
+    }
+  },
+  {
+    "image_id": 82688,
+    "file_name": "000000082688.jpg",
+    "checklist": [
+      "cell phone",
+      "horse",
+      "dining table",
+      "remote",
+      "hair drier"
+    ],
+    "ground_truth": {
+      "cell phone": "present",
+      "horse": "absent",
+      "dining table": "absent",
+      "remote": "present",
+      "hair drier": "absent"
+    },
+    "meta": {
+      "n_objects": 6,
+      "min_bbox_area_ratio": 0.002605,
+      "has_crowd": false,
+      "gt_counts": {
+        "cell phone": 1,
+        "remote": 2
+      }
+    }
+  },
+  {
+    "image_id": 88951,
+    "file_name": "000000088951.jpg",
+    "checklist": [
+      "mouse",
+      "cat",
+      "dog",
+      "person",
+      "bench",
+      "sheep"
+    ],
+    "ground_truth": {
+      "mouse": "absent",
+      "cat": "absent",
+      "dog": "present",
+      "person": "present",
+      "bench": "present",
+      "sheep": "absent"
+    },
+    "meta": {
+      "n_objects": 3,
+      "min_bbox_area_ratio": 0.011189,
+      "has_crowd": false,
+      "gt_counts": {
+        "dog": 1,
+        "person": 1,
+        "bench": 1
+      }
+    }
+  },
+  {
+    "image_id": 535578,
+    "file_name": "000000535578.jpg",
+    "checklist": [
+      "dog",
+      "cow",
+      "elephant",
+      "cake",
+      "pizza",
+      "carrot",
+      "sheep"
+    ],
+    "ground_truth": {
+      "dog": "absent",
+      "cow": "absent",
+      "elephant": "absent",
+      "cake": "absent",
+      "pizza": "absent",
+      "carrot": "absent",
+      "sheep": "present"
+    },
+    "meta": {
+      "n_objects": 11,
+      "min_bbox_area_ratio": 9.2e-05,
+      "has_crowd": false,
+      "gt_counts": {
+        "sheep": 11
+      }
+    }
+  },
+  {
+    "image_id": 495054,
+    "file_name": "000000495054.jpg",
+    "checklist": [
+      "truck",
+      "banana",
+      "skis",
+      "book",
+      "car",
+      "airplane",
+      "sports ball",
+      "suitcase",
+      "train",
+      "fork"
+    ],
+    "ground_truth": {
+      "truck": "present",
+      "banana": "absent",
+      "skis": "absent",
+      "book": "absent",
+      "car": "absent",
+      "airplane": "present",
+      "sports ball": "absent",
+      "suitcase": "absent",
+      "train": "absent",
+      "fork": "absent"
+    },
+    "meta": {
+      "n_objects": 8,
+      "min_bbox_area_ratio": 0.001553,
+      "has_crowd": false,
+      "gt_counts": {
+        "truck": 7,
+        "airplane": 1
+      }
+    }
+  },
+  {
+    "image_id": 236308,
+    "file_name": "000000236308.jpg",
+    "checklist": [
+      "skis",
+      "handbag",
+      "bird",
+      "backpack",
+      "person",
+      "teddy bear",
+      "sandwich"
+    ],
+    "ground_truth": {
+      "skis": "present",
+      "handbag": "absent",
+      "bird": "absent",
+      "backpack": "present",
+      "person": "present",
+      "teddy bear": "absent",
+      "sandwich": "absent"
+    },
+    "meta": {
+      "n_objects": 7,
+      "min_bbox_area_ratio": 0.000379,
+      "has_crowd": false,
+      "gt_counts": {
+        "skis": 2,
+        "backpack": 2,
+        "person": 3
+      }
+    }
+  },
+  {
+    "image_id": 342397,
+    "file_name": "000000342397.jpg",
+    "checklist": [
+      "spoon",
+      "fork",
+      "skis",
+      "person",
+      "apple",
+      "snowboard"
+    ],
+    "ground_truth": {
+      "spoon": "absent",
+      "fork": "absent",
+      "skis": "present",
+      "person": "present",
+      "apple": "absent",
+      "snowboard": "absent"
+    },
+    "meta": {
+      "n_objects": 9,
+      "min_bbox_area_ratio": 0.000539,
+      "has_crowd": false,
+      "gt_counts": {
+        "skis": 3,
+        "person": 6
+      }
+    }
+  },
+  {
+    "image_id": 546717,
+    "file_name": "000000546717.jpg",
+    "checklist": [
+      "car",
+      "wine glass",
+      "laptop",
+      "couch",
+      "chair",
+      "cup"
+    ],
+    "ground_truth": {
+      "car": "absent",
+      "wine glass": "absent",
+      "laptop": "present",
+      "couch": "present",
+      "chair": "absent",
+      "cup": "present"
+    },
+    "meta": {
+      "n_objects": 6,
+      "min_bbox_area_ratio": 0.005241,
+      "has_crowd": false,
+      "gt_counts": {
+        "laptop": 1,
+        "couch": 1,
+        "cup": 1
+      }
+    }
+  },
+  {
+    "image_id": 350003,
+    "file_name": "000000350003.jpg",
+    "checklist": [
+      "bottle",
+      "suitcase",
+      "truck",
+      "car",
+      "bear",
+      "bench",
+      "motorcycle"
+    ],
+    "ground_truth": {
+      "bottle": "absent",
+      "suitcase": "present",
+      "truck": "present",
+      "car": "present",
+      "bear": "absent",
+      "bench": "absent",
+      "motorcycle": "absent"
+    },
+    "meta": {
+      "n_objects": 6,
+      "min_bbox_area_ratio": 0.000278,
+      "has_crowd": false,
+      "gt_counts": {
+        "suitcase": 1,
+        "truck": 1,
+        "car": 1
+      }
+    }
+  },
+  {
+    "image_id": 16249,
+    "file_name": "000000016249.jpg",
+    "checklist": [
+      "person",
+      "dining table",
+      "chair",
+      "couch",
+      "motorcycle",
+      "banana",
+      "backpack",
+      "refrigerator",
+      "handbag",
+      "bench"
+    ],
+    "ground_truth": {
+      "person": "present",
+      "dining table": "absent",
+      "chair": "present",
+      "couch": "absent",
+      "motorcycle": "absent",
+      "banana": "absent",
+      "backpack": "present",
+      "refrigerator": "absent",
+      "handbag": "absent",
+      "bench": "present"
+    },
+    "meta": {
+      "n_objects": 11,
+      "min_bbox_area_ratio": 0.007829,
+      "has_crowd": false,
+      "gt_counts": {
+        "person": 5,
+        "chair": 1,
+        "backpack": 1,
+        "bench": 4
+      }
+    }
+  },
+  {
+    "image_id": 385190,
+    "file_name": "000000385190.jpg",
+    "checklist": [
+      "traffic light",
+      "cell phone",
+      "car",
+      "person",
+      "cup",
+      "bottle",
+      "frisbee",
+      "bear"
+    ],
+    "ground_truth": {
+      "traffic light": "present",
+      "cell phone": "absent",
+      "car": "absent",
+      "person": "present",
+      "cup": "absent",
+      "bottle": "present",
+      "frisbee": "absent",
+      "bear": "absent"
+    },
+    "meta": {
+      "n_objects": 5,
+      "min_bbox_area_ratio": 0.000297,
+      "has_crowd": false,
+      "gt_counts": {
+        "traffic light": 1,
+        "person": 3,
+        "bottle": 1
+      }
+    }
+  },
+  {
+    "image_id": 260106,
+    "file_name": "000000260106.jpg",
+    "checklist": [
+      "refrigerator",
+      "parking meter",
+      "person",
+      "teddy bear",
+      "horse"
+    ],
+    "ground_truth": {
+      "refrigerator": "absent",
+      "parking meter": "absent",
+      "person": "present",
+      "teddy bear": "absent",
+      "horse": "present"
+    },
+    "meta": {
+      "n_objects": 6,
+      "min_bbox_area_ratio": 0.004222,
+      "has_crowd": false,
+      "gt_counts": {
+        "person": 4,
+        "horse": 2
+      }
+    }
+  },
+  {
+    "image_id": 459437,
+    "file_name": "000000459437.jpg",
+    "checklist": [
+      "cow",
+      "sheep",
+      "sink",
+      "bowl",
+      "bird",
+      "fork",
+      "airplane",
+      "person",
+      "oven",
+      "couch"
+    ],
+    "ground_truth": {
+      "cow": "absent",
+      "sheep": "present",
+      "sink": "absent",
+      "bowl": "present",
+      "bird": "absent",
+      "fork": "absent",
+      "airplane": "absent",
+      "person": "present",
+      "oven": "absent",
+      "couch": "absent"
+    },
+    "meta": {
+      "n_objects": 6,
+      "min_bbox_area_ratio": 0.010785,
+      "has_crowd": false,
+      "gt_counts": {
+        "sheep": 4,
+        "bowl": 1,
+        "person": 1
+      }
+    }
+  },
+  {
+    "image_id": 379533,
+    "file_name": "000000379533.jpg",
+    "checklist": [
+      "snowboard",
+      "toilet",
+      "elephant",
+      "chair",
+      "orange",
+      "motorcycle",
+      "zebra",
+      "sports ball",
+      "baseball glove"
+    ],
+    "ground_truth": {
+      "snowboard": "absent",
+      "toilet": "absent",
+      "elephant": "present",
+      "chair": "absent",
+      "orange": "absent",
+      "motorcycle": "absent",
+      "zebra": "present",
+      "sports ball": "absent",
+      "baseball glove": "absent"
+    },
+    "meta": {
+      "n_objects": 3,
+      "min_bbox_area_ratio": 0.00511,
+      "has_crowd": false,
+      "gt_counts": {
+        "elephant": 2,
+        "zebra": 1
+      }
+    }
+  },
+  {
+    "image_id": 87144,
+    "file_name": "000000087144.jpg",
+    "checklist": [
+      "car",
+      "bench",
+      "truck",
+      "microwave",
+      "laptop"
+    ],
+    "ground_truth": {
+      "car": "present",
+      "bench": "present",
+      "truck": "absent",
+      "microwave": "absent",
+      "laptop": "absent"
+    },
+    "meta": {
+      "n_objects": 10,
+      "min_bbox_area_ratio": 0.007737,
+      "has_crowd": false,
+      "gt_counts": {
+        "car": 2,
+        "bench": 4
+      }
+    }
+  },
+  {
+    "image_id": 46804,
+    "file_name": "000000046804.jpg",
+    "checklist": [
+      "backpack",
+      "sheep",
+      "sports ball",
+      "cow",
+      "bowl",
+      "kite",
+      "microwave",
+      "parking meter",
+      "sandwich",
+      "banana"
+    ],
+    "ground_truth": {
+      "backpack": "absent",
+      "sheep": "present",
+      "sports ball": "absent",
+      "cow": "absent",
+      "bowl": "absent",
+      "kite": "absent",
+      "microwave": "absent",
+      "parking meter": "absent",
+      "sandwich": "absent",
+      "banana": "absent"
+    },
+    "meta": {
+      "n_objects": 1,
+      "min_bbox_area_ratio": 0.231752,
+      "has_crowd": false,
+      "gt_counts": {
+        "sheep": 1
+      }
+    }
+  },
+  {
+    "image_id": 165681,
+    "file_name": "000000165681.jpg",
+    "checklist": [
+      "fire hydrant",
+      "train",
+      "donut",
+      "dining table",
+      "person",
+      "car"
+    ],
+    "ground_truth": {
+      "fire hydrant": "absent",
+      "train": "absent",
+      "donut": "absent",
+      "dining table": "present",
+      "person": "present",
+      "car": "present"
+    },
+    "meta": {
+      "n_objects": 30,
+      "min_bbox_area_ratio": 0.000565,
+      "has_crowd": true,
+      "gt_counts": {
+        "dining table": 1,
+        "person": 12,
+        "car": 1
+      }
+    }
+  },
+  {
+    "image_id": 324715,
+    "file_name": "000000324715.jpg",
+    "checklist": [
+      "banana",
+      "orange",
+      "scissors",
+      "giraffe",
+      "skis",
+      "suitcase",
+      "laptop",
+      "traffic light",
+      "donut"
+    ],
+    "ground_truth": {
+      "banana": "absent",
+      "orange": "absent",
+      "scissors": "present",
+      "giraffe": "absent",
+      "skis": "absent",
+      "suitcase": "absent",
+      "laptop": "present",
+      "traffic light": "absent",
+      "donut": "absent"
+    },
+    "meta": {
+      "n_objects": 2,
+      "min_bbox_area_ratio": 0.091592,
+      "has_crowd": false,
+      "gt_counts": {
+        "scissors": 1,
+        "laptop": 1
+      }
+    }
+  },
+  {
+    "image_id": 301061,
+    "file_name": "000000301061.jpg",
+    "checklist": [
+      "elephant",
+      "laptop",
+      "truck",
+      "keyboard",
+      "remote",
+      "person",
+      "surfboard",
+      "clock",
+      "car"
+    ],
+    "ground_truth": {
+      "elephant": "present",
+      "laptop": "absent",
+      "truck": "present",
+      "keyboard": "absent",
+      "remote": "absent",
+      "person": "present",
+      "surfboard": "absent",
+      "clock": "absent",
+      "car": "absent"
+    },
+    "meta": {
+      "n_objects": 3,
+      "min_bbox_area_ratio": 0.068144,
+      "has_crowd": false,
+      "gt_counts": {
+        "elephant": 1,
+        "truck": 1,
+        "person": 1
+      }
+    }
+  },
+  {
+    "image_id": 389566,
+    "file_name": "000000389566.jpg",
+    "checklist": [
+      "airplane",
+      "potted plant",
+      "car",
+      "cow",
+      "horse",
+      "donut",
+      "dog",
+      "truck",
+      "sheep",
+      "bench"
+    ],
+    "ground_truth": {
+      "airplane": "absent",
+      "potted plant": "absent",
+      "car": "present",
+      "cow": "absent",
+      "horse": "absent",
+      "donut": "absent",
+      "dog": "absent",
+      "truck": "absent",
+      "sheep": "present",
+      "bench": "absent"
+    },
+    "meta": {
+      "n_objects": 15,
+      "min_bbox_area_ratio": 0.001159,
+      "has_crowd": true,
+      "gt_counts": {
+        "car": 1,
+        "sheep": 14
+      }
+    }
+  },
+  {
+    "image_id": 74092,
+    "file_name": "000000074092.jpg",
+    "checklist": [
+      "baseball glove",
+      "sink",
+      "scissors",
+      "zebra",
+      "dining table",
+      "person",
+      "tennis racket",
+      "traffic light",
+      "sports ball"
+    ],
+    "ground_truth": {
+      "baseball glove": "absent",
+      "sink": "absent",
+      "scissors": "absent",
+      "zebra": "absent",
+      "dining table": "absent",
+      "person": "present",
+      "tennis racket": "present",
+      "traffic light": "absent",
+      "sports ball": "present"
+    },
+    "meta": {
+      "n_objects": 16,
+      "min_bbox_area_ratio": 0.000604,
+      "has_crowd": true,
+      "gt_counts": {
+        "person": 14,
+        "tennis racket": 1,
+        "sports ball": 1
+      }
+    }
+  },
+  {
+    "image_id": 301981,
+    "file_name": "000000301981.jpg",
+    "checklist": [
+      "giraffe",
+      "skis",
+      "bench",
+      "toaster",
+      "potted plant",
+      "orange",
+      "boat"
+    ],
+    "ground_truth": {
+      "giraffe": "present",
+      "skis": "absent",
+      "bench": "absent",
+      "toaster": "absent",
+      "potted plant": "absent",
+      "orange": "absent",
+      "boat": "absent"
+    },
+    "meta": {
+      "n_objects": 1,
+      "min_bbox_area_ratio": 0.312385,
+      "has_crowd": false,
+      "gt_counts": {
+        "giraffe": 1
+      }
+    }
+  },
+  {
+    "image_id": 239274,
+    "file_name": "000000239274.jpg",
+    "checklist": [
+      "oven",
+      "baseball glove",
+      "boat",
+      "person",
+      "sports ball"
+    ],
+    "ground_truth": {
+      "oven": "absent",
+      "baseball glove": "absent",
+      "boat": "present",
+      "person": "present",
+      "sports ball": "absent"
+    },
+    "meta": {
+      "n_objects": 14,
+      "min_bbox_area_ratio": 0.000102,
+      "has_crowd": false,
+      "gt_counts": {
+        "boat": 1,
+        "person": 13
+      }
+    }
+  },
+  {
+    "image_id": 371472,
+    "file_name": "000000371472.jpg",
+    "checklist": [
+      "skis",
+      "baseball glove",
+      "fork",
+      "cup",
+      "bench",
+      "banana"
+    ],
+    "ground_truth": {
+      "skis": "absent",
+      "baseball glove": "absent",
+      "fork": "absent",
+      "cup": "absent",
+      "bench": "absent",
+      "banana": "present"
+    },
+    "meta": {
+      "n_objects": 11,
+      "min_bbox_area_ratio": 0.003408,
+      "has_crowd": false,
+      "gt_counts": {
+        "banana": 11
+      }
+    }
+  },
+  {
+    "image_id": 68833,
+    "file_name": "000000068833.jpg",
+    "checklist": [
+      "refrigerator",
+      "microwave",
+      "chair",
+      "cake",
+      "couch",
+      "boat"
+    ],
+    "ground_truth": {
+      "refrigerator": "present",
+      "microwave": "present",
+      "chair": "present",
+      "cake": "absent",
+      "couch": "absent",
+      "boat": "absent"
+    },
+    "meta": {
+      "n_objects": 9,
+      "min_bbox_area_ratio": 0.001326,
+      "has_crowd": false,
+      "gt_counts": {
+        "refrigerator": 1,
+        "microwave": 1,
+        "chair": 1
+      }
+    }
+  },
+  {
+    "image_id": 560474,
+    "file_name": "000000560474.jpg",
+    "checklist": [
+      "toothbrush",
+      "apple",
+      "knife",
+      "umbrella",
+      "toaster"
+    ],
+    "ground_truth": {
+      "toothbrush": "present",
+      "apple": "absent",
+      "knife": "absent",
+      "umbrella": "present",
+      "toaster": "absent"
+    },
+    "meta": {
+      "n_objects": 20,
+      "min_bbox_area_ratio": 0.001607,
+      "has_crowd": false,
+      "gt_counts": {
+        "toothbrush": 9,
+        "umbrella": 1
+      }
+    }
+  },
+  {
+    "image_id": 511398,
+    "file_name": "000000511398.jpg",
+    "checklist": [
+      "train",
+      "bus",
+      "horse",
+      "hair drier",
+      "cat",
+      "baseball glove",
+      "pizza",
+      "dog",
+      "sheep",
+      "cell phone"
+    ],
+    "ground_truth": {
+      "train": "absent",
+      "bus": "absent",
+      "horse": "absent",
+      "hair drier": "absent",
+      "cat": "absent",
+      "baseball glove": "absent",
+      "pizza": "absent",
+      "dog": "present",
+      "sheep": "absent",
+      "cell phone": "absent"
+    },
+    "meta": {
+      "n_objects": 1,
+      "min_bbox_area_ratio": 0.669821,
+      "has_crowd": false,
+      "gt_counts": {
+        "dog": 1
+      }
+    }
+  },
+  {
+    "image_id": 343524,
+    "file_name": "000000343524.jpg",
+    "checklist": [
+      "tennis racket",
+      "remote",
+      "sports ball",
+      "sheep",
+      "pizza",
+      "kite",
+      "skateboard",
+      "refrigerator",
+      "person"
+    ],
+    "ground_truth": {
+      "tennis racket": "present",
+      "remote": "absent",
+      "sports ball": "present",
+      "sheep": "absent",
+      "pizza": "absent",
+      "kite": "absent",
+      "skateboard": "absent",
+      "refrigerator": "absent",
+      "person": "present"
+    },
+    "meta": {
+      "n_objects": 3,
+      "min_bbox_area_ratio": 0.000695,
+      "has_crowd": false,
+      "gt_counts": {
+        "tennis racket": 1,
+        "sports ball": 1,
+        "person": 1
+      }
+    }
+  }
+]

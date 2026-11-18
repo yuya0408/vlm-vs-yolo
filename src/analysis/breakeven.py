@@ -1,6 +1,6 @@
 """VLM(従量課金)と YOLO(固定費先行)の損益分岐分析。
 
-REPORT のコスト比較は「300 枚あたり 251 円 vs 0 円」で、YOLO 側が無料に見える。しかし YOLO の
+REPORT のコスト比較は「300 枚あたり約 500 円(思考の推定を含む) vs 0 円」で、YOLO 側が無料に見える。しかし YOLO の
 0 円は API 課金が 0 という意味でしかなく、実際には**アノテーション・学習工数・推論基盤の運用**が
 固定費として先に立つ。技術選定で効くのはこの固定費と従量課金の交点である。
 
@@ -34,12 +34,12 @@ _HORIZON_CAP_MONTHS = 120
 
 
 def vlm_unit_cost_jpy(costs: dict) -> float:
-    """VLM の 1 枚あたり単価(円)。実測値から割り戻す。"""
+    """VLM の 1 枚あたり単価(円)。実測値に思考の推定費用を足して割り戻す。"""
     v = costs["vlm"]
     n = int(v["measured_n_images"])
     if n <= 0:
         raise ValueError("measured_n_images は正の整数")
-    return float(v["measured_cost_jpy"]) / n
+    return (float(v["measured_cost_jpy"]) + float(v.get("thinking_cost_jpy", 0))) / n
 
 
 def fixed_cost(scenario: dict) -> dict:
@@ -215,7 +215,7 @@ def breakeven_figure(res: dict, out_path: str) -> str:
 
     if "zero_annotation" in scenarios:
         plot_line(scenarios["zero_annotation"]["fixed_cost"]["total_jpy"], MUTED, 1.7, "-.")
-        ax.text(1.45e5, 1.3, "アノテーション0円 24万円", fontsize=9, color=INK_2, ha="right")
+        ax.text(6.5e4, 1.3, "アノテーション0円 24万円", fontsize=9, color=INK_2, ha="right")
     ax.axhspan(cap, 220, color=SHADE, lw=0, zorder=0)
     ax.axhline(cap, color=INK_2, lw=1, ls="--", zorder=1)
     ax.text(320, cap * 1.12, "回収不能(120ヶ月超)", fontsize=9, color=INK_2, va="bottom")
@@ -230,7 +230,7 @@ def breakeven_figure(res: dict, out_path: str) -> str:
         ax.text(fixed / (unit * label_y) * 1.1, label_y, name, fontsize=9.5, va="bottom",
                 color=INK if key == "x1" else INK_2, fontweight="bold" if key == "x1" else "normal")
     ax.axvline(500, color=INK_2, lw=0.9, ls=":", zorder=1)
-    ax.text(530, 60, "月500枚:4本とも回収不能", fontsize=9, color=INK_2)
+    ax.text(530, 6, "月500枚:4本とも回収不能", fontsize=9, color=INK_2)
     v36 = s["break_even_monthly_volume"].get("36")
     if v36:
         ax.plot([v36], [36], marker="o", ms=8, color=INK, zorder=4)
@@ -248,8 +248,8 @@ def breakeven_figure(res: dict, out_path: str) -> str:
     ax.set_xlabel("月間推論枚数(枚/月、対数)")
     ax.set_ylabel("回収期間(ヶ月、対数)")
     ax.set_title("下ほど早く回収できる", loc="left", fontsize=10.5, color=INK)
-    set_figure_title(fig, "損益分岐(試算):語彙外の10クラスを学習させるなら、YOLOに有利な仮定でも回収には月1万枚のオーダー",
-                     ["回収期間=固定費÷(VLMの単価×月間枚数)。単価0.84円/枚は実測、固定費は仮定(YOLOに有利に置いた。うち24万円は出典のない学習工数)。",
+    set_figure_title(fig, "損益分岐(試算):語彙外の10クラスを学習させるなら、YOLOに有利な仮定でも回収には月数千枚が要る",
+                     [f"回収期間=固定費÷(VLMの単価×月間枚数)。単価{unit:.2f}円/枚は実測に思考の推定を足した値、固定費は仮定(YOLOに有利に置いた。うち24万円は出典のない学習工数)。",
                       "運用月額0円の場合。4本は同じ計算で固定費だけを振った感度。学習したYOLOの精度がVLMに届くことは仮定(未検証)。"])
     fig.tight_layout(rect=(0, 0, 1, 1 - 0.78 / fig.get_figheight()))
     Path(out_path).parent.mkdir(parents=True, exist_ok=True)
