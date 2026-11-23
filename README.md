@@ -333,9 +333,10 @@ McNemar: n01(cur正/base誤)=0 n10(cur誤/base正)=0 p=1.0000  ※参考
 結果: PASS
 ```
 
-コミットしてある `results/` から、数値と図を作り直す（無料。Windowsでは `PYTHONUTF8=1` を付ける。図は日本語フォントMeiryoを使う）：
+コミットしてある `results/` から、数値と図を作り直す（無料。Windowsでは `PYTHONUTF8=1` を付ける。図は日本語フォントMeiryoを使う）。`requirements-lock.txt` の版で、`results/` と `report/figures/` がコミット済みのものと一致することを確かめてある（Python 3.13・Windows）：
 
 ```bash
+pip install -r requirements-lock.txt
 python -m src.analysis.yolo_threshold sweep --raw results/yolo_raw_detections.json --eval-set data/eval_set.json
 python -m src.analysis.compare --yolo results/yolo-yolo26x-tuned075-289d6c0e.json \
     --vlm results/gemini-gemini-3.5-flash-289d6c0e.json --eval-set data/eval_set.json --out results/comparison_tuned.json
@@ -355,7 +356,7 @@ python -m src.analysis.yolo_threshold export --eval-set data/eval_set.json --thr
 python -m src.runner --eval-set data/eval_set.json --model flash   # → results/gemini-gemini-3.5-flash-concise-289d6c0e.json
 ```
 
-比較のコマンドが読む `results/gemini-gemini-3.5-flash-289d6c0e.json` は、プロンプト名を run_id に入れる前の名前で、判定は `-concise-` の付いたファイルと同じである。ライブラリの版は固定していない（実行時の版の記録が無い）。
+比較のコマンドが読む `results/gemini-gemini-3.5-flash-289d6c0e.json` は、プロンプト名を run_id に入れる前の名前で、判定は `-concise-` の付いたファイルと同じである。推論に使った `ultralytics`・`torch` の版は記録していない（推論の出力は `results/` に保存してあり、統計はそこから再現できる）。
 
 プロンプトの比較のコマンドは [REPORT §2b](report/REPORT.md#2b-vlm-側のプロンプト感度3-水準実行済み結論不変) にある。
 
