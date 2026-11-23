@@ -1,0 +1,198 @@
+# YOLO の推論(results/yolo_raw_detections.json などを作る処理)を再現できた環境の版。
+# 推論は 2026-06-23 に手元の Mac で回したが、そのときの版は記録していない。この一覧はその代わりに、
+# 2026-06-23 より前に PyPI に出ていた版で作った推定である(当時の実物の版とは限らない):
+#   uv pip compile requirements.txt --exclude-newer 2026-06-23 --python-version 3.13 --python-platform x86_64-pc-windows-msvc
+#   (torch==2.11.0・torchvision==0.26.0 を指定)
+# この一覧だけを入れた新しい venv(Python 3.13.7 / Windows 11 / CPU)で評価用の 300 枚を推論し直し、
+# コミット済みの results/yolo_raw_detections.json と比べた(2026-11-23):
+#   - conf>=0.001 の検出は 30,558 件で、画像・カテゴリごとの件数も全部一致
+#   - 信頼度の差は最大 1.4e-4(中央値 2.3e-8)
+#   - yolo_threshold.json・yolo_threshold_fine.json・conf=0.075 の判定と個数が全部一致
+# 入れ方: pip install -r requirements-inference-lock.txt
+# 統計の再計算だけなら requirements-analysis-lock.txt で足りる。
+# 結果を再現するための版で、更新しない(古い版には既知の脆弱性があることがある)。
+# このコードを自分の用途で使うときは、版を固定していない requirements.txt から入れる。
+annotated-types==0.7.0
+    # via pydantic
+anyio==4.14.0
+    # via
+    #   google-genai
+    #   httpx
+certifi==2026.6.17
+    # via
+    #   httpcore
+    #   httpx
+    #   requests
+cffi==2.0.0
+    # via cryptography
+charset-normalizer==3.4.7
+    # via requests
+colorama==0.4.6
+    # via pytest
+contourpy==1.3.3
+    # via matplotlib
+cryptography==49.0.0
+    # via google-auth
+cycler==0.12.1
+    # via matplotlib
+distro==1.9.0
+    # via google-genai
+filelock==3.29.4
+    # via torch
+fonttools==4.63.0
+    # via matplotlib
+fsspec==2026.6.0
+    # via torch
+google-auth==2.55.0
+    # via google-genai
+google-genai==2.9.0
+    # via -r requirements.txt
+h11==0.16.0
+    # via httpcore
+httpcore==1.0.9
+    # via httpx
+httpx==0.28.1
+    # via google-genai
+idna==3.18
+    # via
+    #   anyio
+    #   httpx
+    #   requests
+iniconfig==2.3.0
+    # via pytest
+jinja2==3.1.6
+    # via torch
+kiwisolver==1.5.0
+    # via matplotlib
+markupsafe==3.0.3
+    # via jinja2
+matplotlib==3.11.0
+    # via
+    #   -r requirements.txt
+    #   ultralytics
+mpmath==1.3.0
+    # via sympy
+networkx==3.6.1
+    # via torch
+numpy==2.5.0
+    # via
+    #   -r requirements.txt
+    #   contourpy
+    #   matplotlib
+    #   opencv-python
+    #   pandas
+    #   patsy
+    #   pycocotools
+    #   scipy
+    #   statsmodels
+    #   torchvision
+    #   ultralytics
+    #   ultralytics-thop
+nvidia-ml-py==13.610.43
+    # via ultralytics
+opencv-python==4.13.0.92
+    # via ultralytics
+packaging==26.2
+    # via
+    #   matplotlib
+    #   pytest
+    #   statsmodels
+pandas==3.0.3
+    # via
+    #   -r requirements.txt
+    #   statsmodels
+patsy==1.0.2
+    # via statsmodels
+pillow==12.2.0
+    # via
+    #   -r requirements.txt
+    #   matplotlib
+    #   torchvision
+    #   ultralytics
+pluggy==1.6.0
+    # via pytest
+polars==1.41.2
+    # via ultralytics
+polars-runtime-32==1.41.2
+    # via polars
+psutil==7.2.2
+    # via ultralytics
+pyasn1==0.6.3
+    # via pyasn1-modules
+pyasn1-modules==0.4.2
+    # via google-auth
+pycocotools==2.0.11
+    # via -r requirements.txt
+pycparser==3.0
+    # via cffi
+pydantic==2.13.4
+    # via google-genai
+pydantic-core==2.46.4
+    # via pydantic
+pygments==2.20.0
+    # via pytest
+pyparsing==3.3.2
+    # via matplotlib
+pytest==9.1.1
+    # via -r requirements.txt
+python-dateutil==2.9.0.post0
+    # via
+    #   matplotlib
+    #   pandas
+python-dotenv==1.2.2
+    # via -r requirements.txt
+pyyaml==6.0.3
+    # via
+    #   -r requirements.txt
+    #   ultralytics
+requests==2.34.2
+    # via
+    #   google-auth
+    #   google-genai
+    #   ultralytics
+scipy==1.18.0
+    # via
+    #   -r requirements.txt
+    #   statsmodels
+    #   ultralytics
+setuptools==81.0.0
+    # via torch
+six==1.17.0
+    # via python-dateutil
+sniffio==1.3.1
+    # via google-genai
+statsmodels==0.14.6
+    # via -r requirements.txt
+sympy==1.14.0
+    # via torch
+tenacity==9.1.4
+    # via google-genai
+torch==2.11.0
+    # via
+    #   (torch・torchvision の版の指定。冒頭参照)
+    #   torchvision
+    #   ultralytics
+    #   ultralytics-thop
+torchvision==0.26.0
+    # via
+    #   (torch・torchvision の版の指定。冒頭参照)
+    #   ultralytics
+typing-extensions==4.15.0
+    # via
+    #   google-genai
+    #   pydantic
+    #   pydantic-core
+    #   torch
+    #   typing-inspection
+typing-inspection==0.4.2
+    # via pydantic
+tzdata==2026.2
+    # via pandas
+ultralytics==8.4.75
+    # via -r requirements.txt
+ultralytics-thop==2.0.20
+    # via ultralytics
+urllib3==2.7.0
+    # via requests
+websockets==16.0
+    # via google-genai

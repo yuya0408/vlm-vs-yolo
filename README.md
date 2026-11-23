@@ -333,9 +333,10 @@ McNemar: n01(cur正/base誤)=0 n10(cur誤/base正)=0 p=1.0000  ※参考
 結果: PASS
 ```
 
-コミットしてある `results/` から、数値と図を作り直す（無料。Windowsでは `PYTHONUTF8=1` を付ける。図は日本語フォントMeiryoを使う）：
+コミットしてある `results/` から、数値と図を作り直す（無料。Windowsでは `PYTHONUTF8=1` を付ける。図は日本語フォントMeiryoを使う）。`requirements-analysis-lock.txt` の版で、`results/` と `report/figures/` がコミット済みのものと一致することを確かめてある（Python 3.13・Windows）：
 
 ```bash
+pip install -r requirements-analysis-lock.txt
 python -m src.analysis.yolo_threshold sweep --raw results/yolo_raw_detections.json --eval-set data/eval_set.json
 python -m src.analysis.compare --yolo results/yolo-yolo26x-tuned075-289d6c0e.json \
     --vlm results/gemini-gemini-3.5-flash-289d6c0e.json --eval-set data/eval_set.json --out results/comparison_tuned.json
@@ -347,6 +348,7 @@ python -m src.analysis.breakeven --figure report/figures/breakeven_ja.png
 推論からやり直す場合（COCO val2017、`yolo26x.pt`、`.env`の`GEMINI_API_KEY`が要り、VLMは1水準あたり約250〜310円）：
 
 ```bash
+pip install -r requirements-inference-lock.txt   # YOLO の推論に使う版（下の注を参照）
 python -m src.runner --eval-set data/eval_set.json --model yolo    # → results/yolo-yolo26x-289d6c0e.json
 python -m src.analysis.yolo_threshold capture --eval-set data/eval_set.json --weights yolo26x.pt
 python -m src.analysis.yolo_threshold sweep --eval-set data/eval_set.json
@@ -355,7 +357,7 @@ python -m src.analysis.yolo_threshold export --eval-set data/eval_set.json --thr
 python -m src.runner --eval-set data/eval_set.json --model flash   # → results/gemini-gemini-3.5-flash-concise-289d6c0e.json
 ```
 
-比較のコマンドが読む `results/gemini-gemini-3.5-flash-289d6c0e.json` は、プロンプト名を run_id に入れる前の名前で、判定は `-concise-` の付いたファイルと同じである。ライブラリの版は固定していない（実行時の版の記録が無い）。
+比較のコマンドが読む `results/gemini-gemini-3.5-flash-289d6c0e.json` は、プロンプト名を run_id に入れる前の名前で、判定は `-concise-` の付いたファイルと同じである。推論の版は `requirements-inference-lock.txt` に固定した（ultralytics 8.4.75・torch 2.11.0）。この版で 300 枚を推論し直すと、検出 30,558 件の件数、しきい値スイープ、conf=0.075 の判定と個数がコミット済みのものと全部一致した（Windows・CPU。信頼度の差は最大 1.4×10⁻⁴）。推論した当時は版を記録していなかったため、この一覧は推論した日（2026-06-23）より前に公開されていた版から作った。
 
 プロンプトの比較のコマンドは [REPORT §2b](report/REPORT.md#2b-vlm-側のプロンプト感度3-水準実行済み結論不変) にある。
 
