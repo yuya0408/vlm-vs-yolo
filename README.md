@@ -357,7 +357,7 @@ python -m src.analysis.yolo_threshold export --eval-set data/eval_set.json --thr
 python -m src.runner --eval-set data/eval_set.json --model flash   # → results/gemini-gemini-3.5-flash-concise-289d6c0e.json
 ```
 
-比較のコマンドが読む `results/gemini-gemini-3.5-flash-289d6c0e.json` は、プロンプト名を run_id に入れる前の名前で、判定は `-concise-` の付いたファイルと同じである。推論に使った `ultralytics`・`torch` の版は記録していない。代わりに、2026-06-23（推論した日）より前に公開されていた版で `requirements-inference-lock.txt` を作り（ultralytics 8.4.75・torch 2.11.0）、Windows の CPU で 300 枚を推論し直して確かめた。検出 30,558 件の件数、しきい値スイープ、conf=0.075 の判定と個数がコミット済みのものと全部一致した（信頼度の差は最大 1.4×10⁻⁴）。当時の実物の版とは限らない。
+比較のコマンドが読む `results/gemini-gemini-3.5-flash-289d6c0e.json` は、プロンプト名を run_id に入れる前の名前で、判定は `-concise-` の付いたファイルと同じである。推論の版は `requirements-inference-lock.txt` に固定した（ultralytics 8.4.75・torch 2.11.0）。この版で 300 枚を推論し直すと、検出 30,558 件の件数、しきい値スイープ、conf=0.075 の判定と個数がコミット済みのものと全部一致した（Windows・CPU。信頼度の差は最大 1.4×10⁻⁴）。推論した当時は版を記録していなかったため、この一覧は推論した日（2026-06-23）より前に公開されていた版から作った。
 
 プロンプトの比較のコマンドは [REPORT §2b](report/REPORT.md#2b-vlm-側のプロンプト感度3-水準実行済み結論不変) にある。
 
