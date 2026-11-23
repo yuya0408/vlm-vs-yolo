@@ -41,7 +41,10 @@ def capture_detections(eval_set: list[dict], weights: str, images_dir: str,
     for e in eval_set:
         path = Path(images_dir) / e["file_name"]
         raw[str(e["image_id"])] = provider.detect_confidences(path, base_conf=base_conf)
-    return {"weights": weights, "base_conf": base_conf, "detections": raw}
+    from ..env_info import runtime_environment
+    return {"weights": weights, "base_conf": base_conf,
+            "environment": runtime_environment(device=provider.device),
+            "detections": raw}
 
 
 def _records_at_threshold(raw: dict, eval_set: list[dict], t: float) -> list[dict]:

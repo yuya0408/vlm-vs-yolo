@@ -9,13 +9,18 @@
 - 再開可能: run_id は (provider, model, 評価セットhash) から決定的に決まり、再実行すれば
   未処理の画像のみ実行する
 - 結果の確定保存: results/{run_id}.json に確定保存し、モデル版・評価セットの sha256・
-  実行日時を記録する(MLflow/DVC は使わず、JSON + シード固定 + キャッシュで再現性を担保)
+  実行日時・実行環境(Python・OS・主なライブラリの版・デバイス)を記録する
+  (MLflow/DVC は使わず、JSON + シード固定 + キャッシュで再現性を担保)。
+  environment はその回のプロセスの環境。cached が true のレコードは、それより前の回に
+  判定してキャッシュしたもので、別の環境で作られた可能性がある
 - コスト記録: Usage を結果に含め、金額換算は src/gate.py(単価表 conf/pricing.yaml)で行う
 
 結果ファイル(results/{run_id}.json):
 {
   "run_id": "...", "provider": "mock", "model_version": "mock-model-v1", "prompt": "concise",
   "eval_set_path": "...", "eval_set_sha256": "...", "created_at": "...",
+  "environment": {"python": "3.13.7", "platform": "...", "machine": "...", "device": "cpu",
+                  "packages": {"ultralytics": "8.4.75", "torch": "2.11.0", ...}},
   "records": [
     {"image_id": 139,
      "judgements": [{"category": "person", "judgement": "present", "rationale": "..."}],
@@ -37,6 +42,7 @@ from pathlib import Path
 
 import yaml
 
+from .env_info import runtime_environment
 from .providers.base import ProviderResponse
 from .providers.factory import build_provider
 
@@ -156,16 +162,21 @@ def run_eval(eval_set_path: str, model_config: dict, cache_dir: str = "cache",
         })
         done.add(image_id)
         _save(result_path, run_id, provider_name, model_version, eval_set_path,
-              eval_hash, records, prompt_name)
+              eval_hash, records, prompt_name, _environment(provider))
 
     _save(result_path, run_id, provider_name, model_version, eval_set_path, eval_hash,
-          records, prompt_name)
+          records, prompt_name, _environment(provider))
     return str(result_path)
+
+
+def _environment(provider) -> dict:
+    """その回の実行環境。デバイスはプロバイダが持っていれば(YOLO)使う。"""
+    return runtime_environment(device=getattr(provider, "device", None))
 
 
 def _save(result_path: Path, run_id: str, provider_name: str, model_version: str | None,
           eval_set_path: str, eval_hash: str, records: list[dict],
-          prompt_name: str = "-") -> None:
+          prompt_name: str = "-", environment: dict | None = None) -> None:
     # 公開スキーマからは内部用 _model_version を落とす
     clean = [{k: v for k, v in r.items() if k != "_model_version"} for r in records]
     obj = {
@@ -176,6 +187,7 @@ def _save(result_path: Path, run_id: str, provider_name: str, model_version: str
         "eval_set_path": eval_set_path,
         "eval_set_sha256": eval_hash,
         "created_at": datetime.now().isoformat(timespec="seconds"),
+        "environment": environment,
         "records": clean,
     }
     result_path.write_text(json.dumps(obj, ensure_ascii=False, indent=2), encoding="utf-8")
