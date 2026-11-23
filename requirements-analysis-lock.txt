@@ -5,6 +5,8 @@
 #
 # YOLO の推論(ultralytics・torch)は含まない。推論の出力は results/yolo_raw_detections.json などに
 # 保存してあり、統計はそこから再現できる。推論をやり直すときは requirements-inference-lock.txt を使う。
+# 結果を再現するための版で、更新しない(古い版には既知の脆弱性があることがある)。
+# このコードを自分の用途で使うときは、版を固定していない requirements.txt から入れる。
 annotated-types==0.8.0
 anyio==4.14.2
 certifi==2026.7.22

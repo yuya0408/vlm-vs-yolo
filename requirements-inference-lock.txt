@@ -10,6 +10,8 @@
 #   - yolo_threshold.json・yolo_threshold_fine.json・conf=0.075 の判定と個数が全部一致
 # 入れ方: pip install -r requirements-inference-lock.txt
 # 統計の再計算だけなら requirements-analysis-lock.txt で足りる。
+# 結果を再現するための版で、更新しない(古い版には既知の脆弱性があることがある)。
+# このコードを自分の用途で使うときは、版を固定していない requirements.txt から入れる。
 annotated-types==0.7.0
     # via pydantic
 anyio==4.14.0
