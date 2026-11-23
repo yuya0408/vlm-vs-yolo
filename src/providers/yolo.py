@@ -29,6 +29,12 @@ class YoloProvider(VLMProvider):
     def name(self) -> str:
         return f"yolo-{Path(self._weights).stem}"
 
+    @property
+    def device(self) -> str | None:
+        """推論に使ったデバイス(cpu・mps・cuda:0 など)。モデルを読み込む前や取れないときは None。"""
+        dev = getattr(self._model, "device", None) if self._model is not None else None
+        return str(dev) if dev is not None else None
+
     def _ensure_model(self):
         if self._model is None:
             from ultralytics import YOLO
