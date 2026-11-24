@@ -8,10 +8,11 @@
 #   - conf>=0.001 の検出は 30,558 件で、画像・カテゴリごとの件数も全部一致
 #   - 信頼度の差は最大 1.4e-4(中央値 2.3e-8)
 #   - yolo_threshold.json・yolo_threshold_fine.json・conf=0.075 の判定と個数が全部一致
-# 入れ方: pip install -r requirements-inference-lock.txt
-# 統計の再計算だけなら requirements-analysis-lock.txt で足りる。
+# 入れ方: pip install -r locks/inference.lock
+# 統計の再計算だけなら locks/analysis.lock で足りる。
 # 結果を再現するための版で、更新しない(古い版には既知の脆弱性があることがある)。
 # このコードを自分の用途で使うときは、版を固定していない requirements.txt から入れる。
+# 更新しないので、Dependabot の監視の対象にならない名前(requirements*.txt 以外)にしている。
 annotated-types==0.7.0
     # via pydantic
 anyio==4.14.0
